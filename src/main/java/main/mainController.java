@@ -10,7 +10,6 @@ public class mainController {
 	@RequestMapping("/")
     public String requestCreatePage() {
     	
-
     	return "index";
     	
     }
