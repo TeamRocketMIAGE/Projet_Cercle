@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var websocket = new Websocket("ws://localhost:8080/Projet""))
+</script>
+
+
+</head>
+<body>
+
+<textarea id="messagesTextArea" readonly=" rows="10" cols="50"></textarea><br/>
+<input type="text" id="messageText" size="50" /> 
+<input type="button" value="Send" onclick="sendMessage();" />
+
+</body>
+</html>
