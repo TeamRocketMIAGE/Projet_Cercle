@@ -14,4 +14,10 @@ public class mainController {
     	
     }
 
+	@RequestMapping("/telechargement")
+    public String requestCreatePage1() {
+    	
+    	return "telechargement";
+    	
+    }
 }
