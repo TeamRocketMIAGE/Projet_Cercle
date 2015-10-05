@@ -12,6 +12,14 @@ body {
   line-height: 22px;
 }
 
+#index_login
+{
+	margin-left:35%;
+	margin-right:35%;
+	text-align:center;
+
+}
+
 h1,
 h2,
 h3,
@@ -652,13 +660,13 @@ input.search-form:hover {
 }
 
 #services {
-  background: #000 url(../images/services/bg_services.png);
+  background: white url(../img/bg_services.png);
   background-size: cover;
 }
 
 #services .lead,
 #services h2{
-  color: #fff;
+  
 }
 
 .services-wrap {
@@ -1522,6 +1530,7 @@ ul.social_icons li  a i{
   background: none repeat scroll 0 0 #2E2E2E;
   border-top: 5px solid #C52D2F;
   height: 84px;
+  
   margin-top: 110px;
 }
 
