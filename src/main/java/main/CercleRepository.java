@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface CercleRepository extends CrudRepository<Cercle, Long> {
 
-	    List<Cercle> findByNom(String nom);
+	    List<Cercle> findByName(String name);
 }
