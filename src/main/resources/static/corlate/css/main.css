@@ -10,15 +10,30 @@ body {
   font-family: 'Open Sans', sans-serif;
   color:#4e4e4e;
   line-height: 22px;
+  min-height:100%;
 }
 
 #index_login
 {
-	margin-left:35%;
-	margin-right:35%;
-	text-align:center;
+	margin-left:38%;
+	margin-right:38%;
+	
 
 }
+
+#index_login input.btn
+{
+	width:100%;
+}
+
+#index_login td
+{
+	width:50%;
+	
+}
+
+
+
 
 h1,
 h2,
@@ -1532,6 +1547,8 @@ ul.social_icons li  a i{
   height: 84px;
   
   margin-top: 110px;
+
+
 }
 
 .footer_left {
@@ -1933,11 +1950,14 @@ ul.social_icons li  a i{
 
 #contact-page{
   padding-top: 0;
+    background: white url(../img/inscription_bg.jpg);
+  background-size: cover;
+  
 }
 
 #contact-page .contact-form 
 .form-group label {
-  color: #4E4E4E;
+  color: black;
   font-size: 16px;
   font-weight: 300;
 }

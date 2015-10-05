@@ -1,0 +1,136 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Projet Cercle - Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- Bootstrap -->
+<!-- 
+    <link th:href="@{/resources/static/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen" /> 
+    <link href="resources/static/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet" media="screen" />
+	    <link th:href="@{../static/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen" /> 
+	
+    -->
+<!--  <link href="bootstrap/css/bootstrap.min.css"/> -->
+<link href="corlate/css/bootstrap.min.css" rel="stylesheet" />
+<link href="corlate/css/font-awesome.min.css" rel="stylesheet" />
+<link href="corlate/css/animate.min.css" rel="stylesheet" />
+<link href="corlate/css/prettyPhoto.css" rel="stylesheet" />
+<link href="corlate/css/main.css" rel="stylesheet" />
+<link href="corlate/css/responsive.css" rel="stylesheet" />
+
+</head>
+<body class="homepage">
+
+	<header id="header">
+		<nav class="navbar navbar-inverse" role="banner">
+			<div class="container">
+
+				<div class="navbar-header">
+					<a class="navbar-brand" href="home"><img
+						src="../corlate/img/cercle_logo.png" alt="logo" /></a>
+				</div>
+
+				<div class="collapse navbar-collapse navbar-right">
+
+					<ul class="nav navbar-nav">
+						<li><a href="home">Accueil</a></li>
+						<li><a href="telechargement">Téléchargement</a></li>
+						<li class="active"><a href="#" >Inscription</a></li>
+						<li><a href="#">Tarification</a></li>
+
+
+
+
+					</ul>
+				</div>
+			</div>
+			<!--/.container-->
+		</nav>
+	</header>
+
+
+
+
+
+
+	<section id="contact-page">
+		<div class="container">
+			<div class="center">
+				<br /> <br />
+				<br />
+				<br />
+				<h2>Inscription</h2>
+			</div>
+			<div class="row contact-wrap" >
+				<div class="status alert alert-success" style="display: none"></div>
+				<form id="main-contact-form" class="contact-form"
+					name="contact-form" method="post" action="sendemail.php">
+					<div class="col-sm-5 col-sm-offset-1">
+						<div class="form-group">
+							<label>Nom *</label> <input type="text" name="nom"
+								class="form-control" required="required" />
+						</div>
+						<div class="form-group">
+							<label>Prénom *</label> <input type="text" name="prenom"
+								class="form-control" required="required" />
+						</div>
+						<div class="form-group">
+							<label>E-mail *</label> <input type="email" name="email"
+								class="form-control" required="required" />
+						</div>
+
+					</div>
+					<div class="col-sm-5">
+						<div class="form-group">
+							<label>Téléphone</label> <input type="text" name="tel"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Rue</label> <input type="text" name="rue"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Ville</label> <input type="text" name="ville"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Code postal :</label> <input type="text" name="cp"
+								class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<button type="submit" name="submit"
+								class="btn btn-primary btn-lg" required="required">Valider</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+			<!--/.row-->
+		</div>
+		<!--/.container-->
+	</section>
+	<!--/#contact-page-->
+
+
+
+
+	<footer id="footer" class="midnight-blue">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">&copy; 2015 Cercle. All Rights Reserved.
+				</div>
+
+			</div>
+		</div>
+	</footer>
+	<!--/#footer-->
+
+
+
+
+
+
+</body>
+</html>

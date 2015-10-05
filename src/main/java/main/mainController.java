@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class mainController {
 	
-	@RequestMapping("/")
+	@RequestMapping("/home")
     public String requestCreatePageIndex() {
     	
     	return "index";
@@ -18,6 +18,14 @@ public class mainController {
     public String requestCreatePageTelechargement() {
     	
     	return "telechargement";
+    	
+    }
+	
+	
+	@RequestMapping("/inscription")
+    public String requestCreatePageInscription() {
+    	
+    	return "inscription";
     	
     }
 }
