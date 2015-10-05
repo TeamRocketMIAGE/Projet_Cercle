@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class mainController {
 	
 	@RequestMapping("/")
-    public String requestCreatePage() {
+    public String requestCreatePageIndex() {
     	
     	return "index";
     	
     }
 
 	@RequestMapping("/telechargement")
-    public String requestCreatePage1() {
+    public String requestCreatePageTelechargement() {
     	
     	return "telechargement";
     	
