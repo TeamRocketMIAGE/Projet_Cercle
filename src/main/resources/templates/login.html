@@ -36,7 +36,7 @@
 				<div class="collapse navbar-collapse navbar-right">
 
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Accueil</a></li>
+						<li><a href="#">Accueil</a></li>
 						<li><a href="telechargement">Téléchargement</a></li>
 						<li><a href="inscription">Inscription</a></li>
 						<li><a href="tarification">Tarification</a></li>
@@ -52,63 +52,49 @@
 	</header>
 
 
-	<section id="services" class="service-item">
-		<div class="container">
 
-			<div class="row">
-				<div class="col-sm-8">
-					<div class="media contact-info wow fadeInDown"
-						data-wow-duration="1000ms" data-wow-delay="600ms">
-						<div class="pull-left"></div>
-						<div class="media-body">
-							<br /> <br /> <br /> <br />
-							<h2>Pour des projets rondement menés</h2>
-							<p>
-								Cercle est un gestionnaire de projet comprenant différents
-								moyens de faciliter votre travail en commun. <br></br> D'un
-								système de messagerie comprenant conversations de groupes et
-								privés entre utilisateur à un système de drive propre à chaque
-								projet. <br></br> Les aspects les plus importants du travail en
-								commun sont inclus dans ce gestionnaire.
-							</p>
-							<br /> <br /> <br /> <br />
-						</div>
-					</div>
-				</div>
+
+
+
+
+	<div id="index_login">
+		<form th:action="@{/login}" method="POST">
+
+
+			<table>
+				<tr>
+					<td><br />
+					<br />
+					<br />
+					<br /></td>
+				</tr>
+				<tr>
+					<td>Identifiant :</td>
+					<td><input type="text" name="username"/></td>
+
+				</tr>
+				<tr>
+					<td>Mot de passe :</td>
+					<td><input type="password" name="password"/></td>
+				</tr>
+
+			</table>
+			<br />  <input type="submit" class="btn btn-primary btn-lg"
+				value="Se connecter" />
+			<div th:if="${param.error}">
+				<br /> Utilisateur et/ou mot de passe incorrect.
 			</div>
+			
 
 
-		</div>
-	</section>
-	<!--/#services-->
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
 
-
-
-
-	<div id="index_login" class="center" >
-
-		<br /> <br />  <br /> <a href="/user_page"><input
-			type="button" class="btn btn-primary btn-lg"
-			value="Accéder à votre espace de travail" /></a>
-
-		<div th:if="${param.logout}">
-			<br /> Vous vous êtes déconnecté avec succès!
-		</div>
-		<br /><br />
-	<div>ou</div>
-		
-<br />
-		 <a href="/inscription"><input
-			class="btn btn-primary btn-lg" value="Inscrivez-vous dès maintenant" /></a>
-
-
-
-
-		 <br /> <br />
-
-
-
-
+		</form>
 	</div>
 
 

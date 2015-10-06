@@ -13,7 +13,7 @@ public class mainController {
 	 @RequestMapping(value="/home", method=RequestMethod.GET)
     public String requestCreatePageIndex1() {
     	
-		 System.out.println("request home");
+		 System.out.println("request home get");
     	return "index";
     	
     }
@@ -24,6 +24,8 @@ public class mainController {
 		return "redirect:/home";
     	
     }
+	
+
 	
 
 	@RequestMapping("/telechargement")
