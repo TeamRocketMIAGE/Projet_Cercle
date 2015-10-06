@@ -7,21 +7,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 @Entity
 public class User implements Serializable  {
 	
+
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
-	
 	private String pseudo;
 	private String password;
 	private String nom;
@@ -35,6 +35,7 @@ public class User implements Serializable  {
 	protected User()
 	{}
 	
+	
 	public User(String pseudo, String nom, String prenom, String adresse_rue,
 			String adresse_CP, String adresse_ville, String tel, String mail, String password) {
 		super();
@@ -46,7 +47,17 @@ public class User implements Serializable  {
 		this.adresse_ville = adresse_ville;
 		this.tel = tel;
 		this.mail = mail;
-		this.password = password;
+		this.setPassword(password);
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "pseudo=" + pseudo + ", password="
+				+ password + ", nom=" + nom + ", prenom=" + prenom
+				+ ", adresse_rue=" + adresse_rue + ", adresse_CP=" + adresse_CP
+				+ ", adresse_ville=" + adresse_ville + ", tel=" + tel
+				+ ", mail=" + mail + "]";
 	}
 
 	
@@ -58,13 +69,7 @@ public class User implements Serializable  {
 		this.pseudo = pseudo;
 	}
 	
-	public long getId() {
-		return id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	
 	public String getNom() {
 		return nom;
@@ -116,6 +121,14 @@ public class User implements Serializable  {
 	}
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

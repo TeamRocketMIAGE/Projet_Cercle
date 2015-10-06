@@ -25,10 +25,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll()
                 .and()
+            .csrf().disable()
             .logout()
                 .permitAll();
         	
     }
+    
+    
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -38,13 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
     
-    /*
+    
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         final Properties users = new Properties();
         users.put("bob","abc,USER,enabled"); //add whatever other user you need
         return new InMemoryUserDetailsManager(users);
     }
-    */
+    
 
 }

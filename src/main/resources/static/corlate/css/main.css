@@ -14,6 +14,12 @@ body {
 }
 
 
+.error_message
+{
+	color:#C52D30;
+}
+
+
 #index_login
 {
 	margin-left: 38%;

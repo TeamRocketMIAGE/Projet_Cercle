@@ -54,7 +54,9 @@
 
 
 
-
+	<div class="center" th:if="${(param.signin != null) and (param.signin[0] == 'ok')}">
+			<br /><br /><br /><b>Inscription réalisée avec succès! Vous pouvez dès à présent vous connecter.</b>
+			</div>
 
 
 	<div id="index_login">
@@ -88,6 +90,7 @@
 			<div th:if="${param.logout}">
 				<br /> Vous vous êtes déconnecté avec succès!
 			</div>
+
 
 
 

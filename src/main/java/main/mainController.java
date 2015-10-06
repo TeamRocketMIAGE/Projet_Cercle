@@ -39,12 +39,7 @@ public class mainController {
 
 	}
 
-	@RequestMapping("/inscription")
-	public String requestCreatePageInscription() {
 
-		return "inscription";
-
-	}
 
 	@RequestMapping("/user_page")
 	public String requestCreatePageUserHome() {
@@ -60,6 +55,7 @@ public class mainController {
 		return "tarification";
 
 	}
+	
 	
 	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
