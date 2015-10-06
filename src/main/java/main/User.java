@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 @Entity
 public class User implements Serializable  {
 	
@@ -19,7 +21,9 @@ public class User implements Serializable  {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	
 	private String pseudo;
+	private String password;
 	private String nom;
 	private String prenom;
 	private String adresse_rue;
@@ -32,7 +36,7 @@ public class User implements Serializable  {
 	{}
 	
 	public User(String pseudo, String nom, String prenom, String adresse_rue,
-			String adresse_CP, String adresse_ville, String tel, String mail) {
+			String adresse_CP, String adresse_ville, String tel, String mail, String password) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -42,6 +46,7 @@ public class User implements Serializable  {
 		this.adresse_ville = adresse_ville;
 		this.tel = tel;
 		this.mail = mail;
+		this.password = password;
 	}
 
 	
