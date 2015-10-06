@@ -2491,25 +2491,26 @@ shortcodes page css
 ************************/
 
 #menutarification, #gratuit, #tarifpri, #tarifent {
-padding:1px 0;
+	padding:1px 0;
 }
 
 #menutarification {
-max-with:960px;
-margin:auto;
+	max-with:960px;
+	margin:auto;
 }
 #gratuit  {
-float: left;
-width: 160px;
+	float: left;
+	width: 160px;
+	margin-right: 10px;
 }
 #tarifpri {
-margin-left: 170px;
-margin-right: 170px;
+    overflow: hidden;
 }
 
 #tarifent {
-float: right;
-width: 160px;
+	float: right;
+    width: 300px;
+    margin-left: 10px;
 }
 
 /***********************
