@@ -11,6 +11,7 @@ public class inscriptionController {
 	@Autowired
 	User user;
 	
+	/*
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String requestCreatePageIndex1() {
 
@@ -18,6 +19,7 @@ public class inscriptionController {
 		return "index";
 
 	}
+	*/
 
 
 }
