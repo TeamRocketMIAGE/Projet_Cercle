@@ -1,18 +1,35 @@
 package main;
 
 
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class mainController {
 	
-	@RequestMapping("/home")
-    public String requestCreatePageIndex() {
+	 @RequestMapping(value="/home", method=RequestMethod.GET)
+    public String requestCreatePageIndex1() {
     	
     	return "index";
     	
     }
+	
+	@RequestMapping("/")
+    public String requestCreatePageIndex2() {
+    	
+		return "redirect:/home";
+    	
+    }
+	
+	 @RequestMapping(value="/home", method=RequestMethod.POST)
+	 public String requestLogin()
+	 {
+		 
+		 return "redirect:/user_page";	
+	 }
 
 	@RequestMapping("/telechargement")
     public String requestCreatePageTelechargement() {
@@ -28,6 +45,17 @@ public class mainController {
     	return "inscription";
     	
     }
+	
+	@RequestMapping("/user_page")
+    public String requestCreatePageUserHome() {
+    	
+    	return "user_page";
+    	
+    }
+	
+
+
+	
 	
 	@RequestMapping("/tarification")
     public String requestCreatePageTarification() {
