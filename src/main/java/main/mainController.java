@@ -28,4 +28,11 @@ public class mainController {
     	return "inscription";
     	
     }
+	
+	@RequestMapping("/tarification")
+    public String requestCreatePageTarification() {
+    	
+    	return "tarification";
+    	
+    }
 }
