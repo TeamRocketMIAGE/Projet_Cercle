@@ -1,10 +1,14 @@
 package main;
 
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.context.embedded.ErrorPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -56,13 +60,18 @@ public class mainController {
 		return "tarification";
 
 	}
-	/*
-	@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="No such Order")//404
-	@ExceptionHandler(DataIntegrityViolationException.class)
-	  public String conflict() {
-	    
-		return "404";
-	  }*/
+	
+	@Bean
+	public EmbeddedServletContainerCustomizer containerCustomizer() {
+	 
+	   return (container -> {
+	        ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404");
+	 
+	        container.addErrorPages( error404Page);
+	   });
+	}
+	
+
 	
 
 }
