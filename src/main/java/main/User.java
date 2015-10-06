@@ -19,6 +19,7 @@ public class User implements Serializable  {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+
 	private String nom;
 	private String prenom;
 	private String adresse_rue;
@@ -30,9 +31,10 @@ public class User implements Serializable  {
 	protected User()
 	{}
 	
-	public User(String nom, String prenom, String adresse_rue,
+	public User(String pseudo, String nom, String prenom, String adresse_rue,
 			String adresse_CP, String adresse_ville, String tel, String mail) {
 		super();
+		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse_rue = adresse_rue;
@@ -42,6 +44,15 @@ public class User implements Serializable  {
 		this.mail = mail;
 	}
 
+	private String pseudo;
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+	
 	public long getId() {
 		return id;
 	}

@@ -13,26 +13,28 @@ body {
   min-height:100%;
 }
 
+
 #index_login
 {
-	margin-left:38%;
+	margin-left: 38%;
 	margin-right:38%;
-	
-
 }
 
-#index_login input.btn
+#index_login input[type=submit]
 {
 	width:100%;
 }
 
-#index_login td
+#home_main_actions
 {
-	width:50%;
-	
+	margin-left: 35%;
+	margin-right:35%;
 }
 
-
+#home_main_actions input
+{
+	width:100%;
+}
 
 
 h1,
@@ -1950,8 +1952,11 @@ ul.social_icons li  a i{
 
 #contact-page{
   padding-top: 0;
-    background: white url(../img/inscription_bg.jpg);
+  
+  background: black url(../img/inscription_bg.jpg);
   background-size: cover;
+  
+  
   
 }
 
@@ -1964,8 +1969,13 @@ ul.social_icons li  a i{
 
 .form-group .form-control {
   padding: 7px 12px;
-  border-color:#f2f2f2;
+  border-color:darkgrey;
   box-shadow: none;
+}
+
+#index_login .form-control
+{
+	margin-left:10px;
 }
 
 textarea#message{

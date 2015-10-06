@@ -14,6 +14,7 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter {
         registry.addViewController("/home").setViewName("home");
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/inscription").setViewName("inscription");
+        registry.addViewController("/login").setViewName("login");
         registry.addViewController("/telechargement").setViewName("telechargement");
         registry.addViewController("/user_page").setViewName("user_page");
     }

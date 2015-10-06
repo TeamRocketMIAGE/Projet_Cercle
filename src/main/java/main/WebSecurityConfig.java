@@ -14,11 +14,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/home" , "/inscription", "/telechargement", "/tarification", "/corlate/**").permitAll()
+                .antMatchers("/", "/home" , "/inscription", "/telechargement", "/login", "/tarification", "/corlate/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
-                .loginPage("/home")
+                .loginPage("/login")
                 .permitAll()
                 .and()
             .logout()
