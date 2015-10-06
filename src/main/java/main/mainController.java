@@ -10,7 +10,7 @@ public class mainController {
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String requestCreatePageIndex1() {
 
-		System.out.println("request home get");
+		
 		return "index";
 
 	}
@@ -39,7 +39,7 @@ public class mainController {
 	@RequestMapping("/user_page")
 	public String requestCreatePageUserHome() {
 
-		System.out.println("user_page");
+		
 		return "user_page";
 
 	}

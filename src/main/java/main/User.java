@@ -19,7 +19,7 @@ public class User implements Serializable  {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-
+	private String pseudo;
 	private String nom;
 	private String prenom;
 	private String adresse_rue;
@@ -44,7 +44,7 @@ public class User implements Serializable  {
 		this.mail = mail;
 	}
 
-	private String pseudo;
+	
 	public String getPseudo() {
 		return pseudo;
 	}
