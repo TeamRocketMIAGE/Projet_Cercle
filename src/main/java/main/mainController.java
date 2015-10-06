@@ -13,6 +13,7 @@ public class mainController {
 	 @RequestMapping(value="/home", method=RequestMethod.GET)
     public String requestCreatePageIndex1() {
     	
+		 System.out.println("request home");
     	return "index";
     	
     }
@@ -24,12 +25,6 @@ public class mainController {
     	
     }
 	
-	 @RequestMapping(value="/home", method=RequestMethod.POST)
-	 public String requestLogin()
-	 {
-		 
-		 return "redirect:/user_page";	
-	 }
 
 	@RequestMapping("/telechargement")
     public String requestCreatePageTelechargement() {
@@ -49,12 +44,11 @@ public class mainController {
 	@RequestMapping("/user_page")
     public String requestCreatePageUserHome() {
     	
+		System.out.println("user_page");
     	return "user_page";
     	
     }
 	
-
-
 	
 	
 	@RequestMapping("/tarification")
