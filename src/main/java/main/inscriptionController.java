@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class inscriptionController {
-	/*
-	@Autowired
-	User user;
+	
+	//@Autowired
+	//User user;
 	
 	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String requestCreatePageIndex1() {
+	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
+	public String requestInscription() {
 
-		System.out.println("request home get");
+		
 		return "index";
 
 	}
-	*/
+	
 
 
 }
