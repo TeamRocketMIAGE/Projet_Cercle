@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class inscriptionController {
-
+	/*
 	@Autowired
 	User user;
 	
-	/*
+	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String requestCreatePageIndex1() {
 
