@@ -2486,7 +2486,31 @@ shortcodes page css
   font-weight: 600
 }
 
+/***********************
+********* Tarification ******
+************************/
 
+#menutarification, #gratuit, #tarifpri, #tarifent {
+padding:1px 0;
+}
+
+#menutarification {
+max-with:960px;
+margin:auto;
+}
+#gratuit  {
+float: left;
+width: 160px;
+}
+#tarifpri {
+margin-left: 170px;
+margin-right: 170px;
+}
+
+#tarifent {
+float: right;
+width: 160px;
+}
 
 /***********************
 ********* Footer ******
@@ -2555,6 +2579,7 @@ shortcodes page css
 }
 
 
+}
 
 
 
