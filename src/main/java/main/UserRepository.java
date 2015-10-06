@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<Utilisateur, Long> {
 
-		User findByPseudo(String pseudo);
-	    List<User> findByNom(String nom);
+		Utilisateur findByPseudo(String pseudo);
+	    List<Utilisateur> findByNom(String nom);
 }
 

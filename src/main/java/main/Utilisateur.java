@@ -10,7 +10,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class User implements Serializable  {
+public class Utilisateur implements Serializable  {
 	
 
 
@@ -32,11 +32,11 @@ public class User implements Serializable  {
 	private String tel;
 	private String mail;
 	
-	protected User()
+	protected Utilisateur()
 	{}
 	
 	
-	public User(String pseudo, String nom, String prenom, String adresse_rue,
+	public Utilisateur(String pseudo, String nom, String prenom, String adresse_rue,
 			String adresse_CP, String adresse_ville, String tel, String mail, String password) {
 		super();
 		this.pseudo = pseudo;
