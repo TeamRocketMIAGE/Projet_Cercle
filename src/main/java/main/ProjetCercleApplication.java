@@ -72,7 +72,11 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         userRepository.save(uMarie);
         userRepository.save(uPrincesse);    
       
-       
+        uBob.setMail("gauthier@scampini.fr");
+        uBob.setPrenom("bobinou");
+        uBob.setNom("leLegendaire");
+        
+        
         uBob.addContact(uChris);
         userRepository.save(uBob);
         uChris.addContact(uBob);
