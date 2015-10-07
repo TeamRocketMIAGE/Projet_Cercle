@@ -29,20 +29,8 @@ public class userpageController {
 	    System.out.println("Utilisateur actuellement connecté : " + currentUserPseudo);
 		
     	// ajout des contacts de l'utilisateur actuel dans la requête   	
-    	model.addAttribute("contacts", currentUser.getContact());
-    	
-    	if (currentUser.getContact()==null)
-    	{
-    		System.out.println("L'utilisateur actuellement connecté n'a aucun contact (null).");
-    	} else if(currentUser.getContact().size()==0)
-    	{
-    		System.out.println("L'utilisateur actuellement connecté n'a aucun contact (0).");
-    	}
-    	else
-    	{
-    		System.out.println("L'utilisateur actuellement connecté a des contacts.");
-    	}
-	    
+    	model.addAttribute("contacts", currentUser.getContact());    	
+  
     	// ajout de tous les utilisateurs dans la requête  	
     	model.addAttribute("users", (List<Utilisateur>)userRepository.findAll());
     	
