@@ -23,12 +23,14 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle" role="button"
-						data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> <span 
-							th:inline="text">[[${#httpServletRequest.remoteUser}]]</span> <span
-							class="caret"></span></a>
+						data-toggle="dropdown" href="#"><i
+							class="glyphicon glyphicon-user"></i> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+							<span class="caret"></span></a>
 						<ul id="g-account-menu" class="dropdown-menu" role="menu">
-							<li><a href="#"><i class="glyphicon glyphicon-cog"></i> Paramètres</a></li>
-							<li><a th:href="@{/logout}"><i class="glyphicon glyphicon-off"></i> Se déconnecter</a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-cog"></i>
+									Paramètres</a></li>
+							<li><a th:href="@{/logout}"><i
+									class="glyphicon glyphicon-off"></i> Se déconnecter</a></li>
 						</ul></li>
 
 				</ul>
@@ -39,11 +41,12 @@
 	<!-- /Header -->
 
 
-<div id="user_page-title">
-	<h2>Votre espace de travail</h2>
-	<p>Vous pouvez ici avoir un aperçu rapide des différents cercles auquels vous appartenez.</p>
-	
-	
+	<div id="user_page-title">
+		<h2>Votre espace de travail</h2>
+		<p>Vous pouvez ici avoir un aperçu rapide des différents cercles
+			auquels vous appartenez.</p>
+
+
 	</div>
 
 
@@ -59,95 +62,95 @@
 
 				<ul class="nav nav-stacked">
 					<li class="nav-header"><a href="#" data-toggle="collapse"
-						data-target="#userMenu">Vos contacts <i class="glyphicon glyphicon-chevron-down"></i> </a>
-						<ul  class="nav nav-stacked collapse in" id="userMenu">
-							<li th:each="user : ${users}"><a href="#"><i class="glyphicon glyphicon-user"></i> <span th:text="${user.pseudo}"></span>
-									</a></li>
-									
-							<!--  
-							<li class="active"><a href="#"><i class="glyphicon glyphicon-user"></i> Bob</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-user"></i> 
-									Chris</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-user"></i> 
-									Franck</a></li>
-									-->
-		
+						data-target="#userMenu">Vos contacts <i
+							class="glyphicon glyphicon-chevron-down"></i>
+					</a>
+						<ul class="nav nav-stacked collapse in" id="userMenu">
+							<li th:each="user : ${users}"><a href="#"><i
+									class="glyphicon glyphicon-user"></i> <span
+									th:text="${user.pseudo}"></span> </a></li>
+
+
 						</ul></li>
 					<li class="nav-header"><a href="#" data-toggle="collapse"
-						data-target="#menu2"> Autres contacts <i class="glyphicon glyphicon-chevron-right"></i></a>
+						data-target="#menu2"> Tout le monde <i
+							class="glyphicon glyphicon-chevron-right"></i></a>
 
-						<ul class="nav nav-stacked collapse" id="menu2">
-							<li><a href="#"><i class="glyphicon glyphicon-user"></i> John</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-user"></i> Kevin</a></li>
+			<ul class="nav nav-stacked collapse in" id="userMenu">
+							<li th:each="user : ${users}"><a href="#"><i
+									class="glyphicon glyphicon-user"></i> <span
+									th:text="${user.pseudo}"></span> </a></li>
+
 
 						</ul></li>
-					
+
 				</ul>
 
-				
+
 			</div>
 			<!-- /col-3 -->
-			
-			
-			 <div class="col-sm-9">
- <!-- column 2 -->
 
-            <a href="#"><strong>Cercles</strong></a>
-            <hr />
- <div class="row">
-                 <!-- center left-->
-                <div class="col-md-6">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Cercles</th>
-                                    <th>Propriétaires</th>
-                                    <th>-</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Cercle 1</td>
-                                    <td>Franck</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>Cercle 2</td>
-                                    <td>Chris</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>Cercle 3</td>
-                                    <td>Franck</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>..</td>
-                                    <td>..</td>
-                                    <td>..</td>
-                                </tr>
 
-                            </tbody>
-                        </table>
-                    </div>
-                    </div>
-                    </div>
-                    
+			<div class="col-sm-9">
+				<!-- column 2 -->
 
-        </div>
-        <!--/col-span-9-->
+				<a href="#"><strong>Cercles</strong></a>
+				<hr />
+				<div class="row">
+					<!-- center left-->
+					<div class="col-md-6">
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Cercles</th>
+										<th>Propriétaires</th>
+										<th>-</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Cercle 1</td>
+										<td>Franck</td>
+										<td>-</td>
+									</tr>
+									<tr>
+										<td>Cercle 2</td>
+										<td>Chris</td>
+										<td>-</td>
+									</tr>
+									<tr>
+										<td>Cercle 3</td>
+										<td>Franck</td>
+										<td>-</td>
+									</tr>
+									<tr>
+										<td>..</td>
+										<td>..</td>
+										<td>..</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			<!--/col-span-9-->
 		</div>
 	</div>
 
-       
 
 
 
 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="boardstyle/js/bootstrap.min.js"></script>
-		<script src="boardstyle/js/scripts.js"></script>
+
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="boardstyle/js/bootstrap.min.js"></script>
+	<script src="boardstyle/js/scripts.js"></script>
 
 
 </body>

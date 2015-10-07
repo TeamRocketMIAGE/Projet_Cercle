@@ -24,15 +24,15 @@
     
     
     
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f0f9ff+0,cbebff+47,9cbcf4+100&amp;0.18+0,0.33+100 */
-background: -moz-linear-gradient(left,  rgba(240,249,255,0.18) 0%, rgba(203,235,255,0.25) 47%, rgba(156,188,244,0.33) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(240,249,255,0.18)), color-stop(47%,rgba(203,235,255,0.25)), color-stop(100%,rgba(156,188,244,0.33))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(left,  rgba(240,249,255,0.18) 0%,rgba(203,235,255,0.25) 47%,rgba(156,188,244,0.33) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(left,  rgba(240,249,255,0.18) 0%,rgba(203,235,255,0.25) 47%,rgba(156,188,244,0.33) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(left,  rgba(240,249,255,0.18) 0%,rgba(203,235,255,0.25) 47%,rgba(156,188,244,0.33) 100%); /* IE10+ */
-background: linear-gradient(to right,  rgba(240,249,255,0.18) 0%,rgba(203,235,255,0.25) 47%,rgba(156,188,244,0.33) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2ef0f9ff', endColorstr='#549cbcf4',GradientType=1 ); /* IE6-9 */
- 
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f0f9ff+0,cbebff+47,9cbcf4+100&amp;1+0,0.33+100 */
+background: -moz-linear-gradient(left,  rgba(240,249,255,1) 0%, rgba(203,235,255,0.69) 47%, rgba(156,188,244,0.33) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(240,249,255,1)), color-stop(47%,rgba(203,235,255,0.69)), color-stop(100%,rgba(156,188,244,0.33))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(240,249,255,1) 0%,rgba(203,235,255,0.69) 47%,rgba(156,188,244,0.33) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(240,249,255,1) 0%,rgba(203,235,255,0.69) 47%,rgba(156,188,244,0.33) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(240,249,255,1) 0%,rgba(203,235,255,0.69) 47%,rgba(156,188,244,0.33) 100%); /* IE10+ */
+background: linear-gradient(to right,  rgba(240,249,255,1) 0%,rgba(203,235,255,0.69) 47%,rgba(156,188,244,0.33) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#549cbcf4',GradientType=1 ); /* IE6-9 */
+
 }
 
 #user_page-title h2

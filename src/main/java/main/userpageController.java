@@ -19,7 +19,7 @@ public class userpageController {
 	@RequestMapping(value = "/user_page", method = RequestMethod.GET)
 	public String requestCreatePageUserHome(Model model) {
 
-    	// récupération
+    	// récupération de tous les utilisateurs
     	List<Utilisateur> users = (List<Utilisateur>)userRepository.findAll();
     	
     	model.addAttribute("users", users);

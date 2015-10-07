@@ -39,22 +39,50 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
     
     @Override
     public void run(String... strings) throws Exception {
-        // save a couple of customers
-        userRepository.save(new Utilisateur("user", "abc"));
-        userRepository.save(new Utilisateur("Bob", "abc"));
-        userRepository.save(new Utilisateur("Chris", "abc"));
-        userRepository.save(new Utilisateur("Franck", "abc"));
+        
+        
+        // ajout d'utilisateur dans la base de données
+    	//
+        Utilisateur uUser = new Utilisateur("user", "abc");
+        Utilisateur uBob = new Utilisateur("Bob", "abc");
+        Utilisateur uChris = new Utilisateur("Chris", "abc");
+        Utilisateur uFranck = new Utilisateur("Franck", "abc");
+        
+        uBob.addContact(uFranck);
+        uBob.addContact(uChris);
+        uChris.addContact(uBob);
+        uChris.addContact(uFranck);
+        uFranck.addContact(uChris);
+        uFranck.addContact(uBob);
+        
+        Utilisateur uJohnny = new Utilisateur("Johnny", "abc");
+        Utilisateur uHugo = new Utilisateur("Hugo", "abc");
+        Utilisateur uEmma = new Utilisateur("Emma", "abc");
+        Utilisateur uMarie= new Utilisateur("Marie", "abc");
+        Utilisateur uPrincesse= new Utilisateur("Princesse", "abc");
+        
+        userRepository.save(uUser);
+        userRepository.save(uBob);
+        userRepository.save(uChris);
+        userRepository.save(uFranck);
+        userRepository.save(uJohnny);
+        userRepository.save(uHugo);
+        userRepository.save(uEmma);
+        userRepository.save(uMarie);
+        userRepository.save(uPrincesse);
         
         
                
 
-        // fetch all customers
+        /*
+        // fetch all users
         log.info("Utilisateurs found with findAll():");
         log.info("-------------------------------");
         for (Utilisateur utilisateur : userRepository.findAll()) {
             log.info(utilisateur.toString());
         }
         System.out.println();
+        */
 
         
 
