@@ -23,6 +23,7 @@ public class Cercle implements Serializable {
 	
 	private String name;
 	private int niveau;
+	private String description;
 	
 	
 	public long getId() {
@@ -30,6 +31,15 @@ public class Cercle implements Serializable {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	public String getName() {
 		return name;
