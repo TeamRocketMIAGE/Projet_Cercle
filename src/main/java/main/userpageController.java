@@ -23,14 +23,15 @@ public class userpageController {
 
 		// obtention de l'id de l'utilisateur
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String currentUserPseudo = auth.getName();     
-	    
-	    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);
-	   
+	    String currentUserPseudo = auth.getName();  
+	    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	   
 		
 	    System.out.println("Utilisateur actuellement connecté : " + currentUserPseudo);
 		
-    	// ajout de tous les utilisateurs pour communication   	
+    	// ajout des contacts de l'utilisateur actuel dans la requête   	
+    	model.addAttribute("contacts", currentUser.getContact());
+	    
+    	// ajout de tous les utilisateurs dans la requête  	
     	model.addAttribute("users", (List<Utilisateur>)userRepository.findAll());
     	
     	
