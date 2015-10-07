@@ -49,18 +49,22 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         Utilisateur uChris = new Utilisateur("Chris", "abc");
         Utilisateur uFranck = new Utilisateur("Franck", "abc");
         
+        //uBob.getContact().add(uFranck);
+        /*
         uBob.addContact(uFranck);
         uBob.addContact(uChris);
         uChris.addContact(uBob);
         uChris.addContact(uFranck);
         uFranck.addContact(uChris);
         uFranck.addContact(uBob);
+        */
         
         Utilisateur uJohnny = new Utilisateur("Johnny", "abc");
         Utilisateur uHugo = new Utilisateur("Hugo", "abc");
         Utilisateur uEmma = new Utilisateur("Emma", "abc");
         Utilisateur uMarie= new Utilisateur("Marie", "abc");
         Utilisateur uPrincesse= new Utilisateur("Princesse", "abc");
+        
         
         userRepository.save(uUser);
         userRepository.save(uBob);
