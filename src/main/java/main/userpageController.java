@@ -5,6 +5,8 @@ package main;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +21,18 @@ public class userpageController {
 	@RequestMapping(value = "/user_page", method = RequestMethod.GET)
 	public String requestCreatePageUserHome(Model model) {
 
-    	// récupération de tous les utilisateurs
-    	List<Utilisateur> users = (List<Utilisateur>)userRepository.findAll();
+		// obtention de l'id de l'utilisateur
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String currentUserPseudo = auth.getName();     
+	    
+	    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);
+	   
+		
+	    System.out.println("Utilisateur actuellement connecté : " + currentUserPseudo);
+		
+    	// ajout de tous les utilisateurs pour communication   	
+    	model.addAttribute("users", (List<Utilisateur>)userRepository.findAll());
     	
-    	model.addAttribute("users", users);
     	
 	
 		return "user_page";
