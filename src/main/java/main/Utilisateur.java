@@ -22,8 +22,6 @@ public class Utilisateur implements Serializable  {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-
 	
 	@Id
 	private String pseudo;
@@ -54,6 +52,20 @@ public class Utilisateur implements Serializable  {
 		this.adresse_ville = adresse_ville;
 		this.tel = tel;
 		this.mail = mail;
+		this.setPassword(password);
+		 
+	}
+	
+	public Utilisateur(String pseudo, String password) {
+		super();
+		this.pseudo = pseudo;
+		this.nom = "Nom";
+		this.prenom = "Prénom";
+		this.adresse_rue = "Rue";
+		this.adresse_CP = "Code postal";
+		this.adresse_ville = "Ville";
+		this.tel = "0123456789";
+		this.mail = "mail@domain.top";
 		this.setPassword(password);
 		 
 	}

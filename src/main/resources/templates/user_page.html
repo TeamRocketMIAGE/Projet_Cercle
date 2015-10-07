@@ -60,9 +60,9 @@
 				<ul class="nav nav-stacked">
 					<li class="nav-header"><a href="#" data-toggle="collapse"
 						data-target="#userMenu">Vos contacts <i class="glyphicon glyphicon-chevron-down"></i> </a>
-						<ul th:each="user : ${users}" class="nav nav-stacked collapse in" id="userMenu">
-							<li ><i class="glyphicon glyphicon-user"></i> <span th:text="${user.pseudo}"></span>
-									</li>
+						<ul  class="nav nav-stacked collapse in" id="userMenu">
+							<li th:each="user : ${users}"><a href="#"><i class="glyphicon glyphicon-user"></i> <span th:text="${user.pseudo}"></span>
+									</a></li>
 									
 							<!--  
 							<li class="active"><a href="#"><i class="glyphicon glyphicon-user"></i> Bob</a></li>
