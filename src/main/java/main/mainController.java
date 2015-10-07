@@ -35,13 +35,6 @@ public class mainController {
 
 
 
-	@RequestMapping("/user_page")
-	public String requestCreatePageUserHome() {
-
-		
-		return "user_page";
-
-	}
 
 	@RequestMapping("/tarification")
 	public String requestCreatePageTarification() {
