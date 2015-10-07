@@ -41,8 +41,11 @@ jQuery(function($) {'use strict',
 	// Contact form
 	var form = $('#main-contact-form');
 	form.submit(function(event){
+		
+		
 		event.preventDefault();
 		var form_status = $('<div class="form_status"></div>');
+		
 		$.ajax({
 			url: $(this).attr('action'),
 

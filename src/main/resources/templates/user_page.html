@@ -3,11 +3,52 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Cercle - Page utilisateur</title>
+        
+        <link href="corlate/css/bootstrap.min.css" rel="stylesheet" />
+<link href="corlate/css/font-awesome.min.css" rel="stylesheet" />
+<link href="corlate/css/animate.min.css" rel="stylesheet" />
+<link href="corlate/css/prettyPhoto.css" rel="stylesheet" />
+<link href="corlate/css/main.css" rel="stylesheet" />
+<link href="corlate/css/responsive.css" rel="stylesheet" />
+        
     </head>
     <body>
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Se déconnecter"/>
-        </form>
+    
+    
+    <header id="header">
+
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-4">
+                        <div class="top-number">       <img src="../corlate/img/cercle_logo_min.png" alt="logo" /></div>
+                    </div>
+                    <div class="col-sm-6 col-xs-8">
+                       <div class="social">
+                            <ul class="social-share">
+                                <li><a class="social-button" href="#">Paramètres</a></li>
+                           
+                                <li><a class="social-button" th:href="@{/logout}">Se déconnecter</a></li>
+                            </ul>
+                       </div>
+                    </div>
+                </div>
+            </div><!--/.container-->
+        </div><!--/.top-bar-->
+
+
+
+		
+    </header><!--/header-->
+    
+    
+    
+    
+        <h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
+        
+  
+
     </body>
 </html>
+
+
