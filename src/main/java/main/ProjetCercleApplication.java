@@ -72,29 +72,7 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         userRepository.save(uMarie);
         userRepository.save(uPrincesse);    
       
-        
-
-        
-        /*
-        uBob.addContact(userRepository.findByPseudo("Franck"));        
-        userRepository.save(uBob); 
-        
-        uFranck = userRepository.findByPseudo("Franck");
-        uFranck.addContact(userRepository.findByPseudo("Bob"));
-        userRepository.save(uFranck);
-        
-        uBob = userRepository.findByPseudo("Bob");
-        uChris = userRepository.findByPseudo("Chris");
-        uBob.addContact(uChris);
-        userRepository.save(uBob);
-        
-        uChris = userRepository.findByPseudo("Chris");
-        uBob = userRepository.findByPseudo("Bob");
-        uChris.addContact(uBob);
-        userRepository.save(uChris);
-        */
-        
-        /*
+       
         uBob.addContact(uChris);
         userRepository.save(uBob);
         uChris.addContact(uBob);
@@ -112,43 +90,8 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         userRepository.save(uFranck);
         uBob.addContact(uFranck);
         userRepository.save(uBob);
-        */
         
         
-        /*
-        uChris.addContact(uBob);
-        uChris.addContact(uFranck);
-        userRepository.save(uBob);
-        userRepository.save(uFranck);
-        userRepository.save(uChris);
-        */
-        //uFranck.addContact(uChris);
-        //uFranck.addContact(uBob);
-        //
-        
-        /*
-        List<Utilisateur> bobContact = uBob.getContact();
-        bobContact.add(uFranck);
-        bobContact.add(uChris);
-        
-        List<Utilisateur> franckContact = uFranck.getContact();
-        bobContact.add(uBob);
-        bobContact.add(uChris);
-        
-        List<Utilisateur> chrisContact = uChris.getContact();
-        chrisContact.add(uFranck);
-        chrisContact.add(uBob);
-        
-        uBob.setContact(bobContact);
-        uChris.setContact(chrisContact);
-        uFranck.setContact(franckContact);
-        
-        userRepository.save(uBob);
-        userRepository.save(uFranck);
-        userRepository.save(uChris);
-        */
-        
-               
 
         /*
         // fetch all users
