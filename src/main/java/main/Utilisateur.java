@@ -1,9 +1,15 @@
 package main;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+
 
 
 
@@ -30,6 +36,9 @@ public class Utilisateur implements Serializable  {
 	private String tel;
 	private String mail;
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	private List<Utilisateur> contact = new ArrayList<Utilisateur>();
+	
 	protected Utilisateur()
 	{}
 	
@@ -46,9 +55,24 @@ public class Utilisateur implements Serializable  {
 		this.tel = tel;
 		this.mail = mail;
 		this.setPassword(password);
+		 
 	}
 	
 	
+	public List<Utilisateur> getContact() {
+		return contact;
+	}
+
+
+	public void setContact(List<Utilisateur> contact) {
+		this.contact = contact;
+	}
+	
+	public void addContact(Utilisateur u) {
+		this.contact.add(u);
+	}
+
+
 	@Override
 	public String toString() {
 		return "pseudo=" + pseudo + ", password="
