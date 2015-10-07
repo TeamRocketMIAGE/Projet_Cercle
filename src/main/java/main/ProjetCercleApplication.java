@@ -74,6 +74,8 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         uChris.addContact(uFranck);
         uFranck.addContact(uChris);
         uFranck.addContact(uBob);
+        
+        userRepository.save(uFranck);
                
 
         /*
