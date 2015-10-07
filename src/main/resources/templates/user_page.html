@@ -5,94 +5,135 @@
 <head>
 <title>Cercle - Page utilisateur</title>
 
-<link href="corlate/css/bootstrap.min.css" rel="stylesheet" />
-<link href="corlate/css/font-awesome.min.css" rel="stylesheet" />
-<link href="corlate/css/animate.min.css" rel="stylesheet" />
-<link href="corlate/css/prettyPhoto.css" rel="stylesheet" />
-<link href="corlate/css/main.css" rel="stylesheet" />
-<link href="corlate/css/responsive.css" rel="stylesheet" />
+<link href="boardstyle/css/bootstrap.min.css" rel="stylesheet" />
+<link href="boardstyle/css/styles.css" rel="stylesheet" />
 
 </head>
 <body>
 
 
-	<header id="header">
+	<!-- header -->
+	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
 
-
-
-		<nav class="navbar navbar-inverse" role="banner">
-			<div class="container">
-				<div class="navbar-header">
-					<img class="short-img " src="../corlate/img/cercle_logo_min.png"
-						alt="logo" />
-				</div>
-
-				<div class="collapse navbar-collapse navbar-right">
-				<span class="lead" th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
-					<ul class="nav navbar-nav-short">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"><img class="short-img "
-								src="../corlate/img/settings-logo.png" alt="logo" /></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Paramètres</a></li>
-								<li><a th:href="@{/logout}">Se déconnecter</a></li>
-							</ul></li>
-
-					</ul>
-				</div>
+				<img class="short-img" src="../corlate/img/cercle_logo_min.png"
+					alt="logo" />
 			</div>
-			<!--/.container-->
-		</nav>
-		<!--/nav-->
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a class="dropdown-toggle" role="button"
+						data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> <span 
+							th:inline="text">[[${#httpServletRequest.remoteUser}]]</span> <span
+							class="caret"></span></a>
+						<ul id="g-account-menu" class="dropdown-menu" role="menu">
+							<li><a href="#">Paramètres</a></li>
+							<li><a th:href="@{/logout}">Se déconnecter</a></li>
+						</ul></li>
 
-
-	</header>
-	<!--/header-->
-
-	<section id="blog" class="container">
-
-		<div class="blog">
-			<div class="row">
-			
-			                 <div class="col-md-8">
-                    <div class="blog-item">
-                        <div class="row">
-
-                            <div class="col-sm-10 blog-content">
-                                <h2>Vos cercles</h2>
-                                <h3>Curabitur quis libero leo, pharetra mattis eros. Praesent consequat libero eget dolor convallis vel rhoncus magna scelerisque. Donec nisl ante, elementum eget posuere a, consectetur a metus. Proin a adipiscing sapien. Suspendisse vehicula porta lectus vel semper. Nullam sapien elit, lacinia eu tristique non.posuere at mi. Morbi at turpis id urna ullamcorper ullamcorper.</h3>
-                            </div>
-                        </div>    
-                    </div><!--/.blog-item-->
-                            
-   
-                </div><!--/.col-md-8-->
-			
-				<aside class="col-md-4">
-					<div class="widget archieve">
-						<h3>Contact</h3>
-						<div class="row">
-							<div class="col-sm-12">
-								<ul class="blog_archieve">
-									<li><a href="#">
-											Bob</a></li>
-									<li><a href="#">
-											Chris</a></li>
-									<li><a href="#">
-											Franck ----------------------------------------------</a></li>
-									</ul>
-							</div>
-						</div>
-					</div>
-					<!--/.archieve-->
-				</aside>
+				</ul>
 			</div>
 		</div>
-	</section>
+		<!-- /container -->
+	</div>
+	<!-- /Header -->
 
-	<h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
+
+	<!-- Main -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3">
+				<!-- Left column -->
+				<a href="#"><strong>Social</strong></a>
+
+				<hr />
+
+				<ul class="nav nav-stacked">
+					<li class="nav-header"><a href="#" data-toggle="collapse"
+						data-target="#userMenu">Vos contacts <i class="glyphicon glyphicon-chevron-down"></i> </a>
+						<ul class="nav nav-stacked collapse in" id="userMenu">
+							<li class="active"><a href="#"><i class="glyphicon glyphicon-user"></i> Bob</a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-user"></i> 
+									Chris</a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-user"></i> 
+									Franck</a></li>
+		
+						</ul></li>
+					<li class="nav-header"><a href="#" data-toggle="collapse"
+						data-target="#menu2"> Autres contacts <i class="glyphicon glyphicon-chevron-right"></i></a>
+
+						<ul class="nav nav-stacked collapse" id="menu2">
+							<li><a href="#"><i class="glyphicon glyphicon-user"></i> John</a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-user"></i> Kevin</a></li>
+
+						</ul></li>
+					
+				</ul>
+
+				
+			</div>
+			<!-- /col-3 -->
+			
+			
+			 <div class="col-sm-9">
+ <!-- column 2 -->
+
+            <a href="#"><strong>Cercles</strong></a>
+            <hr />
+ <div class="row">
+                 <!-- center left-->
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Cercles</th>
+                                    <th>Propriétaires</th>
+                                    <th>-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cercle 1</td>
+                                    <td>Franck</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>Cercle 2</td>
+                                    <td>Chris</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>Cercle 3</td>
+                                    <td>Franck</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>..</td>
+                                    <td>..</td>
+                                    <td>..</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                    </div>
+                    
+
+        </div>
+        <!--/col-span-9-->
+		</div>
+	</div>
+
+       
 
 
+
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="boardstyle/js/bootstrap.min.js"></script>
+		<script src="boardstyle/js/scripts.js"></script>
 
 
 </body>
