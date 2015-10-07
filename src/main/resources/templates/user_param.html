@@ -10,8 +10,6 @@
 
 </head>
 <body>
-
-
 	<!-- header -->
 	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
 		<div class="container-fluid">
@@ -23,12 +21,14 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle" role="button"
-						data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> <span 
-							th:inline="text">[[${#httpServletRequest.remoteUser}]]</span> <span
-							class="caret"></span></a>
+						data-toggle="dropdown" href="#"><i
+							class="glyphicon glyphicon-user"></i> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+							<span class="caret"></span></a>
 						<ul id="g-account-menu" class="dropdown-menu" role="menu">
-							<li><a href="user_page"><i class="glyphicon glyphicon-cog"></i> Retour page d'accueil</a></li>
-							<li><a th:href="@{/logout}"><i class="glyphicon glyphicon-off"></i> Se déconnecter</a></li>
+							<li><a href="user_page"><i
+									class="glyphicon glyphicon-cog"></i> Retour page d'accueil</a></li>
+							<li><a th:href="@{/logout}"><i
+									class="glyphicon glyphicon-off"></i> Se déconnecter</a></li>
 						</ul></li>
 
 				</ul>
@@ -38,74 +38,75 @@
 	</div>
 	<!-- /Header -->
 
- 
-<div id="user_page-title">
-	<h2>Paramètres utilisateurs</h2>
-	<p>Vous pouvez ici modifier les différentes informations liés à votre compte.</p>
-	
-	<div class="col-sm-5 col-sm-offset-1">
-	
-						 <!--
-						<div class="form-group">
-							<label>Mot de passe *</label> <input type="password"
-								name="password1" class="form-control" th:field="*{password}" />
-						</div>
-						  
-						<div class="form-group">
-							<label>Confirmez le mot de passe *</label> <input type="password"
-								name="password2" class="form-control"  />
-						</div>
-						
-						
-						<div class="form-group">
-							<label>E-mail *</label> <input type="email"  th:field="*{mail}" name="email"
-								class="form-control"  />
-						</div>
 
-											<div class="form-group">
-							<label>Nom *</label> <input type="text" name="nom"  th:field="*{nom}"
-								class="form-control"  />
-						</div>
-						<div class="form-group">
-							<label>Prénom *</label> <input type="text" name="prenom"  th:field="*{prenom}"
-								class="form-control"  />
-						</div>
-						<div class="form-group">
-							<label>Téléphone</label> <input type="text" name="tel" th:field="*{tel}"
-								class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>Rue</label> <input type="text" name="rue" th:field="*{adresse_rue}"
-								class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>Ville</label> <input type="text" name="ville" th:field="*{adresse_ville}"
-								class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>Code postal :</label> <input type="text" name="cp" th:field="*{adresse_CP}"
-								class="form-control" />
-						</div>
-						
-						<div class="form-group">
-							<button type="submit" name="submit"
-								class="btn btn-primary btn-lg" >Valider</button>
-						</div>
-						-->
+	<div id="user_page-title">
+		<h2>Paramètres utilisateurs</h2>
+		<p>Vous pouvez ici modifier les différentes informations liés à
+			votre compte.</p>
+	</div>
+
+	<div class="container-fluid">
+		<form id="main-param-form" class="param-form" method="post">
+
+			<div class="row">
+				<div class="col-sm-5 col-sm-offset-1">
+					<div class="form-group">
+						<label>Nom *</label> <input type="text" name="nom"
+							class="form-control" />
+					</div>
+					<div class="form-group">
+						<label>Prénom *</label> <input type="text" name="prenom"
+							class="form-control" />
+					</div>
+					<div class="form-group">
+						<label>Mot de passe *</label> <input type="password"
+							name="password1" class="form-control" />
 					</div>
 
+					<div class="form-group">
+						<label>Confirmez le mot de passe *</label> <input type="password"
+							name="password2" class="form-control" />
+					</div>
 
-</div>
+					<div class="form-group">
+						<label>E-mail *</label> <input type="email" name="email"
+							class="form-control" />
+					</div>
 
-       
-
-
-
-
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="boardstyle/js/bootstrap.min.js"></script>
-		<script src="boardstyle/js/scripts.js"></script>
-
+				</div>
+				<div class="col-sm-5">
+					<div class="form-group">
+						<label>Téléphone</label> <input type="text" name="tel"
+							class="form-control" />
+					</div>
+					<div class="form-group">
+						<label>Rue</label> <input type="text" name="rue"
+							class="form-control" />
+					</div>
+					<div class="form-group">
+						<label>Ville</label> <input type="text" name="ville"
+							class="form-control" />
+					</div>
+					<div class="form-group">
+						<label>Code postal :</label> <input type="text" name="cp"
+							class="form-control" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group" align="center">
+						<button type="submit" name="submit" class="btn btn-primary btn-lg">Valider</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="boardstyle/js/bootstrap.min.js"></script>
+	<script src="boardstyle/js/scripts.js"></script>
 
 </body>
 </html>
