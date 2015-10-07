@@ -69,6 +69,20 @@
 							<li th:each="userC : ${contacts}"><a href="#"><i
 									class="glyphicon glyphicon-user"></i> <span
 									th:text="${userC.pseudo}"></span> </a></li>
+						</ul></li>
+
+
+					<li class="nav-header"><a href="#" data-toggle="collapse"
+						data-target="#menu3"> Nouveau contact <i
+							class="glyphicon glyphicon-plus"></i></a>
+
+						<ul class="nav nav-stacked collapse" id="menu3">
+
+							<li><a href="#"> <input type="text"
+									value="Saisir un pseudo" /> <input type="button"
+									value="Ajouter" />
+							</a></li>
+
 
 
 						</ul></li>
@@ -76,7 +90,7 @@
 						data-target="#menu2"> Tout le monde <i
 							class="glyphicon glyphicon-chevron-right"></i></a>
 
-			<ul class="nav nav-stacked collapse" id="menu2">
+						<ul class="nav nav-stacked collapse" id="menu2">
 							<li th:each="user : ${users}"><a href="#"><i
 									class="glyphicon glyphicon-user"></i> <span
 									th:text="${user.pseudo}"></span> </a></li>
