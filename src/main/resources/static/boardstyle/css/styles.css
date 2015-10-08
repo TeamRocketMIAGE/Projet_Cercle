@@ -9,6 +9,11 @@
 	height:80%;
 }
 
+.add-contact-warning
+{
+	padding:4px 15px;
+	color:red;
+}
 
 #user_page-title
 {

@@ -1,176 +1,229 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<title>Cercle - Page utilisateur</title>
+    <title>Cercle - Page utilisateur</title>
 
-<link href="boardstyle/css/bootstrap.min.css" rel="stylesheet" />
-<link href="boardstyle/css/styles.css" rel="stylesheet" />
+    <link href="boardstyle/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="boardstyle/css/styles.css" rel="stylesheet" />
 
 </head>
 <body>
 
 
-	<!-- header -->
-	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
+    <!-- header -->
+    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
 
-				<img class="short-img" src="../corlate/img/cercle_logo_min.png"
-					alt="logo" />
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a class="dropdown-toggle" role="button"
-						data-toggle="dropdown" href="#"><i
-							class="glyphicon glyphicon-user"></i> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
-							<span class="caret"></span></a>
-						<ul id="g-account-menu" class="dropdown-menu" role="menu">
-							<li><a href="user_param"><i class="glyphicon glyphicon-cog"></i>
-									Paramètres</a></li>
-							<li><a th:href="@{/logout}"><i
-									class="glyphicon glyphicon-off"></i> Se déconnecter</a></li>
-						</ul></li>
+                <img class="short-img" src="../corlate/img/cercle_logo_min.png"
+                     alt="logo" />
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button"
+                           data-toggle="dropdown" href="#">
+                            <i class="glyphicon glyphicon-user"></i> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="user_param">
+                                    <i class="glyphicon glyphicon-cog"></i>
+                                    Paramètres
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/logout}">
+                                    <i class="glyphicon glyphicon-off"></i> Se déconnecter
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-				</ul>
-			</div>
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /Header -->
+                </ul>
+            </div>
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /Header -->
 
 
-	<div id="user_page-title">
-		<h2>Votre espace de travail</h2>
-		<p>Vous pouvez ici avoir un aperçu rapide des différents cercles
-			auquels vous appartenez.</p>
+    <div id="user_page-title">
+        <h2>Votre espace de travail</h2>
+        <p>
+            Vous pouvez ici avoir un aperçu rapide des différents cercles
+            auquels vous appartenez.
+        </p>
 
 
-	</div>
-
-
-
-	<!-- Main -->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-3">
-				<!-- Left column -->
-				<a href="#"><strong>Social</strong></a>
-
-				<hr />
-
-				<ul class="nav nav-stacked">
-									<li class="nav-header"><a href="#" data-toggle="collapse"
-						data-target="#menu3">Ajouter un contact <i
-							class="glyphicon glyphicon-plus"></i></a>
-
-						<ul class="nav nav-stacked collapse" id="menu3">
-
-							<li class="contact_acolor" >				<a href="#"> <form id="add_contact_form"  th:action="@{/user_page/adduser}" 
-					 method="post" ><input type="text" th:field="*{user_added.value}" 
-									value="Saisir un pseudo" name="value" /> <input type="submit"
-									value="Ok" /></form>
-							</a></li>
-																						<li th:if="${(param.add_request != null) and (param.add_request[0] == 'user_already_requested')}">
-			Vous ne pouvez pas vous ajouter vous-même!
-			</li>
+    </div>
 
 
 
-						</ul></li>
-				
-					<li class="nav-header"><a href="#" data-toggle="collapse"
-						data-target="#userMenu">Vos contacts <i
-							class="glyphicon glyphicon-chevron-down"></i>
-					</a>
-						<ul class="nav nav-stacked collapse in" id="userMenu">
-							<li th:each="userC : ${contacts}"><a href="#"><i
-									class="glyphicon glyphicon-user"></i> <span
-									th:text="${userC.pseudo}"></span> </a></li>
-						</ul></li>
+    <!-- Main -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <!-- Left column -->
+                <a href="#"><strong>Social</strong></a>
+
+                <hr />
+
+                <ul class="nav nav-stacked">
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu3">
+                            Ajouter un contact <i class="glyphicon glyphicon-plus"></i>
+                        </a>
+
+                        <ul th:if="${(param.add_request != null)}" class="nav nav-stacked collapse in" id="menu3">
+
+                            <li class="contact_acolor">
+                                <a href="#">
+                                    <form id="add_contact_form" th:action="@{/user_page/adduser}"
+                                          method="post">
+                                        <input type="text" th:field="*{user_added.value}"
+                                               value="Saisir un pseudo" name="value" /> <input type="submit"
+                                                                                               value="Ok" />
+                                    </form>
+                                </a>
+                            </li>
+                            <li class="add-contact-warning" th:if="${(param.add_request[0] == 'you_cannot_add_yourself')}">
+                                Vous ne pouvez pas vous ajouter vous-même!
+                            </li>
+                            <li class="add-contact-warning" th:if="${(param.add_request[0] == 'user_does_not_exist')}">
+                                L'utilisateur que vous avez demandé n'existe pas.
+                            </li>
+                            <li class="add-contact-warning" th:if="${(param.add_request[0] == 'ok')}">
+                                Demande d'ajout envoyée.
+                            </li>
+                            <li class="add-contact-warning" th:if="${(param.add_request[0] == 'user_already_in_list')}">
+                                L'utilisateur demandé est déjà dans votre liste de contact.
+                            </li>
+                            <li class="add-contact-warning" th:if="${(param.add_request[0] == 'user_already_requested')}">
+                                Demande d'ajout déjà envoyée, en cours d'attente de validation.
+                            </li>
 
 
 
-					<li class="nav-header"><a href="#" data-toggle="collapse"
-						data-target="#menu2"> Tout le monde <i
-							class="glyphicon glyphicon-chevron-right"></i></a>
+                        </ul>
+                        <ul th:if="${(param.add_request == null)}" class="nav nav-stacked collapse" id="menu3">
 
-						<ul class="nav nav-stacked collapse" id="menu2">
-							<li th:each="user : ${users}"><a href="#"><i
-									class="glyphicon glyphicon-user"></i> <span
-									th:text="${user.pseudo}"></span> </a></li>
+                            <li class="contact_acolor">
+                                <a href="#">
+                                    <form id="add_contact_form" th:action="@{/user_page/adduser}"
+                                          method="post">
+                                        <input type="text" th:field="*{user_added.value}"
+                                               value="Saisir un pseudo" name="value" /> <input type="submit"
+                                                                                               value="Ok" />
+                                    </form>
+                                </a>
+                            </li>
 
+                        </ul>
+                    </li>
 
-						</ul></li>
-
-				</ul>
-
-
-			</div>
-			<!-- /col-3 -->
-
-
-			<div class="col-sm-9">
-				<!-- column 2 -->
-
-				<a href="#"><strong>Cercles</strong></a>
-				<hr />
-				<div class="row">
-					<!-- center left-->
-					<div class="col-md-6">
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>Cercles</th>
-										<th>Propriétaires</th>
-										<th>-</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Cercle 1</td>
-										<td>Franck</td>
-										<td>-</td>
-									</tr>
-									<tr>
-										<td>Cercle 2</td>
-										<td>Chris</td>
-										<td>-</td>
-									</tr>
-									<tr>
-										<td>Cercle 3</td>
-										<td>Franck</td>
-										<td>-</td>
-									</tr>
-									<tr>
-										<td>..</td>
-										<td>..</td>
-										<td>..</td>
-									</tr>
-
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-
-
-			</div>
-			<!--/col-span-9-->
-		</div>
-	</div>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse"
+                           data-target="#userMenu">
+                            Vos contacts <i class="glyphicon glyphicon-chevron-down"></i>
+                        </a>
+                        <ul class="nav nav-stacked collapse in" id="userMenu">
+                            <li th:each="userC : ${contacts}">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-user"></i> <span th:text="${userC.pseudo}"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
 
 
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse"
+                           data-target="#menu2">
+                            Tout le monde <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+
+                        <ul class="nav nav-stacked collapse" id="menu2">
+                            <li th:each="user : ${users}">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-user"></i> <span th:text="${user.pseudo}"></span>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+
+            </div>
+            <!-- /col-3 -->
+
+
+            <div class="col-sm-9">
+                <!-- column 2 -->
+
+                <a href="#"><strong>Cercles</strong></a>
+                <hr />
+                <div class="row">
+                    <!-- center left-->
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Cercles</th>
+                                        <th>Propriétaires</th>
+                                        <th>-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Cercle 1</td>
+                                        <td>Franck</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cercle 2</td>
+                                        <td>Chris</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cercle 3</td>
+                                        <td>Franck</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>..</td>
+                                        <td>..</td>
+                                        <td>..</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--/col-span-9-->
+        </div>
+    </div>
 
 
 
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-	<script src="boardstyle/js/bootstrap.min.js"></script>
-	<script src="boardstyle/js/scripts.js"></script>
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="boardstyle/js/bootstrap.min.js"></script>
+    <script src="boardstyle/js/scripts.js"></script>
 
 
 </body>
