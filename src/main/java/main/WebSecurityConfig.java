@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
@@ -41,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .inMemoryAuthentication()
                 .withUser("user").password("abc").roles("USER");
                 */
-    	auth.userDetailsService(inMemoryUserDetailsManager());
+    	auth.userDetailsService(inMemoryUserDetailsManager()/*.passwordEncoder(passwordEncoder())*/);
     }
     
     
@@ -64,6 +66,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         users.put("Johnny","abc,USER,enabled");
         return new InMemoryUserDetailsManager(users);
     }
+    /*
+    @Bean
+	public PasswordEncoder passwordEncoder(){
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder;
+	}*/
     
 
 }
