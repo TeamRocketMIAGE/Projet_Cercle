@@ -15,9 +15,14 @@ public class cercleparamController {
 	UserRepository userRepository;
 	
 	@RequestMapping(value = "/cercle_param", method = RequestMethod.GET)
-	public String requestCreatePageCercleParam() {
+	public String requestCreatePageCercleParam(Model model) {
+		
+		//Cercle currentCercle = (Cercle)CercleRepository.findByName("??????????");
+		
+		//model.addAttribute("cercle", currentCercle);
+		
+		
 /*
-		// obtention de l'id de l'utilisateur
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String currentUserPseudo = auth.getName();  
 	    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	   
@@ -26,12 +31,7 @@ public class cercleparamController {
 	    System.out.println("ceci est un test dans userparamcontroller hehe");
 	    
 	    model.addAttribute("prenom", currentUser.getPrenom());
-	    model.addAttribute("nom", currentUser.getNom());
-	    model.addAttribute("adresse_rue", currentUser.getAdresse_rue());
-	    model.addAttribute("adresse_CP", currentUser.getAdresse_CP());
-	    model.addAttribute("adresse_ville", currentUser.getAdresse_ville());
-	    model.addAttribute("mail", currentUser.getMail());
-	    model.addAttribute("tel", currentUser.getTel());
+
 */
 		return "cercle_param";
 
