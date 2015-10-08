@@ -67,10 +67,14 @@
 
 						<ul class="nav nav-stacked collapse" id="menu3">
 
-							<li class="contact_acolor" th:object="${user_added}"><input type="text" th:field="*{value}" 
-									value="Saisir un pseudo" /><a th:href="@{/user_page/adduser}">  <input type="button"
-									value="Ok"  />
+							<li class="contact_acolor" >				<a href="#"> <form id="add_contact_form"  th:action="@{/user_page/adduser}" 
+					 method="post" ><input type="text" th:field="*{user_added.value}" 
+									value="Saisir un pseudo" name="value" /> <input type="submit"
+									value="Ok" /></form>
 							</a></li>
+																						<li th:if="${(param.add_request != null) and (param.add_request[0] == 'user_already_requested')}">
+			Vous ne pouvez pas vous ajouter vous-même!
+			</li>
 
 
 

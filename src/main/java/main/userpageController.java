@@ -51,9 +51,13 @@ public class userpageController {
 	
 	
     
-    @RequestMapping("/user_page/adduser")
+  
+    @RequestMapping(value = "/user_page/adduser", method = RequestMethod.POST)
     public String deleteProduct(SimpleString user_added, RedirectAttributes redirectAttributes)
     {
+    	
+    	
+    	
     	System.out.println("Demande d'ajout de l'utilisateur suivant : " + user_added.value);
     	
     	if(userRepository.findByPseudo(user_added.value)==null)
@@ -67,7 +71,7 @@ public class userpageController {
     		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	    String currentUserPseudo = auth.getName();  
     	    
-    	    if(currentUserPseudo == user_added.value)
+    	    if(currentUserPseudo.equals(user_added.value))
     	    {
     	    	redirectAttributes.addAttribute("add_request","you_cannot_add_yourself");
     	    }
@@ -75,7 +79,7 @@ public class userpageController {
     	    {
     	    	Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	
     	    	int i=0;
-    	    	for (; i<currentUser.getContact().size() && currentUser.getContact().get(i).getPseudo() != user_added.value; i++);
+    	    	for (; i<currentUser.getContact().size() && !currentUser.getContact().get(i).getPseudo().equals(user_added.value); i++);
     	    	if (i<currentUser.getContact().size())
     	    	{
     	    		redirectAttributes.addAttribute("add_request","user_already_in_list");
@@ -84,7 +88,7 @@ public class userpageController {
     	    	{
     	    		Utilisateur askedUser = (Utilisateur)userRepository.findByPseudo(user_added.value);	
     	    		i=0;
-        	    	for (; i<askedUser.getAddRequestContacts().size() && askedUser.getAddRequestContacts().get(i).getPseudo() != currentUserPseudo; i++);
+        	    	for (; i<askedUser.getAddRequestContacts().size() && askedUser.getAddRequestContacts().get(i).getPseudo().equals(currentUserPseudo); i++);
         	    	if (i<askedUser.getAddRequestContacts().size())
         	    	{
         	    		redirectAttributes.addAttribute("add_request","user_already_requested");
@@ -92,7 +96,8 @@ public class userpageController {
         	    	else
         	    	{
         	    		// tout est ok, il faut ajouter la demande dans la liste des demandes de user_added
-        	    		askedUser.addRequestNewContact(currentUserPseudo);
+        	    		askedUser.addRequestNewContact(currentUser);
+        	    		userRepository.save(askedUser);
         	    		redirectAttributes.addAttribute("add_request","ok");
         	    		
         	    	}
