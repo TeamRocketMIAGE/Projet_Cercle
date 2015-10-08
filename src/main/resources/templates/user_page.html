@@ -73,6 +73,30 @@
                 <hr />
 
                 <ul class="nav nav-stacked">
+                
+                 <li th:if="${(new_contact_to_confirm != null) and (new_contact_to_confirm.size() != 0)}" class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu4">
+                            Demande d'ajout <i class="glyphicon glyphicon-plus"></i>
+                        </a>
+
+
+                        <ul class="nav nav-stacked collapse" id="menu4">
+
+                            <li class="contact_acolor"  th:each="newUser : ${new_contact_to_confirm}">
+                                <a href="#">
+                                
+                                    <form  th:action="@{/user_page/confirm_adduser}"
+                                          method="post">
+                                        <i class="glyphicon glyphicon-upload"></i> <span th:text="${newUser.pseudo}"></span> <input type="submit"
+                                                                                               value="Ok" />
+                                    </form>
+                                
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                
                     <li class="nav-header">
                         <a href="#" data-toggle="collapse" data-target="#menu3">
                             Ajouter un contact <i class="glyphicon glyphicon-plus"></i>

@@ -53,7 +53,7 @@ public class userpageController {
     
   
     @RequestMapping(value = "/user_page/adduser", method = RequestMethod.POST)
-    public String deleteProduct(SimpleString user_added, RedirectAttributes redirectAttributes)
+    public String addUserRequest(SimpleString user_added, RedirectAttributes redirectAttributes)
     {
     	
     	
@@ -115,5 +115,13 @@ public class userpageController {
     	
     	return "redirect:/user_page";
     	
+    }
+    
+    
+    @RequestMapping(value = "/user_page/confirm_adduser", method = RequestMethod.POST)
+    public String confirmAddUserRequestt(SimpleString user_added_confirmed)
+    {
+    
+    	return "redirect:/user_page";
     }
 }
