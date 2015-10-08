@@ -1,11 +1,15 @@
 package main;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 
 
@@ -26,6 +30,17 @@ public class Cercle implements Serializable {
 	private String description;
 	
 	
+	@ManyToMany(fetch=FetchType.EAGER)
+	private List<Cercle> sousCercles = new ArrayList<Cercle>();
+	
+	@ManyToMany(fetch=FetchType.EAGER)
+	private List<Utilisateur> administracteurs = new ArrayList<Utilisateur>();
+	
+	@ManyToMany(fetch=FetchType.EAGER)
+	private List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+	
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -35,6 +50,40 @@ public class Cercle implements Serializable {
 	public String getDescription() {
 		return description;
 	}
+	
+	public List<Cercle> getSousCercles() {
+		return sousCercles;
+	}
+	public void setSousCercles(List<Cercle> sousCercles) {
+		this.sousCercles = sousCercles;
+	}
+	public void addSousCercle(Cercle sousCercle) {
+		this.sousCercles.add(sousCercle);
+	}
+	
+	
+	public List<Utilisateur> getAdministracteurs() {
+		return administracteurs;
+	}
+	public void setAdministracteurs(List<Utilisateur> administracteurs) {
+		this.administracteurs = administracteurs;
+	}
+	public void addAdministrateur(Utilisateur u) {
+		this.administracteurs.add(u);
+	}
+	
+	
+	public List<Utilisateur> getUtilisateurs() {
+		return utilisateurs;
+	}
+	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+		this.utilisateurs = utilisateurs;
+	}
+	public void addUtilisateur(Utilisateur u) {
+		this.utilisateurs.add(u);
+	}
+	
+	
 	public void setDescription(String description) {
 		this.description = description;
 	}
