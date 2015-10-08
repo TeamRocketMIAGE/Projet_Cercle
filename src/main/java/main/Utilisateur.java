@@ -136,6 +136,17 @@ public class Utilisateur implements Serializable  {
 	}
 	
 	
+	public void deleteRequestNewContact(Utilisateur u) {
+		
+		int i=0;
+		for (; i<this.addRequestContacts.size() && !this.addRequestContacts.get(i).getPseudo().equals(u.getPseudo()) ; i++);
+		if (i<this.addRequestContacts.size())
+		{
+			this.addRequestContacts.remove(i);
+		}
+	}
+	
+	
 	public String getNom() {
 		return nom;
 	}

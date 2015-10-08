@@ -87,8 +87,11 @@
                                 
                                     <form  th:action="@{/user_page/confirm_adduser}"
                                           method="post">
-                                        <i class="glyphicon glyphicon-upload"></i> <span th:text="${newUser.pseudo}"></span> <input type="submit"
-                                                                                               value="Ok" />
+                                        <i class="glyphicon glyphicon-upload"></i> 
+                                        <span th:text="${newUser.pseudo}"></span>   
+                                                                             
+                                        <input type="submit" name="confirm_add" value="Accepter" />
+                                        <input type="submit" name="confirm_add" value="Refuser" />
                                     </form>
                                 
                                 </a>
@@ -109,7 +112,7 @@
                                     <form id="add_contact_form" th:action="@{/user_page/adduser}"
                                           method="post">
                                         <input type="text" th:field="*{user_added.value}"
-                                               value="Saisir un pseudo" name="value" /> <input type="submit"
+                                               value="Saisir un pseudo" name="value" /> <input type="submit" 
                                                                                                value="Ok" />
                                     </form>
                                 </a>

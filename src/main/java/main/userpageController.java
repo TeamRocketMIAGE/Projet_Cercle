@@ -118,10 +118,35 @@ public class userpageController {
     }
     
     
-    @RequestMapping(value = "/user_page/confirm_adduser", method = RequestMethod.POST)
+    @RequestMapping(value = "/user_page/confirm_adduser", method = RequestMethod.POST, params="confirm_add=Accepter")
     public String confirmAddUserRequestt(SimpleString user_added_confirmed)
     {
     
+    	System.out.println("Confirmation de la demande d'ajout de l'utilisateur " + user_added_confirmed.value + ".");
+		
+    	// obtention de l'id de l'utilisateur connecté
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String currentUserPseudo = auth.getName(); 
+	    
+	    // ajout du nouvel utilisateur dans sa liste de contact
+	    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	
+	    Utilisateur askingUser = (Utilisateur)userRepository.findByPseudo(user_added_confirmed.value);	    	
+	    currentUser.addContact(askingUser);	    
+	    currentUser.deleteRequestNewContact(askingUser);
+	    userRepository.save(currentUser);
+	    
+	    askingUser.addContact(currentUser);
+	    userRepository.save(askingUser);    
+	    
+    	
+    	return "redirect:/user_page";
+    }
+    
+    @RequestMapping(value = "/user_page/confirm_adduser", method = RequestMethod.POST, params="confirm_add=Refuser")
+    public String refuseAddUserRequestt(SimpleString user_added_confirmed)
+    {
+    
+    	System.out.println("Refus de la demande d'ajout.");
     	return "redirect:/user_page";
     }
 }
