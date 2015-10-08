@@ -61,6 +61,21 @@
 				<hr />
 
 				<ul class="nav nav-stacked">
+									<li class="nav-header"><a href="#" data-toggle="collapse"
+						data-target="#menu3">Ajouter un contact <i
+							class="glyphicon glyphicon-plus"></i></a>
+
+						<ul class="nav nav-stacked collapse" id="menu3">
+
+							<li class="contact_acolor" th:object="${user_added}"><input type="text" th:field="*{value}" 
+									value="Saisir un pseudo" /><a th:href="@{/user_page/adduser}">  <input type="button"
+									value="Ok"  />
+							</a></li>
+
+
+
+						</ul></li>
+				
 					<li class="nav-header"><a href="#" data-toggle="collapse"
 						data-target="#userMenu">Vos contacts <i
 							class="glyphicon glyphicon-chevron-down"></i>
@@ -72,20 +87,7 @@
 						</ul></li>
 
 
-					<li class="nav-header"><a href="#" data-toggle="collapse"
-						data-target="#menu3"> Nouveau contact <i
-							class="glyphicon glyphicon-plus"></i></a>
 
-						<ul class="nav nav-stacked collapse" id="menu3">
-
-							<li><a href="#"> <input type="text"
-									value="Saisir un pseudo" /> <input type="button"
-									value="Ajouter" />
-							</a></li>
-
-
-
-						</ul></li>
 					<li class="nav-header"><a href="#" data-toggle="collapse"
 						data-target="#menu2"> Tout le monde <i
 							class="glyphicon glyphicon-chevron-right"></i></a>

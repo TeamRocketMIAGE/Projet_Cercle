@@ -2,6 +2,7 @@ package main;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class userpageController {
@@ -21,7 +24,7 @@ public class userpageController {
 	@RequestMapping(value = "/user_page", method = RequestMethod.GET)
 	public String requestCreatePageUserHome(Model model) {
 
-		// obtention de l'id de l'utilisateur
+		// obtention de l'id de l'utilisateur connecté
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String currentUserPseudo = auth.getName();  
 	    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	   
@@ -34,9 +37,78 @@ public class userpageController {
     	// ajout de tous les utilisateurs dans la requête  	
     	model.addAttribute("users", (List<Utilisateur>)userRepository.findAll());
     	
-    	
+    	SimpleString user_added = new SimpleString("");
+    	// ajout de la variable qui va permettre de stocker le pseudo d'un utilisateur à ajouter dans les contacts
+    	model.addAttribute("user_added", user_added);
 	
+    	
+    	// ajout de la liste des demandes extérieures d'ajout  à la liste des contacts de l'utilisateur connecté
+    	model.addAttribute("new_contact_to_confirm", currentUser.getAddRequestContacts() );
+    	
 		return "user_page";
 
 	}
+	
+	
+    
+    @RequestMapping("/user_page/adduser")
+    public String deleteProduct(SimpleString user_added, RedirectAttributes redirectAttributes)
+    {
+    	System.out.println("Demande d'ajout de l'utilisateur suivant : " + user_added.value);
+    	
+    	if(userRepository.findByPseudo(user_added.value)==null)
+    	{
+    		System.out.println("L'utilisateur " + user_added.value + " n'existe pas dans la base de données.");
+    		redirectAttributes.addAttribute("add_request","user_does_not_exist");
+    	}
+    	else
+    	{
+    		// obtention de l'id de l'utilisateur connecté
+    		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	    String currentUserPseudo = auth.getName();  
+    	    
+    	    if(currentUserPseudo == user_added.value)
+    	    {
+    	    	redirectAttributes.addAttribute("add_request","you_cannot_add_yourself");
+    	    }
+    	    else
+    	    {
+    	    	Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	
+    	    	int i=0;
+    	    	for (; i<currentUser.getContact().size() && currentUser.getContact().get(i).getPseudo() != user_added.value; i++);
+    	    	if (i<currentUser.getContact().size())
+    	    	{
+    	    		redirectAttributes.addAttribute("add_request","user_already_in_list");
+    	    	}
+    	    	else
+    	    	{
+    	    		Utilisateur askedUser = (Utilisateur)userRepository.findByPseudo(user_added.value);	
+    	    		i=0;
+        	    	for (; i<askedUser.getAddRequestContacts().size() && askedUser.getAddRequestContacts().get(i).getPseudo() != currentUserPseudo; i++);
+        	    	if (i<askedUser.getAddRequestContacts().size())
+        	    	{
+        	    		redirectAttributes.addAttribute("add_request","user_already_requested");
+        	    	}
+        	    	else
+        	    	{
+        	    		// tout est ok, il faut ajouter la demande dans la liste des demandes de user_added
+        	    		askedUser.addRequestNewContact(currentUserPseudo);
+        	    		redirectAttributes.addAttribute("add_request","ok");
+        	    		
+        	    	}
+    	    	}    	    		
+    	    }  	    
+    	     
+    	    
+    	    
+    	}
+    	
+    	
+    	
+    	
+    	
+    	
+    	return "redirect:/user_page";
+    	
+    }
 }

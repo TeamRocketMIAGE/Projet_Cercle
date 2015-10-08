@@ -43,6 +43,15 @@ public class Utilisateur implements Serializable  {
 	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Utilisateur> contact = new ArrayList<Utilisateur>();
 	
+	// liste des utilisateurs qui ont demandé à l'utilisateur actuel de les ajouter dans leurs listes de contacts respectives	
+	private List<String> addRequestContacts = new ArrayList<String>();
+	
+
+
+
+
+
+
 	protected Utilisateur()
 	{}
 	
@@ -110,7 +119,18 @@ public class Utilisateur implements Serializable  {
 		this.pseudo = pseudo;
 	}
 	
+	public List<String> getAddRequestContacts() {
+		return addRequestContacts;
+	}
 
+
+	public void setAddRequestContacts(List<String> addRequestContacts) {
+		this.addRequestContacts = addRequestContacts;
+	}
+	
+	public void addRequestNewContact(String u) {
+		this.addRequestContacts.add(u);
+	}
 	
 	public String getNom() {
 		return nom;
@@ -123,6 +143,8 @@ public class Utilisateur implements Serializable  {
 	public String getPrenom() {
 		return prenom;
 	}
+	
+
 	
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
