@@ -78,11 +78,11 @@ public class Utilisateur implements Serializable  {
 		this.pseudo = pseudo;
 		this.nom = "Nom";
 		this.prenom = "Prénom";
-		this.adresse_rue = "Rue";
-		this.adresse_CP = "Code postal";
-		this.adresse_ville = "Ville";
-		this.tel = "0123456789";
-		this.mail = "mail@domain.top";
+		this.adresse_rue = "";
+		this.adresse_CP = "";
+		this.adresse_ville = "";
+		this.tel = "";
+		this.mail = "";
 		this.setPassword(password);
 		 
 	}

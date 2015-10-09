@@ -36,28 +36,22 @@ public class inscriptionController {
 
 	
 	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
-	public String requestInscription(Utilisateur user, RedirectAttributes redirectAttributes) {
+	public String requestInscription(Utilisateur user, RedirectAttributes redirectAttributes, Model model) {
 
 		if(ur.findByPseudo(user.getPseudo())!=null)
 		{
 			System.out.println("Une personne a essayé de s'inscrire avec un pseudo déjà existant : " + user.getPseudo());
 			redirectAttributes.addAttribute("user_exist", "true");
+			model.addAttribute("user", new Utilisateur());
 			return "redirect:/inscription";
 		}
-			
-		
+					
 		ur.save(user);	
 		redirectAttributes.addAttribute("signin", "ok");
-		
-        
-		
 		inMemoryUserDetailsManager.createUser(new User(user.getPseudo(), user.getPassword(), new ArrayList<GrantedAuthority>()));
-		
-		
-		System.out.println("L'utilisateur " + user.getPseudo() + " s'est inscrit.");
-		
+				
+		System.out.println("L'utilisateur " + user.getPseudo() + " s'est inscrit.");		
 		return "redirect:/login";
-
 	}
 	
 
