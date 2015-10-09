@@ -40,6 +40,18 @@ public class Cercle implements Serializable {
 	private List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
 	
 	
+
+	protected Cercle(){}
+	
+	
+	public Cercle(String name, String description) {
+		super();
+		this.name = name;
+		this.description = description;
+		 
+	}
+	
+	
 	
 	public long getId() {
 		return id;

@@ -23,6 +23,9 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
 
     @Autowired
     UserRepository userRepository;
+    
+    @Autowired
+    CercleRepository cercleRepository;
 	
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -96,6 +99,35 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         userRepository.save(uFranck);
         uBob.addContact(uFranck);
         userRepository.save(uBob);
+        
+        /*
+        Cercle c1 = new Cercle();
+        c1.addAdministrateur(uFranck);
+        c1.addUtilisateur(uBob);
+        c1.addUtilisateur(uChris);
+        c1.setName("Google");
+        c1.setDescription("Big brother is watching you !");
+        
+        
+        Cercle c2 = new Cercle();
+        c1.addAdministrateur(uBob);
+        c1.addUtilisateur(uFranck);
+        c1.addUtilisateur(uChris);
+        c1.setName("Apple");
+        c1.setDescription("Ici, c'est pas d'Android, nous on ne fait pas de la merde !");
+        
+        Cercle c3 = new Cercle();
+        c1.addAdministrateur(uChris);
+        c1.addUtilisateur(uFranck);
+        c1.addUtilisateur(uBob);
+        c1.setName("La branche qui se charge du développement Android de chez Google");
+        c1.setDescription("Ici, c'est pas d'iphone, nous on ne fait pas de la merde !");
+        
+        c1.addSousCercle(c3);
+        
+        cercleRepository.save(c1);
+        cercleRepository.save(c2);
+        cercleRepository.save(c3);*/
         
         
 
