@@ -46,8 +46,8 @@ public class userparamController {
 
 	}
 
-	@RequestMapping(value = "/user_param", method = RequestMethod.POST)
-	public String requestModificationUser(Utilisateur user,
+	@RequestMapping(value = "/user_param", method = RequestMethod.POST, params="submit=Enregistrer les modifications")
+	public String requestModificationUserSave(Utilisateur user,
 			RedirectAttributes redirectAttributes) {
 
 		/*
@@ -80,7 +80,21 @@ public class userparamController {
 
 		redirectAttributes.addAttribute("modification", "ok");
 		return "redirect:/user_page";
-		// }
+		
+
+	}
+	
+	
+	
+	@RequestMapping(value = "/user_param", method = RequestMethod.POST, params="submit=Annuler")
+	public String requestModificationUserCancel(Utilisateur user,
+			RedirectAttributes redirectAttributes) {
+
+
+
+		redirectAttributes.addAttribute("modification", "cancel");
+		return "redirect:/user_page";
+		
 
 	}
 
