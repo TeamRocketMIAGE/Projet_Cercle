@@ -68,15 +68,15 @@
         <div class="row">
             <div class="col-sm-3">
                 <!-- Left column -->
-                <a href="#"><strong>Social</strong></a>
+                <a href="#"><i class="glyphicon glyphicon-list"></i> <strong>Social</strong></a>
 
                 <hr />
 
                 <ul class="nav nav-stacked">
                 
                  <li th:if="${(new_contact_to_confirm != null) and (new_contact_to_confirm.size() != 0)}" class="nav-header">
-                        <a href="#" data-toggle="collapse" data-target="#menu4">
-                            Demande d'ajout <i class="glyphicon glyphicon-plus"></i>
+                        <a data-toggle="collapse" data-target="#menu4">
+                            Demande d'ajout <span class="badge badge-info" th:text="${new_contact_to_confirm.size()}"></span><i class="glyphicon glyphicon-chevron-down"></i>
                         </a>
 
 
@@ -85,7 +85,7 @@
                             <li class="contact_acolor"  th:each="newUser : ${new_contact_to_confirm}">
                                 <a href="#">
                                 
-                                    <form  th:action="@{/user_page/confirm_adduser}"
+                                    <form  th:action="@{'/user_page/confirm_adduser/'+${newUser.pseudo}}"
                                           method="post">
                                         <i class="glyphicon glyphicon-upload"></i> 
                                         <span th:text="${newUser.pseudo}"></span>   
@@ -101,7 +101,7 @@
                     </li>
                 
                     <li class="nav-header">
-                        <a href="#" data-toggle="collapse" data-target="#menu3">
+                        <a data-toggle="collapse" data-target="#menu3">
                             Ajouter un contact <i class="glyphicon glyphicon-plus"></i>
                         </a>
 
@@ -112,7 +112,7 @@
                                     <form id="add_contact_form" th:action="@{/user_page/adduser}"
                                           method="post">
                                         <input type="text" th:field="*{user_added.value}"
-                                               value="Saisir un pseudo" name="value" /> <input type="submit" 
+                                               value="Saisir un pseudo" name="value" required="required" /> <input type="submit" 
                                                                                                value="Ok" />
                                     </form>
                                 </a>
@@ -123,7 +123,7 @@
                             <li class="add-contact-warning" th:if="${(param.add_request[0] == 'user_does_not_exist')}">
                                 L'utilisateur que vous avez demandé n'existe pas.
                             </li>
-                            <li class="add-contact-warning" th:if="${(param.add_request[0] == 'ok')}">
+                            <li class="add-contact-confirm" th:if="${(param.add_request[0] == 'ok')}">
                                 Demande d'ajout envoyée.
                             </li>
                             <li class="add-contact-warning" th:if="${(param.add_request[0] == 'user_already_in_list')}">
@@ -153,11 +153,15 @@
                     </li>
 
                     <li class="nav-header">
-                        <a href="#" data-toggle="collapse"
+                        <a data-toggle="collapse"
                            data-target="#userMenu">
                             Vos contacts <i class="glyphicon glyphicon-chevron-down"></i>
                         </a>
                         <ul class="nav nav-stacked collapse in" id="userMenu">
+                  
+                            <li class="contact-short-info" th:if="${(contacts == null) or (contacts.size() == 0)}">
+								Votre liste de contacts est vide.
+                            </li>
                             <li th:each="userC : ${contacts}">
                                 <a href="#">
                                     <i class="glyphicon glyphicon-user"></i> <span th:text="${userC.pseudo}"></span>
@@ -169,7 +173,7 @@
 
 
                     <li class="nav-header">
-                        <a href="#" data-toggle="collapse"
+                        <a data-toggle="collapse"
                            data-target="#menu2">
                             Tout le monde <i class="glyphicon glyphicon-chevron-right"></i>
                         </a>
@@ -195,7 +199,7 @@
             <div class="col-sm-9">
                 <!-- column 2 -->
 
-                <a href="#"><strong>Cercles</strong></a>
+                <a href="#"><i class="glyphicon glyphicon-list"></i> <strong>Cercles</strong></a>
                 <hr />
                 <div class="row">
                     <!-- center left-->

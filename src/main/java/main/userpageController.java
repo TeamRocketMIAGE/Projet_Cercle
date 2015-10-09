@@ -118,11 +118,11 @@ public class userpageController {
     }
     
     
-    @RequestMapping(value = "/user_page/confirm_adduser", method = RequestMethod.POST, params="confirm_add=Accepter")
-    public String confirmAddUserRequestt(SimpleString user_added_confirmed)
+    @RequestMapping(value = "/user_page/confirm_adduser/{pseudo}", method = RequestMethod.POST, params="confirm_add=Accepter")
+    public String confirmAddUserRequestt(@PathVariable("pseudo") String user_added_confirmed)
     {
     
-    	System.out.println("Confirmation de la demande d'ajout de l'utilisateur " + user_added_confirmed.value + ".");
+    	System.out.println("Confirmation de la demande d'ajout de l'utilisateur " + user_added_confirmed + ".");
 		
     	// obtention de l'id de l'utilisateur connecté
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -130,7 +130,7 @@ public class userpageController {
 	    
 	    // ajout du nouvel utilisateur dans sa liste de contact
 	    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	
-	    Utilisateur askingUser = (Utilisateur)userRepository.findByPseudo(user_added_confirmed.value);	    	
+	    Utilisateur askingUser = (Utilisateur)userRepository.findByPseudo(user_added_confirmed);	    	
 	    currentUser.addContact(askingUser);	    
 	    currentUser.deleteRequestNewContact(askingUser);
 	    userRepository.save(currentUser);
@@ -142,11 +142,22 @@ public class userpageController {
     	return "redirect:/user_page";
     }
     
-    @RequestMapping(value = "/user_page/confirm_adduser", method = RequestMethod.POST, params="confirm_add=Refuser")
-    public String refuseAddUserRequestt(SimpleString user_added_confirmed)
+    @RequestMapping(value = "/user_page/confirm_adduser/{pseudo}", method = RequestMethod.POST, params="confirm_add=Refuser")
+    public String refuseAddUserRequestt(@PathVariable("pseudo") String user_added_confirmed)
     {
     
     	System.out.println("Refus de la demande d'ajout.");
+    	
+    	// obtention de l'id de l'utilisateur connecté
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	String currentUserPseudo = auth.getName(); 
+    	
+    	// il faut enlever le user qui a demandé l'ajout de la lise des utilisateurs qui nous ont demandé de nous ajouter
+    	 Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);
+    	 Utilisateur askingUser = (Utilisateur)userRepository.findByPseudo(user_added_confirmed);
+ 	    currentUser.deleteRequestNewContact(askingUser);
+ 	    userRepository.save(currentUser);
+    	
     	return "redirect:/user_page";
     }
 }

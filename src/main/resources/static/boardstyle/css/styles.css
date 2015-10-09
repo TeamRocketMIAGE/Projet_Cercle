@@ -13,7 +13,23 @@
 {
 	padding:4px 15px;
 	color:red;
+	font-size:12px;
 }
+
+.add-contact-confirm
+{
+	padding:4px 15px;
+	color:green;
+	font-size:12px;
+}
+
+.contact-short-info
+{
+	padding:4px 15px;
+	color:black;
+	font-size:12px;
+}
+
 
 #user_page-title
 {
