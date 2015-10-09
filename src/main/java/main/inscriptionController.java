@@ -30,19 +30,26 @@ public class inscriptionController {
 	public String requestCreatePageInscription(Model model) {
 
 		model.addAttribute("user", new Utilisateur());
+		model.addAttribute("pw_verif", new SimpleString());
 		return "inscription";
 
 	}
 
 	
 	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
-	public String requestInscription(Utilisateur user, RedirectAttributes redirectAttributes, Model model) {
+	public String requestInscription(Utilisateur user, SimpleString pw_verif ,RedirectAttributes redirectAttributes) {
 
 		if(ur.findByPseudo(user.getPseudo())!=null)
 		{
 			System.out.println("Une personne a essayé de s'inscrire avec un pseudo déjà existant : " + user.getPseudo());
-			redirectAttributes.addAttribute("user_exist", "true");
-			model.addAttribute("user", new Utilisateur());
+			redirectAttributes.addAttribute("user_exist", "true");			
+			return "redirect:/inscription";
+		}
+		
+		if (!pw_verif.value.equals(user.getPassword()))
+		{
+			
+			redirectAttributes.addAttribute("same_password", "false");			
 			return "redirect:/inscription";
 		}
 					

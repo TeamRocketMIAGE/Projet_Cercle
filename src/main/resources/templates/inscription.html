@@ -62,29 +62,32 @@
 				<br /> <br /> <br /> <br />
 				<h2>Inscription</h2>
 			</div>
-															<div class="center error_message " th:if="${(param.user_exist != null) and (param.user_exist[0] == 'true')}">
-			<b>L'identifiant que vous avez saisi est déjà utilisé. Veuillez donc saisir un autre identifiant.</b>
+			<div class="center error_message " th:if="${(param.user_exist != null) and (param.user_exist[0] == 'true')}">
+				<b>L'identifiant que vous avez saisi est déjà utilisé. Veuillez donc saisir un autre identifiant.</b>
+			</div>
+			<div class="center error_message " th:if="${(param.same_password != null) and (param.same_password[0] == 'false')}">
+				<b>Les 2 mots de passe que vous avez saisis ne sont pas identiques.</b>
 			</div>
 			
 			<div class="row contact-wrap">
 				<div class="status alert alert-success" style="display: none"></div>
-				<form id="main-contact-form" th:object="${user}" class="contact-form"
+				<form id="main-contact-form"  class="contact-form"
 					 method="post" >
 
 					<div class="col-sm-5 col-sm-offset-1">
 						<div class="form-group">
-							<label>Identifiant *</label> <input type="text" th:field="*{pseudo}" class="form-control" required="required" />
+							<label>Identifiant *</label> <input type="text" th:field="*{user.pseudo}" class="form-control" required="required" />
 						</div>
 						<div class="form-group">
 							<label>Mot de passe *</label> <input type="password"
-								name="password1" class="form-control" th:field="*{password}" required="required" />
+								name="password1" class="form-control" th:field="*{user.password}" required="required" />
 						</div>
 						<div class="form-group">
 							<label>Confirmez le mot de passe *</label> <input type="password"
-								name="password2" class="form-control" required="required" />
+								name="password2" th:field="*{pw_verif.value}" class="form-control" required="required" />
 						</div>
 						<div class="form-group">
-							<label>E-mail *</label> <input type="email"  th:field="*{mail}" name="email"
+							<label>E-mail *</label> <input type="email"  th:field="*{user.mail}" name="mail"
 								class="form-control" required="required" />
 						</div>
 
@@ -93,27 +96,27 @@
 					</div>
 					<div class="col-sm-5">
 											<div class="form-group">
-							<label>Nom *</label> <input type="text" name="nom"  th:field="*{nom}"
+							<label>Nom *</label> <input type="text" name="nom"  th:field="*{user.nom}"
 								class="form-control" required="required" />
 						</div>
 						<div class="form-group">
-							<label>Prénom *</label> <input type="text" name="prenom"  th:field="*{prenom}"
+							<label>Prénom *</label> <input type="text" name="prenom"  th:field="*{user.prenom}"
 								class="form-control" required="required" />
 						</div>
 						<div class="form-group">
-							<label>Téléphone</label> <input type="text" name="tel" th:field="*{tel}"
+							<label>Téléphone</label> <input type="text" name="tel" th:field="*{user.tel}"
 								class="form-control" />
 						</div>
 						<div class="form-group">
-							<label>Rue</label> <input type="text" name="rue" th:field="*{adresse_rue}"
+							<label>Rue</label> <input type="text" name="adresse_rue" th:field="*{user.adresse_rue}"
 								class="form-control" />
 						</div>
 						<div class="form-group">
-							<label>Ville</label> <input type="text" name="ville" th:field="*{adresse_ville}"
+							<label>Ville</label> <input type="text" name="adresse_ville" th:field="*{user.adresse_ville}"
 								class="form-control" />
 						</div>
 						<div class="form-group">
-							<label>Code postal :</label> <input type="text" name="cp" th:field="*{adresse_CP}"
+							<label>Code postal :</label> <input type="text" name="adresse_cp" th:field="*{user.adresse_CP}"
 								class="form-control" />
 						</div>
 
