@@ -34,7 +34,7 @@ public class Cercle implements Serializable {
 	private List<Cercle> sousCercles = new ArrayList<Cercle>();
 	
 	@ManyToMany(fetch=FetchType.EAGER)
-	private List<Utilisateur> administracteurs = new ArrayList<Utilisateur>();
+	private List<Utilisateur> administrateurs = new ArrayList<Utilisateur>();
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
@@ -62,15 +62,29 @@ public class Cercle implements Serializable {
 	}
 	
 	
-	public List<Utilisateur> getAdministracteurs() {
-		return administracteurs;
+	public List<Utilisateur> getAdministrateurs() {
+		return administrateurs;
 	}
-	public void setAdministracteurs(List<Utilisateur> administracteurs) {
-		this.administracteurs = administracteurs;
+	
+	public void setAdministrateurs(List<Utilisateur> administrateurs) {
+		this.administrateurs = administrateurs;
 	}
+	
 	public void addAdministrateur(Utilisateur u) {
-		this.administracteurs.add(u);
+		this.administrateurs.add(u);
 	}
+	
+	public void deleteAdministrateur(Utilisateur u) {
+		this.administrateurs.add(u);
+		
+		int i=0;
+		for (; i<this.administrateurs.size() && !this.administrateurs.get(i).getPseudo().equals(u.getPseudo()) ; i++);
+		if (i<this.administrateurs.size())
+		{
+			this.administrateurs.remove(i);
+		}
+	}
+	
 	
 	
 	public List<Utilisateur> getUtilisateurs() {
@@ -81,6 +95,17 @@ public class Cercle implements Serializable {
 	}
 	public void addUtilisateur(Utilisateur u) {
 		this.utilisateurs.add(u);
+	}
+	
+	public void deleteUtilisateur(Utilisateur u) {
+		this.utilisateurs.add(u);
+		
+		int i=0;
+		for (; i<this.utilisateurs.size() && !this.utilisateurs.get(i).getPseudo().equals(u.getPseudo()) ; i++);
+		if (i<this.utilisateurs.size())
+		{
+			this.utilisateurs.remove(i);
+		}
 	}
 	
 	
