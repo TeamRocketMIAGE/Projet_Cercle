@@ -64,6 +64,39 @@
         <div class="row">
             <div class="col-sm-3">
                 <!-- Left column -->
+                
+                <a href="#"><i class="glyphicon glyphicon-list"></i> <strong th:text="'Cercle '+${currentCercle.name}"></strong></a>
+
+                <hr />
+                
+                <ul class="nav nav-stacked">
+                
+                	<li class="nav-header">
+                        <a data-toggle="collapse"
+                           data-target="#cerclesUser">
+                            Membres <i class="glyphicon glyphicon-chevron-down"></i>
+                        </a>
+                        <ul class="nav nav-stacked collapse in" id="cerclesUser">
+                  
+                            <li th:each="userAdmin : ${cercle_admins}">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-eye-open" rel="tooltip" title="Administrateur"></i> <span th:text="${userAdmin.pseudo}"></span>
+                                </a>
+                            </li>
+                            <li th:each="userMembre : ${cercle_membres}">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-user"></i> <span th:text="${userMembre.pseudo}"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+
+                </ul>
+                
+                <hr />
+                
+                
                 <a href="#"><i class="glyphicon glyphicon-list"></i> <strong>Social</strong></a>
 
                 <hr />
@@ -172,6 +205,32 @@
 
             </div>
             <!-- /col-3 -->
+            
+            <div class="col-sm-9">
+
+                                    <!--tabs-->
+                    <div class="panel">
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li class="active"><a href="#chat" data-toggle="tab">Chat</a></li>
+                            <li><a href="#documents" data-toggle="tab">Documents</a></li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active well" id="chat">
+								<h1>Chat</h1>
+                            </div>
+                            <div class="tab-pane well" id="documents">
+								<h1>Documents</h1>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!--/tabs-->
+
+
+            </div>
+            <!--/col-span-9-->
 
 
 

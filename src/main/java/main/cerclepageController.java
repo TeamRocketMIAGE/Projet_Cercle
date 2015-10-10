@@ -52,6 +52,12 @@ public class cerclepageController {
 				/*
 			     * Informations relatives aux contacts à transmettre à la page
 			     */
+				
+		    	// ajout de la liste des membres du cercle 	
+		    	model.addAttribute("cercle_membres", currentCercle.getUtilisateurs()); 
+		    	
+		    	// ajout de la liste des administrateurs du cercle 	
+		    	model.addAttribute("cercle_admins", currentCercle.getAdministrateurs());
 			    
 		    	// ajout des contacts de l'utilisateur actuel dans la requête   	
 		    	model.addAttribute("contacts", currentUser.getContact());  
