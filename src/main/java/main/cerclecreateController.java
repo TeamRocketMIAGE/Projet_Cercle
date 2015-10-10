@@ -35,8 +35,11 @@ public class cerclecreateController {
 		Utilisateur currentUser = (Utilisateur) ur.findByPseudo(currentUserPseudo);
 		
 		cercle.addAdministrateur(currentUser);
+		currentUser.addCercles_admin(cercle);
 		
 		cr.save(cercle);
+		ur.save(currentUser);
+		
 		System.out.println("Le cercle " + cercle.getName() + " a été créé.");
 		System.out.println("Sa description" + cercle.getDescription());
 		//faut t'il envoyé le cercle qu on a créé pour aller sur la page du cercle ???
