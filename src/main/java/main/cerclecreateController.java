@@ -13,10 +13,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class cerclecreateController {
 
 	@Autowired
-	CercleRepository cr;
+	CercleRepository cercleRepository;
 	
 	@Autowired
-	UserRepository ur;
+	UserRepository userRepository;
 	
 	@RequestMapping(value = "/cercle_create", method = RequestMethod.GET)
 	public String requestCreatePageCercleCreate(Model model) {
@@ -32,13 +32,13 @@ public class cerclecreateController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String currentUserPseudo = auth.getName();
-		Utilisateur currentUser = (Utilisateur) ur.findByPseudo(currentUserPseudo);
+		Utilisateur currentUser = (Utilisateur) userRepository.findByPseudo(currentUserPseudo);
 		
 		cercle.addAdministrateur(currentUser);
 		currentUser.addCercles_admin(cercle);
 		
-		cr.save(cercle);
-		ur.save(currentUser);
+		cercleRepository.save(cercle);
+		userRepository.save(currentUser);
 		
 		System.out.println("Le cercle " + cercle.getName() + " a été créé.");
 		System.out.println("Sa description" + cercle.getDescription());

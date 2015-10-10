@@ -218,7 +218,7 @@
                                 <tbody>
                                 	<tr th:each="cercle : ${user_cercles_admin}">
                                 		<td><i class="glyphicon glyphicon-eye-open" rel="tooltip" title="Vous êtes propriétaire de ce cercle"></i></td>
-                                		<td><a href="#" th:text="${cercle.name}"></a></td>
+                                		<td><a href="#" th:text="${cercle.name}" th:href="@{'/cercle_page?cercle='+${cercle.id}}"></a></td>
                                 		<td th:text="${cercle.description}"></td>
                                 		<td>
                                 			<span th:if="${cercle.administrateurs.size()>0}" th:text="${cercle.administrateurs[0].pseudo}"></span>                                						 

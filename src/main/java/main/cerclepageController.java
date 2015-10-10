@@ -12,51 +12,44 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class cerclepageController {
 
 	@Autowired
-	CercleRepository cr;
+	CercleRepository cercleRepository;
 	
 	@Autowired
-	UserRepository ur;
+	UserRepository userRepository;
 	
-	@RequestMapping(value = "/cercle_page/{cercle}", method = RequestMethod.GET)
-	public String requestCreatePageUserHome(@PathVariable Cercle cercle, Model model) {
+	
 
-		System.out.println("sur al page du cercle: "+ cercle.getId() + cercle.getName());
-		//on check si l'utilisateur a le droit d'accéder au cercle
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String currentUserPseudo = auth.getName();  
-	    Utilisateur currentUser = (Utilisateur)ur.findByPseudo(currentUserPseudo);	
+	
+	@RequestMapping(value = "/cercle_page", method = RequestMethod.GET)
+	public String requestCreatePageCercle(@RequestParam(value = "cercle") String cercle_id, Model model) {
+
+		System.out.println("Cercle actuel : " + cercle_id);
 		
-	    //model.addAllAttributes()
-	    if(currentUser.EstAdmin(cercle) || currentUser.Estmembre(cercle)){
-	    	System.out.println("le user est bien membre ou admin !");
+		
+		
+		Cercle currentCercle = 	cercleRepository.findById(Long.parseLong(cercle_id));
+		
+		if (currentCercle != null)
+		{
+			model.addAttribute("currentCercle",currentCercle);
+			
 			return "cercle_page";
-	    }
-	    else
-	    {
-	    	return "redirect:user_page";
-	    }
+		}
+		return ("redirect:/user_page");
+		
+
 	    
-		// obtention de l'id du cercle
-		/*
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String currentUserPseudo = auth.getName();  
-	    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	   
-		
-	    System.out.println("Utilisateur actuellement connecté : " + currentUserPseudo);
-		
-    	// ajout des contacts de l'utilisateur actuel dans la requête   	
-    	model.addAttribute("contacts", currentUser.getContact());    	
-  
-    	// ajout de tous les utilisateurs dans la requête  	
-    	model.addAttribute("users", (List<Utilisateur>)userRepository.findAll());
-    	
-    	*/
+
 	
 
 	}
 }
+	
+

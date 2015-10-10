@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <!-- header -->
+        <!-- header -->
     <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -50,7 +50,7 @@
 
 
 	<div id="user_page-title">
-		<h2>Page d'accueil du cercle à charger</h2>
+		<h2 th:text="${currentCercle.name}"></h2>
 		<p>Description du cercle à charger</p>
 	</div>
 
@@ -63,8 +63,7 @@
 	
 	
 	
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 	<script src="boardstyle/js/bootstrap.min.js"></script>
 	<script src="boardstyle/js/scripts.js"></script>
 
