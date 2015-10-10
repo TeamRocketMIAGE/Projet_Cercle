@@ -37,9 +37,8 @@ public class Utilisateur implements Serializable  {
 	private String tel;
 	private String mail;
 	
-
 	
-
+	// liste des contacts de l'utilisateur
 	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Utilisateur> contact = new ArrayList<Utilisateur>();
 	
@@ -49,9 +48,18 @@ public class Utilisateur implements Serializable  {
 	private List<Utilisateur> addRequestContacts = new ArrayList<Utilisateur>();
 	
 
+	// liste des cercles dont l'utilisateur est admin (= propriétaire)
+	@ManyToMany(fetch=FetchType.EAGER)
+	private List<Cercle> cercles_admin = new ArrayList<Cercle>();
+
+
+	// liste des cercles dont l'utilisateur est seulement membre 
+	@ManyToMany(fetch=FetchType.EAGER)
+	private List<Cercle> cercles_membre = new ArrayList<Cercle>();
 
 
 
+	
 
 
 	protected Utilisateur()
@@ -209,6 +217,34 @@ public class Utilisateur implements Serializable  {
 		this.password = password;
 	}
 	
+	
+	public List<Cercle> getCercles_admin() {
+		return cercles_admin;
+	}
+
+
+	public void setCercles_admin(List<Cercle> cercles_admin) {
+		this.cercles_admin = cercles_admin;
+	}
+	
+	public void addCercles_admin(Cercle c) {
+		this.cercles_admin.add(c);
+	}
+
+
+	public List<Cercle> getCercles_membre() {
+		return cercles_membre;
+	}
+
+
+	public void setCercles_membre(List<Cercle> cercles_membre) {
+		this.cercles_membre = cercles_membre;
+	}
+	
+	
+	public void addCercles_membre(Cercle c) {
+		this.cercles_membre.add(c);
+	}
 	
 	
 

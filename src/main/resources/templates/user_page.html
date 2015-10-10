@@ -203,37 +203,48 @@
                 <hr />
                 <div class="row">
                     <!-- center left-->
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-md-6-wide">
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Cercles</th>
+                                    	<th></th>
+                                        <th>Cercle</th>
+                                        <th>Description</th>
                                         <th>Propriétaires</th>
-                                        <th>-</th>
+                                        <th>Membres</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>
+                                	<tr th:each="cercle : ${user_cercles_admin}">
+                                		<td><i class="glyphicon glyphicon-eye-open" rel="tooltip" title="Vous êtes propriétaire de ce cercle"></i></td>
+                                		<td><a href="#" th:text="${cercle.name}"></a></td>
+                                		<td th:text="${cercle.description}"></td>
+                                		<td><div th:each="admin : ${cercle.administrateurs}"><span th:text="${admin.pseudo}"></span></div></td>
+                                		<td><div th:each="membre : ${cercle.utilisateurs}"><span th:text="${membre.pseudo}"></span></div></td>
+                                	</tr>
+                                	<tr th:each="cercle2 : ${user_cercles_membre}">
+                                		<td></td>
+                                		<td><a href="#" th:text="${cercle2.name}"></a></td>
+                                		<td th:text="${cercle2.description}"></td>
+                                		<td><div th:each="admin2 : ${cercle2.administrateurs}"><span th:text="${admin2.pseudo}"></span></div></td>
+                                		<td><div th:each="membre2 : ${cercle2.utilisateurs}"><span th:text="${membre2.pseudo}"></span></div></td>
+                                	</tr>
+                                	
+                                	<!-- 
+                                	
                                     <tr>
                                         <td>Cercle 1</td>
                                         <td>Franck</td>
                                         <td>-</td>
                                     </tr>
                                     <tr>
-                                        <td>Cercle 2</td>
-                                        <td>Chris</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cercle 3</td>
-                                        <td>Franck</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
                                         <td>..</td>
                                         <td>..</td>
                                         <td>..</td>
                                     </tr>
+                                    
+                                    -->
 
                                 </tbody>
                             </table>

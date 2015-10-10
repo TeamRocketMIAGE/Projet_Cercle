@@ -51,21 +51,25 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
     public void run(String... strings) throws Exception {
         
         
-        // ajout d'utilisateur dans la base de données
-    	//
+        /*
+         * 
+         *  ajout d'utilisateurs dans la base de données
+         *  
+         */
+    	
         Utilisateur uUser = new Utilisateur("user", "abc");
         Utilisateur uBob = new Utilisateur("Bob", "abc");
+        uBob.setMail("gauthier@scampini.fr");
+        uBob.setPrenom("bobinou");
+        uBob.setNom("leLegendaire");
         Utilisateur uChris = new Utilisateur("Chris", "abc");
-        Utilisateur uFranck = new Utilisateur("Franck", "abc");
-        
+        Utilisateur uFranck = new Utilisateur("Franck", "abc");        
        
         Utilisateur uJohnny = new Utilisateur("Johnny", "abc");
         Utilisateur uHugo = new Utilisateur("Hugo", "abc");
         Utilisateur uEmma = new Utilisateur("Emma", "abc");
         Utilisateur uMarie= new Utilisateur("Marie", "abc");
-        Utilisateur uPrincesse= new Utilisateur("Princesse", "abc");        
-        
-       
+        Utilisateur uPrincesse= new Utilisateur("Princesse", "abc");   
         
         userRepository.save(uUser);
         userRepository.save(uBob);
@@ -77,45 +81,78 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         userRepository.save(uMarie);
         userRepository.save(uPrincesse);    
       
-        uBob.setMail("gauthier@scampini.fr");
-        uBob.setPrenom("bobinou");
-        uBob.setNom("leLegendaire");
-        
+
+        // Initialisation des listes de contact des utilisateurs principaux
+        //
         
         uBob.addContact(uChris);
         userRepository.save(uBob);
         uChris.addContact(uBob);
-        userRepository.save(uChris);
-        
+        userRepository.save(uChris);        
         
         uFranck.addContact(uChris);
-        userRepository.save(uFranck);
-        
+        userRepository.save(uFranck);        
         uChris.addContact(uFranck);
-        userRepository.save(uChris);
-        
+        userRepository.save(uChris);        
         
         uFranck.addContact(uBob);
         userRepository.save(uFranck);
         uBob.addContact(uFranck);
         userRepository.save(uBob);
         
+        
         /*
+         * 
+         *  ajout de cercles dans la base de données
+         *  
+         */
+        
+        
+        // Cercle 1
+        //
         Cercle c1 = new Cercle();
         c1.addAdministrateur(uFranck);
         c1.addUtilisateur(uBob);
         c1.addUtilisateur(uChris);
         c1.setName("Google");
         c1.setDescription("Big brother is watching you !");
+        cercleRepository.save(c1);
+        
+        uFranck.addCercles_admin(c1);
+        uChris.addCercles_membre(c1);
+        uBob.addCercles_membre(c1);
+        userRepository.save(uFranck);
+        userRepository.save(uChris);
+        userRepository.save(uBob);
         
         
+        // Cercle 2
+        //        
         Cercle c2 = new Cercle();
-        c1.addAdministrateur(uBob);
-        c1.addUtilisateur(uFranck);
-        c1.addUtilisateur(uChris);
-        c1.setName("Apple");
-        c1.setDescription("Ici, c'est pas d'Android, nous on ne fait pas de la merde !");
+        c2.addAdministrateur(uBob);
+        c2.addAdministrateur(uChris);
+        c2.addUtilisateur(uFranck);        
+        c2.addUtilisateur(uPrincesse);
+        c2.addUtilisateur(uEmma);
+        c2.addUtilisateur(uJohnny);
+        c2.setName("Apple");
+        c2.setDescription("Ici, c'est pas d'Android !");
+        cercleRepository.save(c2);
         
+        uBob.addCercles_admin(c2);
+        uChris.addCercles_admin(c2);
+        uFranck.addCercles_membre(c2);
+        uPrincesse.addCercles_membre(c2);
+        uEmma.addCercles_membre(c2);
+        uJohnny.addCercles_membre(c2);
+        userRepository.save(uFranck);
+        userRepository.save(uChris);
+        userRepository.save(uBob);
+        userRepository.save(uPrincesse);
+        userRepository.save(uEmma);
+        userRepository.save(uJohnny);
+        
+        /*
         Cercle c3 = new Cercle();
         c1.addAdministrateur(uChris);
         c1.addUtilisateur(uFranck);
@@ -127,7 +164,8 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         
         cercleRepository.save(c1);
         cercleRepository.save(c2);
-        cercleRepository.save(c3);*/
+        cercleRepository.save(c3);
+        */
         
         
 

@@ -9,6 +9,11 @@
 	height:80%;
 }
 
+.col-md-6-wide
+{
+	width:100%;
+}
+
 .add-contact-warning
 {
 	padding:4px 15px;

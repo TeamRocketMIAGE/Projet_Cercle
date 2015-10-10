@@ -31,6 +31,10 @@ public class userpageController {
 		
 	    System.out.println("Utilisateur actuellement connecté : " + currentUserPseudo);
 		
+	    /*
+	     * Informations relatives aux contacts à transmettre à la page
+	     */
+	    
     	// ajout des contacts de l'utilisateur actuel dans la requête   	
     	model.addAttribute("contacts", currentUser.getContact());    	
   
@@ -40,10 +44,19 @@ public class userpageController {
     	SimpleString user_added = new SimpleString("");
     	// ajout de la variable qui va permettre de stocker le pseudo d'un utilisateur à ajouter dans les contacts
     	model.addAttribute("user_added", user_added);
-	
-    	
+	    	
     	// ajout de la liste des demandes extérieures d'ajout  à la liste des contacts de l'utilisateur connecté
     	model.addAttribute("new_contact_to_confirm", currentUser.getAddRequestContacts() );
+    	
+    	
+	    /*
+	     * Informations relatives aux cercles à transmettre à la page
+	     */
+    	
+    	model.addAttribute("user_cercles_admin", currentUser.getCercles_admin());  
+    	model.addAttribute("user_cercles_membre", currentUser.getCercles_membre()); 
+    	
+    	
     	
 		return "user_page";
 
