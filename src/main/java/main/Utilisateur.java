@@ -246,11 +246,12 @@ public class Utilisateur implements Serializable  {
 		this.cercles_membre.add(c);
 	}
 	
-	public boolean Estmembre(Cercle c){
+	public boolean estMembre(Cercle c){
 		return(cercles_membre.contains(c));
 	}
 	
-	public boolean EstAdmin(Cercle c){
+	
+	public boolean estAdmin(Cercle c){
 		return(cercles_admin.contains(c));
 	}
 

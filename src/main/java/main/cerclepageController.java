@@ -23,33 +23,172 @@ public class cerclepageController {
 	
 	@Autowired
 	UserRepository userRepository;
-	
-	
+		
 
 	
 	@RequestMapping(value = "/cercle_page", method = RequestMethod.GET)
-	public String requestCreatePageCercle(@RequestParam(value = "cercle") String cercle_id, Model model) {
+	public String requestCreatePageCercle(@RequestParam(value = "cercle") String cercle_id, Model model, RedirectAttributes redirectAttributes) {
 
-		System.out.println("Cercle actuel : " + cercle_id);
-		
-		
+		System.out.println("Cercle actuel : " + cercle_id);	
 		
 		Cercle currentCercle = 	cercleRepository.findById(Long.parseLong(cercle_id));
 		
 		if (currentCercle != null)
 		{
-			model.addAttribute("currentCercle",currentCercle);
-			
-			return "cercle_page";
+			// obtention de l'id de l'utilisateur connecté
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String currentUserPseudo = auth.getName();  		    
+		    
+		    // vérification que l'user connecté a droit d'accéder au cercle demandé
+		    if (currentCercle.isMembre(currentUserPseudo) || currentCercle.isAdministrateur(currentUserPseudo))
+		    {
+		    	Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);		    	
+		    	
+				/*
+				 * ajout des données nécessaires à transmettre à la page
+				 */
+				model.addAttribute("currentCercle",currentCercle);	
+				
+				/*
+			     * Informations relatives aux contacts à transmettre à la page
+			     */
+			    
+		    	// ajout des contacts de l'utilisateur actuel dans la requête   	
+		    	model.addAttribute("contacts", currentUser.getContact());  
+	    	
+		    	SimpleString user_added = new SimpleString("");
+		    	// ajout de la variable qui va permettre de stocker le pseudo d'un utilisateur à ajouter dans les contacts
+		    	model.addAttribute("user_added", user_added);
+			    	
+		    	// ajout de la liste des demandes extérieures d'ajout  à la liste des contacts de l'utilisateur connecté
+		    	model.addAttribute("new_contact_to_confirm", currentUser.getAddRequestContacts() );
+				
+				return "cercle_page";
+		    }
+		    else
+		    {
+		    	redirectAttributes.addAttribute("error","unauthorized_cercle");
+		    }
+
 		}
-		return ("redirect:/user_page");
+		else
+		{
+			redirectAttributes.addAttribute("error","cercle_does_not_exist");
+		}
 		
-
-	    
-
-	
-
+		// s'il y a un soucis quelque part, renvoyer vers l'espace utilisateur
+		return ("redirect:/user_page");
 	}
+	
+	
+	 @RequestMapping(value = "/cercle_page/adduser", method = RequestMethod.POST)
+	    public String addUserRequest(SimpleString user_added, RedirectAttributes redirectAttributes, @RequestParam(value = "cercle") String cercle_id)
+	    {
+		 
+	    	
+	    	System.out.println("Demande d'ajout de l'utilisateur suivant : " + user_added.value);
+	    	
+	    	redirectAttributes.addAttribute("cercle",cercle_id);
+	    	
+	    	if(userRepository.findByPseudo(user_added.value)==null)
+	    	{
+	    		System.out.println("L'utilisateur " + user_added.value + " n'existe pas dans la base de données.");
+	    		redirectAttributes.addAttribute("add_request","user_does_not_exist");
+	    	}
+	    	else
+	    	{
+	    		// obtention de l'id de l'utilisateur connecté
+	    		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    	    String currentUserPseudo = auth.getName();  
+	    	    
+	    	    if(currentUserPseudo.equals(user_added.value))
+	    	    {
+	    	    	redirectAttributes.addAttribute("add_request","you_cannot_add_yourself");
+	    	    }
+	    	    else
+	    	    {
+	    	    	Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	
+	    	    	int i=0;
+	    	    	for (; i<currentUser.getContact().size() && !currentUser.getContact().get(i).getPseudo().equals(user_added.value); i++);
+	    	    	if (i<currentUser.getContact().size())
+	    	    	{
+	    	    		redirectAttributes.addAttribute("add_request","user_already_in_list");
+	    	    	}
+	    	    	else
+	    	    	{
+	    	    		Utilisateur askedUser = (Utilisateur)userRepository.findByPseudo(user_added.value);	
+	    	    		i=0;
+	        	    	for (; i<askedUser.getAddRequestContacts().size() && askedUser.getAddRequestContacts().get(i).getPseudo().equals(currentUserPseudo); i++);
+	        	    	if (i<askedUser.getAddRequestContacts().size())
+	        	    	{
+	        	    		redirectAttributes.addAttribute("add_request","user_already_requested");
+	        	    	}
+	        	    	else
+	        	    	{
+	        	    		// tout est ok, il faut ajouter la demande dans la liste des demandes de user_added
+	        	    		askedUser.addRequestNewContact(currentUser);
+	        	    		userRepository.save(askedUser);
+	        	    		redirectAttributes.addAttribute("add_request","ok");
+	        	    		
+	        	    	}
+	    	    	}    	    		
+	    	    }  	  
+	    	    
+	    	}   	
+	    	
+	    	
+	    	return "redirect:/cercle_page";
+	    	
+	    }
+	    
+	    
+	    @RequestMapping(value = "/cercle_page/confirm_adduser/{pseudo}", method = RequestMethod.POST, params="confirm_add=Accepter")
+	    public String confirmAddUserRequestt(@PathVariable("pseudo") String user_added_confirmed, RedirectAttributes redirectAttributes, @RequestParam(value = "cercle") String cercle_id)
+	    {
+	    
+	    	System.out.println("Confirmation de la demande d'ajout de l'utilisateur " + user_added_confirmed + ".");
+			
+	    	redirectAttributes.addAttribute("cercle",cercle_id);
+	    	
+	    	// obtention de l'id de l'utilisateur connecté
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String currentUserPseudo = auth.getName(); 
+		    
+		    // ajout du nouvel utilisateur dans sa liste de contact
+		    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	
+		    Utilisateur askingUser = (Utilisateur)userRepository.findByPseudo(user_added_confirmed);	    	
+		    currentUser.addContact(askingUser);	    
+		    currentUser.deleteRequestNewContact(askingUser);
+		    userRepository.save(currentUser);
+		    
+		    askingUser.addContact(currentUser);
+		    userRepository.save(askingUser);    
+		    
+	    	
+	    	return "redirect:/cercle_page";
+	    }
+	    
+	    @RequestMapping(value = "/cercle_page/confirm_adduser/{pseudo}", method = RequestMethod.POST, params="confirm_add=Refuser")
+	    public String refuseAddUserRequestt(@PathVariable("pseudo") String user_added_confirmed, RedirectAttributes redirectAttributes, @RequestParam(value = "cercle") String cercle_id)
+	    {
+	    
+	    	System.out.println("Refus de la demande d'ajout.");
+	    	
+	    	redirectAttributes.addAttribute("cercle",cercle_id);
+	    	
+	    	// obtention de l'id de l'utilisateur connecté
+	    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    	String currentUserPseudo = auth.getName(); 
+	    	
+	    	// il faut enlever le user qui a demandé l'ajout de la lise des utilisateurs qui nous ont demandé de nous ajouter
+	    	 Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);
+	    	 Utilisateur askingUser = (Utilisateur)userRepository.findByPseudo(user_added_confirmed);
+	 	    currentUser.deleteRequestNewContact(askingUser);
+	 	    userRepository.save(currentUser);
+	    	
+	    	return "redirect:/cercle_page";
+	    }
+	
 }
 	
 

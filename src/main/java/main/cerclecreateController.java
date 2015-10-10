@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -47,5 +48,8 @@ public class cerclecreateController {
 		redirectAttributes.addAttribute("cercle", cercle.getId()).addFlashAttribute("message", "cercle créé");
 		return "redirect:/cercle_page/{cercle}";
 	}
+	
+	
+   
 	
 }

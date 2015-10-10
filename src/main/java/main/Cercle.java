@@ -87,7 +87,7 @@ public class Cercle implements Serializable {
 	}
 	
 	public void deleteAdministrateur(Utilisateur u) {
-		this.administrateurs.add(u);
+		
 		
 		int i=0;
 		for (; i<this.administrateurs.size() && !this.administrateurs.get(i).getPseudo().equals(u.getPseudo()) ; i++);
@@ -110,7 +110,7 @@ public class Cercle implements Serializable {
 	}
 	
 	public void deleteUtilisateur(Utilisateur u) {
-		this.utilisateurs.add(u);
+		
 		
 		int i=0;
 		for (; i<this.utilisateurs.size() && !this.utilisateurs.get(i).getPseudo().equals(u.getPseudo()) ; i++);
@@ -140,6 +140,21 @@ public class Cercle implements Serializable {
 		this.niveau = niveau;
 	}
 	
+	// renvoie vrai si le pseudo passé en paramètre correspond à un utilisateur admin du cercle
+	public boolean isAdministrateur (String pseudo)
+	{
+		int i=0;
+		for (; i<this.administrateurs.size() && !this.administrateurs.get(i).getPseudo().equals(pseudo) ; i++);
+		return i<this.administrateurs.size();
+	}
+	
+	// renvoie vrai si le pseudo passé en paramètre correspond à un utilisateur membre du cercle
+	public boolean isMembre (String pseudo)
+	{
+		int i=0;
+		for (; i<this.utilisateurs.size() && !this.utilisateurs.get(i).getPseudo().equals(pseudo) ; i++);
+		return i<this.utilisateurs.size();
+	}
 	
 	
 
