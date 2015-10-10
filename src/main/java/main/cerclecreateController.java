@@ -42,8 +42,10 @@ public class cerclecreateController {
 		
 		System.out.println("Le cercle " + cercle.getName() + " a été créé.");
 		System.out.println("Sa description" + cercle.getDescription());
-		//faut t'il envoyé le cercle qu on a créé pour aller sur la page du cercle ???
-		return "redirect:/cercle_page";
+		
+		redirectAttributes.addFlashAttribute(cercle);
+		redirectAttributes.addAttribute("cercle", cercle.getId()).addFlashAttribute("message", "cercle créé");
+		return "redirect:/cercle_page/{cercle}";
 	}
 	
 }
