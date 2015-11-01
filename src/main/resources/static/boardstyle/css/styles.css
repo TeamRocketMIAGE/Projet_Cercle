@@ -10,7 +10,7 @@
 #create_cercle_table tr td
 {
 	white-space:nowrap;
-	padding:10px 15px;
+	padding:15px 15px;
 	vertical-align:top;
 }
 
@@ -22,7 +22,21 @@
 .create_cercle_select
 {
 	width:100%;
+	overflow:hidden;
 }
+
+#create_cercle_table .select_list_manip input
+{
+	width:100%;
+	margin-bottom:7px;
+}
+
+#create_cercle_table .select_list_manip hr
+{
+	margin-bottom:7px;
+	margin-top:7px;
+}
+
 
 
 textarea.form-control
