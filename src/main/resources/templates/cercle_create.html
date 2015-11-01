@@ -1,121 +1,128 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<title>Cercle - Page création d'un cercle</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Cercle - Création d'un cercle</title>
 
-<!-- Bootstrap -->
-<!-- 
-    <link th:href="@{/resources/static/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen" /> 
-    <link href="resources/static/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" media="screen" />
-	    <link th:href="@{../static/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen" /> 
-	
-    -->
-<!--  <link href="bootstrap/css/bootstrap.min.css"/> -->
-<link href="corlate/css/bootstrap.min.css" rel="stylesheet" />
-<link href="corlate/css/font-awesome.min.css" rel="stylesheet" />
-<link href="corlate/css/animate.min.css" rel="stylesheet" />
-<link href="corlate/css/prettyPhoto.css" rel="stylesheet" />
-<link href="corlate/css/main.css" rel="stylesheet" />
-<link href="corlate/css/responsive.css" rel="stylesheet" />
+
+<link href="boardstyle/css/bootstrap.min.css" rel="stylesheet" />
+<link href="boardstyle/css/styles.css" rel="stylesheet" />
 
 </head>
-<body class="homepage">
+<body>
 
-	<header id="header">
-		<nav class="navbar navbar-inverse" role="banner">
-			<div class="container">
+     <!-- header -->
+    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
 
-				<div class="navbar-header">
-					<a class="navbar-brand" href="home"><img
-						src="../corlate/img/cercle_logo.png" alt="logo" /></a>
-				</div>
+                <img class="short-img" src="../corlate/img/cercle_logo_min.png"
+                     alt="logo" />
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                	<li><a href="user_page"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour à l'espace utilisateur</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button"
+                           data-toggle="dropdown" href="#">
+                            <i class="glyphicon glyphicon-user"></i> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="user_param">
+                                    <i class="glyphicon glyphicon-cog"></i>
+                                    Vos paramètres
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/logout}">
+                                    <i class="glyphicon glyphicon-off"></i> Se déconnecter
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-				<div class="collapse navbar-collapse navbar-right">
+                </ul>
+            </div>
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /Header -->
+    
+     
+    <!--       -->   
+    <!-- Titre -->
+    <!--       -->
+    <div id="cercle_create-title">
+		<h2>Création d'un nouveau cercle</h2>
+		<p>Vous pouvez ici créer un nouveau cercle, y ajouter une description, ainsi que spécifier quels en sont les propriétaires et membres.</p>
+	</div>
+	
 
-					<ul class="nav navbar-nav">
-						<li><a href="home">Accueil</a></li>
-						<li><a href="telechargement">Téléchargement</a></li>
-						<li class="active"><a href="#">Inscription</a></li>
-						<li><a href="tarification">Tarification</a></li>
-
-
-
-
-					</ul>
-				</div>
-			</div>
-			<!--/.container-->
-		</nav>
-	</header>
-
-
-
-
-
-
-
-
-	<section id="contact-page">
-		<div class="container">
-			<div class="center">
-				<br /> <br /> <br /> <br />
-				<h2>Création d'un cercle</h2>
-			</div>
-
-
-			<div class="row contact-wrap">
-				<div class="status alert alert-success" style="display: none"></div>
-				<form id="main-contact-form" th:object="${cercle}"
-					class="contact-form" method="post">
-
-					<div class="col-sm-5 col-sm-offset-1">
-						<div class="form-group">
-							<label>Nom du cercle *</label> <input type="text"
-								th:field="*{name}" class="form-control" required="required" />
-						</div>
-
-						<div class="form-group">
-							<label for="description">Description du cercle: *</label>
-							<textarea class="form-control" rows="8" id="description"
-								th:field="*{description}" required="required"></textarea>
-						</div>
+	<br/>
 
 
-						<div class="form-group">
-							<button type="submit" name="submit"
-								class="btn btn-primary btn-lg" required="required">Valider</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			<!--/.row-->
+    <!--                                  -->   
+    <!-- Formulaire de création de cercle -->
+    <!--                                  --> 
+	<div class="container-fluid">
+		<form id="main-param-form" class="param-form" method="post" th:object="${new_cercle}">
 
 
-		</div>
-		<!--/.container-->
-	</section>
-	<!--/#contact-page-->
-
-
-
-
-
-
-	<footer id="footer" class="midnight-blue">
-		<div class="container">
 			<div class="row">
-				<div class="col-sm-6">&copy; 2015 Cercle. All Rights Reserved.
+				<div class="col-md-6 col-md-offset-3">
+				
+					<table id="create_cercle_table">
+						<tr>
+							<td><label>Nom du cercle *</label></td>
+							<td>
+								<input type="text" class="form-control" required="required" th:value="*{name}"/>
+							</td>							
+						</tr>
+						<tr>
+							<td><label>Description *</label></td>
+							<td>
+								<textarea class="form-control" required="required" th:value="*{description}" rows="5"></textarea>
+							</td>
+						</tr>	
+						<tr>
+							<td><label>Propriétaires *</label></td>
+							<td>
+							<select size="10" class="form-control create_cercle_select" >
+							  <option value="1">1</option>
+							  <option value="2">2</option>
+							</select>
+							</td>
+						</tr>
+					</table>
+				
+
 				</div>
-
+				
 			</div>
-		</div>
-	</footer>
-	<!--/#footer-->
-
-
-
-
+			
+			<br/>
+			<br/>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="form-group" align="center">
+						<input type="submit" name="submit" value="Créer le cercle" class="btn btn-primary btn-lg"/>
+						<input type="submit" name="submit" value="Annuler" class="btn btn-primary btn-lg"/>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	
+	
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="boardstyle/js/bootstrap.min.js"></script>
+	<script src="boardstyle/js/scripts.js"></script>
 
 
 </body>

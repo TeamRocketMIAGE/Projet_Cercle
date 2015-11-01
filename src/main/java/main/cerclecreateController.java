@@ -22,11 +22,12 @@ public class cerclecreateController {
 	@RequestMapping(value = "/cercle_create", method = RequestMethod.GET)
 	public String requestCreatePageCercleCreate(Model model) {
 		
-		model.addAttribute("cercle", new Cercle());
+		model.addAttribute("new_cercle", new Cercle());
 		return "cercle_create";
 	}
 	
 	
+	/*
 	@RequestMapping(value = "/cercle_create", method = RequestMethod.POST)
 	public String requestCercleCreate(Cercle cercle, RedirectAttributes redirectAttributes) {
 		
@@ -48,6 +49,7 @@ public class cerclecreateController {
 		redirectAttributes.addAttribute("cercle", cercle.getId()).addFlashAttribute("message", "cercle créé");
 		return "redirect:/cercle_page/{cercle}";
 	}
+	*/
 	
 	
    
