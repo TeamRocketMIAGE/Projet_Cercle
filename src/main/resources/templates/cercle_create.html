@@ -68,7 +68,7 @@
     <!-- Formulaire de création de cercle -->
     <!--                                  --> 
 	<div class="container-fluid">
-		<form id="main-param-form" class="param-form" method="post" th:object="${new_cercle}">
+		<form id="main-param-form" class="param-form" method="post" >
 
 
 			<div class="row">
@@ -78,13 +78,13 @@
 						<tr>
 							<td><label>Nom du cercle *</label></td>
 							<td>
-								<input type="text" class="form-control" required="required" th:value="*{name}"/>
+								<input type="text" class="form-control" required="required" th:value="*{new_cercle.name}"/>
 							</td>							
 						</tr>
 						<tr>
 							<td><label>Description *</label></td>
 							<td>
-								<textarea class="form-control" required="required" th:value="*{description}" rows="5"></textarea>
+								<textarea class="form-control" required="required" th:value="*{new_cercle.description}" rows="5"></textarea>
 							</td>
 						</tr>	
 						<tr class="select_list_manip">
@@ -93,17 +93,19 @@
 							<div class="row">
 								<div class="col-md-8">
 									<select size="10" class="form-control create_cercle_select" >
-									  <option value="1">1</option>
-									  <option value="2">2</option>
+									  <option th:each="a : ${admins}" th:text="${a.pseudo}"></option>
+									  <option value="2">test</option>
 									</select>
 								</div>
 								<div class="col-md-4">
-									<!--  <a th:href="@{'/remove/'+${product.id}}"></a>	-->
-									<div><input type="text" placeholder="Nouveau propriétaire..." class="form-control" required="required" /></div>
-									
-									<div><input type="button" class="btn btn-primary btn-sm" value="Ajouter aux propriétaires"/></div>
+									<!-- <a th:href="@{'/cercle_create/add_admin}"> 	-->
+									<!--  <form id="add_proprietaires" method="post"  > -->
+										<div><input type="text" th:field="*{new_admin.value}" placeholder="Nouveau propriétaire..." class="form-control" /></div>
+										
+										<div><input type="submit" name="add_admin" class="btn btn-sm" value="Ajouter aux propriétaires"/></div>
+									<!-- </form> -->
 									<hr/>
-									<div><input type="button"  class="btn btn-primary btn-sm" id="remove_proprietaire" value="Retirer de la liste" /></div>
+									<div><input type="button"  class="btn btn-sm" id="remove_proprietaire" value="Retirer de la liste" /></div>
 									
 								</div>
 							</div>	
