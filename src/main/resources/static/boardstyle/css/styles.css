@@ -7,7 +7,7 @@
 	width:100%;
 }
 
-#create_cercle_table tr td
+#create_cercle_table tr td.create_cercle_main_cell
 {
 	white-space:nowrap;
 	padding:15px 15px;
@@ -22,7 +22,7 @@
 .create_cercle_select
 {
 	width:100%;
-	overflow:hidden;
+	/* overflow:hidden; */
 }
 
 #create_cercle_table .select_list_manip input
@@ -31,12 +31,23 @@
 	margin-bottom:7px;
 }
 
-#create_cercle_table .select_list_manip hr
+.create_cercle_role_management
 {
-	
-	margin-top:7px;
+	width:100%;
 }
 
+.create_cercle_role_management tr td
+{
+	padding-top:0px;
+	padding-bottom:3px;
+
+
+}
+
+.create_cercle_role_management tr td:first-child
+{
+	width:96%;
+}
 
 
 textarea.form-control
@@ -56,7 +67,7 @@ textarea.form-control
 	width:100%;
 }
 
-.add-contact-warning
+.add-contact-warning, .add-cercle-user-warning
 {
 	padding:4px 15px;
 	color:red;

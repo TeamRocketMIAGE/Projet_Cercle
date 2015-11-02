@@ -68,47 +68,65 @@
     <!-- Formulaire de création de cercle -->
     <!--                                  --> 
 	<div class="container-fluid">
-		<form id="main-param-form" class="param-form" method="post" >
+		<form id="main-param-form" class="param-form" method="post">
 
 
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-6 col-md-offset-3">
 				
 					<table id="create_cercle_table">
 						<tr>
-							<td><label>Nom du cercle *</label></td>
-							<td>
-								<input type="text" class="form-control" required="required" th:value="*{new_cercle.name}"/>
+							<td class="create_cercle_main_cell"><label>Nom du cercle *</label></td>
+							<td class="create_cercle_main_cell">
+								<input type="text" class="form-control" required="required" th:field="*{newcercle.name}"/>
 							</td>							
 						</tr>
 						<tr>
-							<td><label>Description *</label></td>
-							<td>
-								<textarea class="form-control" required="required" th:value="*{new_cercle.description}" rows="5"></textarea>
+							<td class="create_cercle_main_cell"><label>Description *</label></td>
+							<td class="create_cercle_main_cell">
+								<textarea class="form-control" required="required" th:field="*{newcercle.description}" rows="5"></textarea>
 							</td>
 						</tr>	
 						<tr class="select_list_manip">
-							<td><label>Propriétaires *</label></td>
-							<td>
-							<div class="row">
-								<div class="col-md-8">
-									<select size="10" class="form-control create_cercle_select" >
-									  <option th:each="a : ${admins}" th:text="${a.pseudo}"></option>
-									  <option value="2">test</option>
-									</select>
-								</div>
-								<div class="col-md-4">
-									<!-- <a th:href="@{'/cercle_create/add_admin}"> 	-->
-									<!--  <form id="add_proprietaires" method="post"  > -->
-										<div><input type="text" th:field="*{new_admin.value}" placeholder="Nouveau propriétaire..." class="form-control" /></div>
-										
-										<div><input type="submit" name="add_admin" class="btn btn-sm" value="Ajouter aux propriétaires"/></div>
-									<!-- </form> -->
-									<hr/>
-									<div><input type="button"  class="btn btn-sm" id="remove_proprietaire" value="Retirer de la liste" /></div>
+							<td class="create_cercle_main_cell"><label>Propriétaires *</label></td>
+							<td class="create_cercle_main_cell">
+															
+									<table class="table-hover create_cercle_role_management">
+										<tr th:each="a : ${newcercle.administrateurs}">
+											<td th:text="${a.pseudo}"></td>
+											 <!--   <td>  <a th:href="@{'/cercle_create_remove_admin/'+${a.pseudo}}"><i class="glyphicon glyphicon-remove"></i></a>	</td>-->
+											 <td>  <a th:href="@{'/cercle_create_remove_admin/'+${a.pseudo}+'?nom='+${newcercle.name}}"><i class="glyphicon glyphicon-remove"></i></a>	</td>
+											 
+											 <!-- 
+											 <td>											 	
+											 	<label for="delete_admin_submit" class="btn"><i class="glyphicon glyphicon-remove"></i></label>
+											    <input id="delete_admin_submit" name="delete_admin" type="submit" value="Delete" class="hidden" />
+											 </td>
+											  -->
+
+										</tr>
+									</table>	
 									
-								</div>
-							</div>	
+									<div>
+										<input type="text" th:field="*{new_admin.value}" placeholder="Nouveau propriétaire..." class="form-control" />
+										<input type="submit" name="add_admin" class="btn btn-sm" value="Ajouter aux propriétaires"/>
+									</div>										
+									
+									<div class="add-cercle-user-warning" th:if="${(param.add_admin_request != null) and (param.add_admin_request[0] == 'empty')}">
+										Veuillez saisir un utilisateur à ajouter.
+									</div>
+									<div class="add-cercle-user-warning" th:if="${(param.add_admin_request != null) and (param.add_admin_request[0] == 'user_does_not_exist')}">
+										L'utilisateur saisi n'existe pas.
+									</div>
+									<div class="add-cercle-user-warning" th:if="${(param.add_admin_request != null) and (param.add_admin_request[0] == 'user_already_admin')}">
+										L'utilisateur saisi est déjà propriétaire du cercle.
+									</div>
+									<div class="add-cercle-user-warning" th:if="${(param.add_admin_request != null) and (param.add_admin_request[0] == 'user_already_member')}">
+										L'utilisateur saisi est déjà membre du cercle. 
+									</div>					
+									 
+								
+		
 							</td>							
 						</tr>
 						
