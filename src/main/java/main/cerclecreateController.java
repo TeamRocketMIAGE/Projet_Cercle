@@ -119,6 +119,46 @@ public class cerclecreateController {
 		
 	}
 	
+	
+	// cas de la suppression d'un propriétaire
+	@RequestMapping(value = "/cercle_create", method = RequestMethod.POST, params="delete_admin=Delete")
+	public String requestCercleCreateAddAdminPOST(Cercle newCercle, HttpSession session, @RequestParam(value = "delete_pseudo", required = false) String deletedAdmin) {
+		
+		Cercle tmp = (Cercle)session.getAttribute("newcercle");	
+		
+		tmp.setName(newCercle.getName());
+		tmp.setDescription(newCercle.getDescription());		
+		
+		System.out.println("##########################################");
+		System.out.println("###         Création de cercle         ###");
+		System.out.println("###                                    ###");
+		System.out.println("     Admin à supprimer : " + deletedAdmin );
+		System.out.println("###                                    ###");
+		System.out.println("##########################################");
+					
+		//tmp.deleteAdministrateur( userRepository.findByPseudo(deletedAdmin));
+
+		
+		session.setAttribute("newcercle", tmp);
+		//model.addAttribute("newcercle", tmp);			
+		//model.addAttribute("new_admin", new SimpleString());
+		
+		/*
+		System.out.println("##########################################");
+		System.out.println("###         Création de cercle         ###");
+		System.out.println("###                                    ###");
+		System.out.println("Tentative d'ajout de l'admin : " + newAdmin.getValue() );
+		System.out.println("Admin actuellement sélectionné : " + currentAdmin.getPseudo() );
+		System.out.println("Nom du cercle : " + newCercle.getName() );
+		System.out.println("###                                    ###");
+		System.out.println("##########################################");
+		*/
+		
+		return "redirect:/cercle_create";
+		
+	}
+	
+	
 	// cas de la suppression d'un propriétaire
 	@RequestMapping(value = "/cercle_create_remove_admin/{pseudo}", method = RequestMethod.GET)
 	public String requestCercleCreateDeleteAdmin(@PathVariable("pseudo") String adminPseudo, @RequestParam(value = "nom") String nomCercle, HttpSession session)

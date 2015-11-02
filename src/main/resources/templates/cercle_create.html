@@ -95,14 +95,19 @@
 										<tr th:each="a : ${newcercle.administrateurs}">
 											<td th:text="${a.pseudo}"></td>
 											 <!--   <td>  <a th:href="@{'/cercle_create_remove_admin/'+${a.pseudo}}"><i class="glyphicon glyphicon-remove"></i></a>	</td>-->
-											 <td>  <a th:href="@{'/cercle_create_remove_admin/'+${a.pseudo}+'?nom='+${newcercle.name}}"><i class="glyphicon glyphicon-remove"></i></a>	</td>
+											 <!-- <td>  <a th:href="@{'/cercle_create_remove_admin/'+${a.pseudo}+'?nom='+${newcercle.name}}"><i class="glyphicon glyphicon-remove"></i></a>	</td> -->
 											 
-											 <!-- 
+											 <!--  
 											 <td>											 	
 											 	<label for="delete_admin_submit" class="btn"><i class="glyphicon glyphicon-remove"></i></label>
-											    <input id="delete_admin_submit" name="delete_admin" type="submit" value="Delete" class="hidden" />
+											    <input id="delete_admin_submit" name="delete_admin" type="submit" value="Delete" th:formaction="@{'/cercle_create?delete_pseudo='+${a.pseudo}}" class="hidden" />
 											 </td>
-											  -->
+											 -->
+											 <td>											 	
+											 	
+											    <input id="delete_admin_submit" name="delete_admin" type="submit" value="Delete" th:formaction="@{'/cercle_create?delete_pseudo='+${a.pseudo}}" />
+											 </td>											 
+											  
 
 										</tr>
 									</table>	
