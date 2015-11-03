@@ -19,6 +19,11 @@
 	width:100%;
 }
 
+.empty_list_info
+{
+	font-size:12px;
+}
+
 .create_cercle_select
 {
 	width:100%;

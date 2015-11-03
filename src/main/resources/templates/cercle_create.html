@@ -22,7 +22,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                	<li><a href="user_page"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour à l'espace utilisateur</a></li>
+                	<li><a th:href="@{/cercle_create_cancel}"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour à l'espace utilisateur</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" role="button"
                            data-toggle="dropdown" href="#">
@@ -142,7 +142,7 @@
 								
 								<table th:if="${newcercle.utilisateurs.size()==0}" class="table-hover create_cercle_role_management">
 									<tr>
-										<td><i>Aucun membre n'a encore été ajouté au cercle.</i></td>
+										<td ><i class="empty_list_info">Aucun membre n'a encore été ajouté au cercle.</i></td>
 										<td></td>
 									</tr>
 								</table>
@@ -177,8 +177,8 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group" align="center">
-						<input type="submit" name="submit" value="Créer le cercle" class="btn btn-primary btn-lg"/>
-						<input type="submit" name="submit" value="Annuler" class="btn btn-primary btn-lg"/>
+						<input type="submit" name="submit_ok" value="Créer le cercle" class="btn btn-primary btn-lg"/>
+						<a th:href="@{/cercle_create_cancel}"><button type="button" class="btn btn-primary btn-lg">Annuler</button></a>
 					</div>
 				</div>
 			</div>

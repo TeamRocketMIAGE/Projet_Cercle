@@ -189,7 +189,48 @@ public class cerclecreateController {
 		
 	}	
 	
-
+	
+	// cas de la validation de la création du cercle
+	@RequestMapping(value = "/cercle_create", method = RequestMethod.POST, params="submit_ok=Créer le cercle")
+	public String requestCercleCreateValidation(Cercle newCercle, HttpSession session) {
+		
+		Cercle tmp = (Cercle)session.getAttribute("newcercle");	
+		
+		tmp.setName(newCercle.getName());
+		tmp.setDescription(newCercle.getDescription());				
+			
+		cercleRepository.save(tmp);
+		
+		List<Utilisateur> tmp_admins = tmp.getAdministrateurs();
+		List<Utilisateur> tmp_members = tmp.getUtilisateurs();
+		
+		for(Utilisateur a : tmp_admins)
+		{
+			a.addCercles_admin(tmp);
+			userRepository.save(a);
+		}
+		
+		for(Utilisateur m : tmp_members)
+		{
+			m.addCercles_membre(tmp);
+			userRepository.save(m);
+		}	
+		
+				
+		session.removeAttribute("newcercle");
+		
+		return "redirect:/user_page";
+		
+	}	
+	
+	// cas de l'annulation de la création du cercle
+	@RequestMapping(value = "/cercle_create_cancel", method = RequestMethod.GET)
+	public String requestCercleCreateCancel(HttpSession session) {
+		
+		session.removeAttribute("newcercle");
+		
+		return "redirect:/user_page";
+	}
    
 	
 }
