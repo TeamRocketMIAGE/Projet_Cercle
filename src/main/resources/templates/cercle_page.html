@@ -10,236 +10,282 @@
 
 </head>
 <body>
-        <!-- header -->
-    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
+	<!-- header -->
+	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
 
-                <img class="short-img" src="../corlate/img/cercle_logo_min.png"
-                     alt="logo" />
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                	<li><a href="user_page"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour à l'espace utilisateur</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" role="button"
-                           data-toggle="dropdown" href="#">
-                            <i class="glyphicon glyphicon-user"></i> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
-                            <span class="caret"></span>
-                        </a>
-                        <ul id="g-account-menu" class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="user_param">
-                                    <i class="glyphicon glyphicon-cog"></i>
-                                    Vos paramètres
-                                </a>
-                            </li>
-                            <li>
-                                <a th:href="@{/logout}">
-                                    <i class="glyphicon glyphicon-off"></i> Se déconnecter
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+				<img class="short-img" src="../corlate/img/cercle_logo_min.png"
+					alt="logo" />
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="user_page"><i
+							class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour à
+							l'espace utilisateur</a></li>
+					<li class="dropdown"><a class="dropdown-toggle" role="button"
+						data-toggle="dropdown" href="#"> <i
+							class="glyphicon glyphicon-user"></i> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+							<span class="caret"></span>
+					</a>
+						<ul id="g-account-menu" class="dropdown-menu" role="menu">
+							<li><a href="user_param"> <i
+									class="glyphicon glyphicon-cog"></i> Vos paramètres
+							</a></li>
+							<li><a th:href="@{/logout}"> <i
+									class="glyphicon glyphicon-off"></i> Se déconnecter
+							</a></li>
+						</ul></li>
 
-                </ul>
-            </div>
-        </div>
-        <!-- /container -->
-    </div>
-    <!-- /Header -->
+				</ul>
+			</div>
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /Header -->
 
 
 	<div id="cercle_page-title">
 		<h2 th:text="${currentCercle.name}"></h2>
-		<p th:text="${currentCercle.description}">Description du cercle à charger</p>
+		<p th:text="${currentCercle.description}">Description du cercle à
+			charger</p>
 	</div>
 
-	
-	
+
+
 	<!-- Corps de la page  -->
-	
-	 <!-- Main -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3">
-                <!-- Left column -->
-                
-                <a href="#"><i class="glyphicon glyphicon-list"></i> <strong th:text="'Cercle '+${currentCercle.name}"></strong></a>
 
-                <hr />
-                
-                <ul class="nav nav-stacked">
-                
-                	<li class="nav-header">
-                        <a data-toggle="collapse"
-                           data-target="#cerclesUser">
-                            Membres <i class="glyphicon glyphicon-chevron-down"></i>
-                        </a>
-                        <ul class="nav nav-stacked collapse in" id="cerclesUser">
-                  
-                            <li th:each="userAdmin : ${cercle_admins}">
-                                <a href="#">
-                                    <i class="glyphicon glyphicon-eye-open" rel="tooltip" title="Administrateur"></i> <span th:text="${userAdmin.pseudo}"></span>
-                                </a>
-                            </li>
-                            <li th:each="userMembre : ${cercle_membres}">
-                                <a href="#">
-                                    <i class="glyphicon glyphicon-user"></i> <span th:text="${userMembre.pseudo}"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    
+	<!-- Main -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3">
+				<!-- Left column -->
 
-                </ul>
-                
-                <hr />
-                
-                
-                <a href="#"><i class="glyphicon glyphicon-list"></i> <strong>Social</strong></a>
+				<a href="#"><i class="glyphicon glyphicon-list"></i> <strong
+					th:text="'Cercle '+${currentCercle.name}"></strong></a>
 
-                <hr />
+				<hr />
 
-                <ul class="nav nav-stacked">
-                
-                 <li th:if="${(new_contact_to_confirm != null) and (new_contact_to_confirm.size() != 0)}" class="nav-header">
-                        <a data-toggle="collapse" data-target="#menu4">
-                            Demande d'ajout <span class="badge badge-info" th:text="${new_contact_to_confirm.size()}"></span><i class="glyphicon glyphicon-chevron-down"></i>
-                        </a>
+				<ul class="nav nav-stacked">
+
+					<li class="nav-header"><a data-toggle="collapse"
+						data-target="#cerclesUser"> Membres <i
+							class="glyphicon glyphicon-chevron-down"></i>
+					</a>
+						<ul class="nav nav-stacked collapse in" id="cerclesUser">
+
+							<li th:each="userAdmin : ${cercle_admins}"><a href="#">
+									<i class="glyphicon glyphicon-eye-open" rel="tooltip"
+									title="Administrateur"></i> <span th:text="${userAdmin.pseudo}"></span>
+							</a></li>
+							<li th:each="userMembre : ${cercle_membres}"><a href="#">
+									<i class="glyphicon glyphicon-user"></i> <span
+									th:text="${userMembre.pseudo}"></span>
+							</a></li>
+						</ul></li>
 
 
-                        <ul class="nav nav-stacked collapse" id="menu4">
+				</ul>
 
-                            <li class="contact_acolor"  th:each="newUser : ${new_contact_to_confirm}">
-                                <a href="#">
-                                
-                                    <form  th:action="@{'/cercle_page/confirm_adduser/'+${newUser.pseudo}+'?cercle='+${currentCercle.id}}"
-                                          method="post">
-                                        <i class="glyphicon glyphicon-upload"></i> 
-                                        <span th:text="${newUser.pseudo}"></span>   
-                                                                             
-                                        <input type="submit" name="confirm_add" value="Accepter" />
-                                        <input type="submit" name="confirm_add" value="Refuser" />
-                                    </form>
-                                
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-                
-                    <li class="nav-header">
-                        <a data-toggle="collapse" data-target="#menu3">
-                            Ajouter un contact <i class="glyphicon glyphicon-plus"></i>
-                        </a>
-
-                        <ul th:if="${(param.add_request != null)}" class="nav nav-stacked collapse in" id="menu3">
-
-                            <li class="contact_acolor">
-                                <a href="#">
-                                    <form id="add_contact_form" th:action="@{'/cercle_page/adduser?cercle='+${currentCercle.id}}"
-                                          method="post">
-                                        <input type="text" th:field="*{user_added.value}"
-                                               value="Saisir un pseudo" name="value" required="required" /> <input type="submit" 
-                                                                                               value="Ok" />
-                                    </form>
-                                </a>
-                            </li>
-                            <li class="add-contact-warning" th:if="${(param.add_request[0] == 'you_cannot_add_yourself')}">
-                                Vous ne pouvez pas vous ajouter vous-même!
-                            </li>
-                            <li class="add-contact-warning" th:if="${(param.add_request[0] == 'user_does_not_exist')}">
-                                L'utilisateur que vous avez demandé n'existe pas.
-                            </li>
-                            <li class="add-contact-confirm" th:if="${(param.add_request[0] == 'ok')}">
-                                Demande d'ajout envoyée.
-                            </li>
-                            <li class="add-contact-warning" th:if="${(param.add_request[0] == 'user_already_in_list')}">
-                                L'utilisateur demandé est déjà dans votre liste de contact.
-                            </li>
-                            <li class="add-contact-warning" th:if="${(param.add_request[0] == 'user_already_requested')}">
-                                Demande d'ajout déjà envoyée, en cours d'attente de validation.
-                            </li>
+				<hr />
 
 
+				<a href="#"><i class="glyphicon glyphicon-list"></i> <strong>Social</strong></a>
 
-                        </ul>
-                        <ul th:if="${(param.add_request == null)}" class="nav nav-stacked collapse" id="menu3">
+				<hr />
 
-                            <li class="contact_acolor">
-                                <a href="#">
-                                    <form id="add_contact_form" th:action="@{'/cercle_page/adduser?cercle='+${currentCercle.id}}"
-                                          method="post">
-                                        <input type="text" th:field="*{user_added.value}"
-                                               value="Saisir un pseudo" name="value" /> <input type="submit"
-                                                                                               value="Ok" />
-                                    </form>
-                                </a>
-                            </li>
+				<ul class="nav nav-stacked">
 
-                        </ul>
-                    </li>
-
-                    <li class="nav-header">
-                        <a data-toggle="collapse"
-                           data-target="#userMenu">
-                            Vos contacts <i class="glyphicon glyphicon-chevron-down"></i>
-                        </a>
-                        <ul class="nav nav-stacked collapse in" id="userMenu">
-                  
-                            <li class="contact-short-info" th:if="${(contacts == null) or (contacts.size() == 0)}">
-								Votre liste de contacts est vide.
-                            </li>
-                            <li th:each="userC : ${contacts}">
-                                <a href="#">
-                                    <i class="glyphicon glyphicon-user"></i> <span th:text="${userC.pseudo}"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    
-
-                </ul>
+					<li
+						th:if="${(new_contact_to_confirm != null) and (new_contact_to_confirm.size() != 0)}"
+						class="nav-header"><a data-toggle="collapse"
+						data-target="#menu4"> Demande d'ajout <span
+							class="badge badge-info"
+							th:text="${new_contact_to_confirm.size()}"></span><i
+							class="glyphicon glyphicon-chevron-down"></i>
+					</a>
 
 
-            </div>
-            <!-- /col-3 -->
-            
-            <div class="col-sm-9">
+						<ul class="nav nav-stacked collapse" id="menu4">
 
-                                    <!--tabs-->
-                    <div class="panel">
-                        <ul class="nav nav-tabs" id="myTab">
-                            <li class="active"><a href="#chat" data-toggle="tab">Chat</a></li>
-                            <li><a href="#documents" data-toggle="tab">Documents</a></li>
-                            
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active well" id="chat">
-								<h1>Chat</h1>
-                            </div>
-                            <div class="tab-pane well" id="documents">
-								<h1>Documents</h1>
-                            </div>
+							<li class="contact_acolor"
+								th:each="newUser : ${new_contact_to_confirm}"><a href="#">
 
-                        </div>
+									<form
+										th:action="@{'/cercle_page/confirm_adduser/'+${newUser.pseudo}+'?cercle='+${currentCercle.id}}"
+										method="post">
+										<i class="glyphicon glyphicon-upload"></i> <span
+											th:text="${newUser.pseudo}"></span> <input type="submit"
+											name="confirm_add" value="Accepter" /> <input type="submit"
+											name="confirm_add" value="Refuser" />
+									</form>
 
-                    </div>
-                    <!--/tabs-->
+							</a></li>
 
+						</ul></li>
 
-            </div>
-            <!--/col-span-9-->
+					<li class="nav-header"><a data-toggle="collapse"
+						data-target="#menu3"> Ajouter un contact <i
+							class="glyphicon glyphicon-plus"></i>
+					</a>
+
+						<ul th:if="${(param.add_request != null)}"
+							class="nav nav-stacked collapse in" id="menu3">
+
+							<li class="contact_acolor"><a href="#">
+									<form id="add_contact_form"
+										th:action="@{'/cercle_page/adduser?cercle='+${currentCercle.id}}"
+										method="post">
+										<input type="text" th:field="*{user_added.value}"
+											value="Saisir un pseudo" name="value" required="required" />
+										<input type="submit" value="Ok" />
+									</form>
+							</a></li>
+							<li class="add-contact-warning"
+								th:if="${(param.add_request[0] == 'you_cannot_add_yourself')}">
+								Vous ne pouvez pas vous ajouter vous-même!</li>
+							<li class="add-contact-warning"
+								th:if="${(param.add_request[0] == 'user_does_not_exist')}">
+								L'utilisateur que vous avez demandé n'existe pas.</li>
+							<li class="add-contact-confirm"
+								th:if="${(param.add_request[0] == 'ok')}">Demande d'ajout
+								envoyée.</li>
+							<li class="add-contact-warning"
+								th:if="${(param.add_request[0] == 'user_already_in_list')}">
+								L'utilisateur demandé est déjà dans votre liste de contact.</li>
+							<li class="add-contact-warning"
+								th:if="${(param.add_request[0] == 'user_already_requested')}">
+								Demande d'ajout déjà envoyée, en cours d'attente de validation.
+							</li>
 
 
 
-        </div>
-    </div>
-	
-	
+						</ul>
+						<ul th:if="${(param.add_request == null)}"
+							class="nav nav-stacked collapse" id="menu3">
+
+							<li class="contact_acolor"><a href="#">
+									<form id="add_contact_form"
+										th:action="@{'/cercle_page/adduser?cercle='+${currentCercle.id}}"
+										method="post">
+										<input type="text" th:field="*{user_added.value}"
+											value="Saisir un pseudo" name="value" /> <input
+											type="submit" value="Ok" />
+									</form>
+							</a></li>
+
+						</ul></li>
+
+					<li class="nav-header"><a data-toggle="collapse"
+						data-target="#userMenu"> Vos contacts <i
+							class="glyphicon glyphicon-chevron-down"></i>
+					</a>
+						<ul class="nav nav-stacked collapse in" id="userMenu">
+
+							<li class="contact-short-info"
+								th:if="${(contacts == null) or (contacts.size() == 0)}">
+								Votre liste de contacts est vide.</li>
+							<li th:each="userC : ${contacts}"><a href="#"> <i
+									class="glyphicon glyphicon-user"></i> <span
+									th:text="${userC.pseudo}"></span>
+							</a></li>
+						</ul></li>
+
+
+				</ul>
+
+
+			</div>
+			<!-- /col-3 -->
+
+			<div class="col-sm-9">
+
+				<!--tabs-->
+				<div class="panel">
+					<ul class="nav nav-tabs" id="myTab">
+						<li class="active"><a href="#chat" data-toggle="tab">Chat</a></li>
+						<li><a href="#documents" data-toggle="tab">Documents</a></li>
+
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active well" id="chat">
+							<h1>Chat</h1>
+						</div>
+						<div class="tab-pane well" id="documents">
+							<h1>Documents</h1>
+
+							<div class="list-group">
+								<li th:each="unFichier : ${cercle_fichiers}"><a
+									th:href="@{/download(fichier=${unFichier.getId()},cercle=${currentCercle.getId()})}"
+									class="list-group-item">
+										<h4 class="list-group-item-heading"
+											th:text="${unFichier.name}"></h4>
+										<p class="list-group-item-text"
+											th:text="${unFichier.description}"></p>
+								</a></li>
+							</div>
+
+							<form class="form-horizontal" method="POST"
+								enctype="multipart/form-data"
+								th:action="@{'/cercle_page/upload'+'?cercleid='+${currentCercle.id}}">
+
+
+								<div class="form-group">
+									<label for="file" class="col-sm-2 control-label">Browser</label>
+									<div class="col-sm-10">
+										<input type="file" class="form-control" id="file" name="file"
+											placeholder="filePath"></input>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="name" class="col-sm-2 control-label">Nom du
+										fichier</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="name" name="name"
+											placeholder="Nom du Fichier"></input>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="description" class="col-sm-2 control-label">Description</label>
+									<div class="col-sm-10">
+										<textarea class="form-control" id="description" name="description" rows="3"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="submit" class="btn btn-default">Upload</button>
+									</div>
+								</div>
+								<!-- 
+								Browser: <input type="file" name="file"></input> <br /> 
+								
+								Nom: <input type="text" name="name"></input> <br /> Description:
+								<textarea name="description"></textarea>
+								<br /> <input type="submit" value="Upload"> </input> -->
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+				<!--/tabs-->
+
+
+			</div>
+			<!--/col-span-9-->
+
+
+
+		</div>
+	</div>
+
+
 	<!--  Fin du corps -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 	<script src="boardstyle/js/bootstrap.min.js"></script>
 	<script src="boardstyle/js/scripts.js"></script>
 

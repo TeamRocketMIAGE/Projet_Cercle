@@ -1,5 +1,6 @@
 package main;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 
 
@@ -39,7 +41,28 @@ public class Cercle implements Serializable {
 	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	private List<Fichier> fichiers = new ArrayList<Fichier>();
 	
+	
+
+	public List<Fichier> getFichiers() {
+		return fichiers;
+	}
+	
+	public void addFichier(Fichier f){
+		this.fichiers.add(f);
+	}
+	
+	
+	public Fichier getFichier(int i){
+		return fichiers.get(i);
+	}
+	public void removeFichier(int i){
+		this.fichiers.remove(i);
+		//attention au décalage des id des fichiers suivant
+	}
+
 
 	protected Cercle(){}
 	
@@ -156,6 +179,12 @@ public class Cercle implements Serializable {
 		return i<this.utilisateurs.size();
 	}
 	
+	public boolean possedeLeFichier (Fichier f)
+	{
+		int i=0;
+		for (; i<this.fichiers.size() && !this.fichiers.get(i).equals(f) ; i++);
+		return i<this.fichiers.size();
+	}
 	
 
 	

@@ -27,6 +27,9 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
     @Autowired
     CercleRepository cercleRepository;
 	
+    @Autowired
+    FichierRepository fichierRepository;
+    
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/home").setViewName("home");
