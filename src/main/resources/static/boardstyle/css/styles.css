@@ -25,28 +25,34 @@
 	/* overflow:hidden; */
 }
 
-#create_cercle_table .select_list_manip input
+#create_cercle_table input.add_user_cercle
 {
-	width:100%;
+	width:43%; 
 	margin-bottom:7px;
+	font-size:12px;
 }
 
 .create_cercle_role_management
 {
 	width:100%;
+	margin-bottom:15px;
+	
 }
 
 .create_cercle_role_management tr td
 {
 	padding-top:0px;
 	padding-bottom:3px;
-
-
 }
 
 .create_cercle_role_management tr td:first-child
 {
 	width:96%;
+}
+
+.create_cercle_role_management tr:last-child
+{
+	padding-bottom:15px;
 }
 
 
@@ -67,9 +73,16 @@ textarea.form-control
 	width:100%;
 }
 
-.add-contact-warning, .add-cercle-user-warning
+.add-contact-warning
 {
 	padding:4px 15px;
+	color:red;
+	font-size:12px;
+}
+
+.add-cercle-user-warning
+{
+	padding:4px 0px;
 	color:red;
 	font-size:12px;
 }

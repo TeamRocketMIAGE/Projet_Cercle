@@ -23,6 +23,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class cerclecreateController {
 
+	
+
+	
 	@Autowired
 	CercleRepository cercleRepository;
 	
@@ -48,8 +51,10 @@ public class cerclecreateController {
     	session.setAttribute("newcercle", newCercle);	
 		model.addAttribute("newcercle", newCercle);	
 		
-		SimpleString new_admin = new SimpleString("");
-		model.addAttribute("new_admin", new_admin);
+		// -> new_admin_member.value1 contient la saisie du pseudo d'un nouvel ADMIN à ajouter à la liste des administrateurs du cercle
+		// -> new_admin_member.value2 contient la saisie du pseudo d'un nouveau MEMBRE à ajouter à la liste des membres du cercle
+		DoubleString new_admin_member = new DoubleString("","");
+		model.addAttribute("new_admin_member", new_admin_member);	
 		
 		return "cercle_create";
 	}
@@ -59,36 +64,28 @@ public class cerclecreateController {
 	
 	// cas de l'ajout d'un propriétaire
 	@RequestMapping(value = "/cercle_create", method = RequestMethod.POST, params="add_admin=Ajouter aux propriétaires")
-	public String requestCercleCreateAddAdmin(Cercle newCercle, HttpSession session, SimpleString newAdminPseudo, RedirectAttributes redirectAttributes) {
+	public String requestCercleCreateAddAdmin(Cercle newCercle, HttpSession session, DoubleString newAdminMember, RedirectAttributes redirectAttributes) {
 		
 		Cercle tmp = (Cercle)session.getAttribute("newcercle");	
 		
 		tmp.setName(newCercle.getName());
 		tmp.setDescription(newCercle.getDescription());		
 		
-		if(newAdminPseudo.value.isEmpty())
-		{
-			redirectAttributes.addAttribute("add_admin_request","empty");
-		}
+		if(newAdminMember==null || newAdminMember.value1.isEmpty())		
+			redirectAttributes.addAttribute("add_admin_request","empty");		
 		else 
 		{
-			Utilisateur newAdmin = userRepository.findByPseudo(newAdminPseudo.value);
-			if(newAdmin==null)				
-			{
+			Utilisateur newAdmin = userRepository.findByPseudo(newAdminMember.value1);
+			if(newAdmin==null)	
 				redirectAttributes.addAttribute("add_admin_request","user_does_not_exist");
-			}
 			else 
 			{
-				if(tmp.isAdministrateur(newAdminPseudo.value))
-				{
+				if(tmp.isAdministrateur(newAdminMember.value1))
 					redirectAttributes.addAttribute("add_admin_request","user_already_admin");
-				}
 				else 
 				{
-					if(tmp.isMembre(newAdminPseudo.value))
-					{
+					if(tmp.isMembre(newAdminMember.value1))
 						redirectAttributes.addAttribute("add_admin_request","user_already_member");
-					}
 					else
 					{
 						// tout est ok, l'utilisateur saisi peut être ajouté à la liste des admins du cercle
@@ -98,89 +95,99 @@ public class cerclecreateController {
 				}
 			}
 		}
-			
+					
+		session.setAttribute("newcercle", tmp);	
 		
-		session.setAttribute("newcercle", tmp);
-		//model.addAttribute("newcercle", tmp);			
-		//model.addAttribute("new_admin", new SimpleString());
-		
-		/*
-		System.out.println("##########################################");
-		System.out.println("###         Création de cercle         ###");
-		System.out.println("###                                    ###");
-		System.out.println("Tentative d'ajout de l'admin : " + newAdmin.getValue() );
-		System.out.println("Admin actuellement sélectionné : " + currentAdmin.getPseudo() );
-		System.out.println("Nom du cercle : " + newCercle.getName() );
-		System.out.println("###                                    ###");
-		System.out.println("##########################################");
-		*/
-		
-		return "redirect:/cercle_create";
-		
+		return "redirect:/cercle_create";		
 	}
 	
 	
 	// cas de la suppression d'un propriétaire
-	@RequestMapping(value = "/cercle_create", method = RequestMethod.POST, params="delete_admin=Delete")
-	public String requestCercleCreateAddAdminPOST(Cercle newCercle, HttpSession session, @RequestParam(value = "delete_pseudo", required = false) String deletedAdmin) {
+	@RequestMapping(value = "/cercle_create", method = RequestMethod.POST, params="delete_admin=Supprimer")
+	public String requestCercleCreateDeleteAdmin(Cercle newCercle, HttpSession session, @RequestParam(value = "delete_admin_pseudo", required = false) String deletedAdmin) {
 		
 		Cercle tmp = (Cercle)session.getAttribute("newcercle");	
 		
 		tmp.setName(newCercle.getName());
 		tmp.setDescription(newCercle.getDescription());		
 		
+		/*
 		System.out.println("##########################################");
 		System.out.println("###         Création de cercle         ###");
 		System.out.println("###                                    ###");
 		System.out.println("     Admin à supprimer : " + deletedAdmin );
 		System.out.println("###                                    ###");
 		System.out.println("##########################################");
+		*/
 					
-		//tmp.deleteAdministrateur( userRepository.findByPseudo(deletedAdmin));
-
+		tmp.deleteAdministrateur( userRepository.findByPseudo(deletedAdmin));
 		
 		session.setAttribute("newcercle", tmp);
-		//model.addAttribute("newcercle", tmp);			
-		//model.addAttribute("new_admin", new SimpleString());
-		
-		/*
-		System.out.println("##########################################");
-		System.out.println("###         Création de cercle         ###");
-		System.out.println("###                                    ###");
-		System.out.println("Tentative d'ajout de l'admin : " + newAdmin.getValue() );
-		System.out.println("Admin actuellement sélectionné : " + currentAdmin.getPseudo() );
-		System.out.println("Nom du cercle : " + newCercle.getName() );
-		System.out.println("###                                    ###");
-		System.out.println("##########################################");
-		*/
 		
 		return "redirect:/cercle_create";
 		
 	}
 	
 	
-	// cas de la suppression d'un propriétaire
-	@RequestMapping(value = "/cercle_create_remove_admin/{pseudo}", method = RequestMethod.GET)
-	public String requestCercleCreateDeleteAdmin(@PathVariable("pseudo") String adminPseudo, @RequestParam(value = "nom") String nomCercle, HttpSession session)
-	{
+	
+	
+	// cas de l'ajout d'un membre
+	@RequestMapping(value = "/cercle_create", method = RequestMethod.POST, params="add_member=Ajouter aux membres")
+	public String requestCercleCreateAddMember(Cercle newCercle, HttpSession session, DoubleString newAdminMember, RedirectAttributes redirectAttributes) {
+		
 		Cercle tmp = (Cercle)session.getAttribute("newcercle");	
 		
-		tmp.setName(nomCercle);
+		tmp.setName(newCercle.getName());
+		tmp.setDescription(newCercle.getDescription());		
 		
-		System.out.println("##########################################");
-		System.out.println("###         Création de cercle         ###");
-		System.out.println("###                                    ###");
-		System.out.println("Nom du cercle modifié : " + nomCercle );
-		System.out.println("###                                    ###");
-		System.out.println("##########################################");
-		//tmp.setDescription(newCercle.getDescription());	
+		if(newAdminMember==null || newAdminMember.value2.isEmpty())		
+			redirectAttributes.addAttribute("add_member_request","empty");		
+		else 
+		{
+			Utilisateur newMember = userRepository.findByPseudo(newAdminMember.value2);
+			if(newMember==null)	
+				redirectAttributes.addAttribute("add_member_request","user_does_not_exist");
+			else 
+			{
+				if(tmp.isAdministrateur(newAdminMember.value2))
+					redirectAttributes.addAttribute("add_member_request","user_already_admin");
+				else 
+				{
+					if(tmp.isMembre(newAdminMember.value2))
+						redirectAttributes.addAttribute("add_member_request","user_already_member");
+					else
+					{
+						// tout est ok, l'utilisateur saisi peut être ajouté à la liste des membres du cercle
+						
+						tmp.addUtilisateur(newMember);
+					}
+				}
+			}
+		}
+					
+		session.setAttribute("newcercle", tmp);	
 		
-		tmp.deleteAdministrateur( userRepository.findByPseudo(adminPseudo));
+		return "redirect:/cercle_create";		
+	}
+
+	
+	
+	// cas de la suppression d'un membre
+	@RequestMapping(value = "/cercle_create", method = RequestMethod.POST, params="delete_member=Supprimer")
+	public String requestCercleCreateDeleteMember(Cercle newCercle, HttpSession session, @RequestParam(value = "delete_member_pseudo", required = false) String deletedMember) {
+		
+		Cercle tmp = (Cercle)session.getAttribute("newcercle");	
+		
+		tmp.setName(newCercle.getName());
+		tmp.setDescription(newCercle.getDescription());				
+					
+		tmp.deleteUtilisateur( userRepository.findByPseudo(deletedMember));
 		
 		session.setAttribute("newcercle", tmp);
 		
 		return "redirect:/cercle_create";
-	}
+		
+	}	
 	
 
    
