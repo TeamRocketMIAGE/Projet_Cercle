@@ -212,7 +212,8 @@
                                         <th>Cercle</th>
                                         <th>Description</th>
                                         <th>Propriétaires</th>
-                                        <th>Membres</th>                                        
+                                        <th>Membres</th>   
+                                        <th></th>                                     
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -239,7 +240,7 @@
 					                        </ul>
 					                    </td>
 					                    <td>
-											<a th:href="@{'/cercle_param?cercle='+${cercle.id}}"><i class="glyphicon glyphicon-cog" rel="tooltip" title="Modifier le cercle"></i></a>
+											<a th:href="@{'/cercle_param_access?cercle='+${cercle.id}}"><i class="glyphicon glyphicon-cog" rel="tooltip" title="Modifier le cercle"></i></a>
 					                    </td>
                                 	</tr>
                                 	<tr th:each="cercle2 : ${user_cercles_membre}">
@@ -265,23 +266,7 @@
 					                        </ul>
 					                    </td>
 					                    <td></td>
-                                	</tr>
-                                	
-                                	<!-- 
-                                	
-                                    <tr>
-                                        <td>Cercle 1</td>
-                                        <td>Franck</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>..</td>
-                                        <td>..</td>
-                                        <td>..</td>
-                                    </tr>
-                                    
-                                    -->
-
+                                	</tr>    
                                 </tbody>
                             </table>
                         </div>

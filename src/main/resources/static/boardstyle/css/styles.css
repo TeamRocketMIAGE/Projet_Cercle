@@ -2,19 +2,24 @@
   margin-bottom:0px;
 }
 
-#create_cercle_table
+.cercle_param_table
 {
 	width:100%;
 }
 
-#create_cercle_table tr td.create_cercle_main_cell
+#cercle_param-title span
+{
+	color:blue;
+}
+
+.cercle_param_table tr td.create_cercle_main_cell
 {
 	white-space:nowrap;
 	padding:15px 15px;
 	vertical-align:top;
 }
 
-#create_cercle_table tr td:last-child
+.cercle_param_table tr td:last-child
 {
 	width:100%;
 }
@@ -40,7 +45,7 @@
 	/* overflow:hidden; */
 }
 
-#create_cercle_table input.add_user_cercle
+.cercle_param_table input.add_user_cercle
 {
 	width:43%; 
 	margin-bottom:7px;
@@ -165,7 +170,7 @@ textarea.form-control
 }
 
 
-#cercle_create-title
+#cercle_create-title, #cercle_param-title
 {
   text-align: center;
   padding-top:35px;

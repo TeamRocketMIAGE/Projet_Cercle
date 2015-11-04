@@ -3,79 +3,184 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<title>Cercle - Page paramètre cercle</title>
+<title>Cercle - Paramètre du cercle</title>
 
 <link href="boardstyle/css/bootstrap.min.css" rel="stylesheet" />
 <link href="boardstyle/css/styles.css" rel="stylesheet" />
 
 </head>
 <body>
-	<!-- header -->
-	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
+ 	<!-- header -->
+    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img class="short-img" src="../corlate/img/cercle_logo_min.png" alt="logo" />
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                	<li><a th:href="@{/cercle_param_cancel}"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour à l'espace utilisateur</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button"
+                           data-toggle="dropdown" href="#">
+                            <i class="glyphicon glyphicon-user"></i> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                            <li>
+                                <a th:href="@{/cercle_param_go_user_param}">
+                                    <i class="glyphicon glyphicon-cog"></i>
+                                    Vos paramètres
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/logout}">
+                                    <i class="glyphicon glyphicon-off"></i> Se déconnecter
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-				<img class="short-img" src="../corlate/img/cercle_logo_min.png"
-					alt="logo" />
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a class="dropdown-toggle" role="button"
-						data-toggle="dropdown" href="#"><i
-							class="glyphicon glyphicon-user"></i> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
-							<span class="caret"></span></a>
-						<ul id="g-account-menu" class="dropdown-menu" role="menu">
-							<li><a href="cercle_page"><i
-									class="glyphicon glyphicon-cog"></i> Retour au cercle</a></li>
-							<li><a href="user_page"><i
-									class="glyphicon glyphicon-cog"></i> Retour à l'accueil</a></li>									
-							<li><a th:href="@{/logout}"><i
-									class="glyphicon glyphicon-off"></i> Se déconnecter</a></li>
-						</ul></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /Header -->
 
-				</ul>
-			</div>
-		</div>
-		<!-- /container -->
+
+    <!--       -->   
+    <!-- Titre -->
+    <!--       -->
+    <div id="cercle_param-title">
+		<h2>Modification du cercle <span th:text="${paramcercle.name}"></span></h2>
+		<p>Vous pouvez ici modifier les informations relatives au cercle, telle que sa description. Vous pouvez aussi ajouter et/ou supprimer des propriétaires et des membres propres à ce cercle.</p>
 	</div>
-	<!-- /Header -->
 
 
-	<div id="user_page-title">
-		<h2>Paramètres du cercle</h2>
-		<p>Vous pouvez ici modifier les différentes informations liés au cercle.</p>
-	</div>
+	<br/>
 
+
+    <!--                                      -->   
+    <!-- Formulaire de modification du cercle -->
+    <!--                                      --> 
 	<div class="container-fluid">
 		<form id="main-param-form" class="param-form" method="post">
 
 			<div class="row">
-				<div class="col-sm-5 col-sm-offset-1">
-					<div class="form-group">
-						<label>Nom </label> <input type="text" name="nom"
-							class="form-control" 
-							th:text="#{nom}"/>
-					</div>
-					<div class="form-group">
-						<label>Description</label> <input type="text" name="prenom"
-							class="form-control" 
-							th:text="#{prenom}"/>
-					</div>
+				<div class="col-md-6 col-md-offset-3">
+				
+					<table class="cercle_param_table">
+					
+						<tr>
+							<td class="create_cercle_main_cell"><label>Nom du cercle *</label></td>
+							<td class="create_cercle_main_cell">
+								<input type="text" class="form-control" required="required" th:field="*{paramcercle.name}"/>
+							</td>							
+						</tr>
+						
+						<tr>
+							<td class="create_cercle_main_cell"><label>Description *</label></td>
+							<td class="create_cercle_main_cell">
+								<textarea class="form-control" required="required" th:field="*{paramcercle.description}" rows="5"></textarea>
+							</td>
+						</tr>	
+						
+						<!--                                     -->	
+						<!-- Gestion des propriétaires du cercle -->
+						<!--                                     -->						
+						<tr class="select_list_manip">
+							<td class="create_cercle_main_cell"><label>Propriétaires *</label></td>
+							<td class="create_cercle_main_cell">												
+								<table class="table-hover create_cercle_role_management">
+									<tr th:each="a, iterStat : ${paramcercle.administrateurs}">
+										<td th:text="${a.pseudo}" class="create_cercle_admin_pseudo"></td>
+										 <td>	
+										    <input th:if="${iterStat.count>1}" class="btn btn-default btn-xs"  id="delete_admin_submit" name="delete_admin" type="submit" value="Supprimer" th:formaction="@{/cercle_param(cercle=${paramcercle.id},delete_admin_pseudo=${a.pseudo})}" />
+										 </td>	
+									</tr>
+								</table>	
+
+								<div>
+									<input type="text" th:field="*{new_admin_member.value1}" placeholder="Nouveau propriétaire..." class="form-control add_user_cercle" />
+									<input type="submit" name="add_admin" class="btn btn-sm add_user_cercle" value="Ajouter aux propriétaires"/>
+								</div>										
+								
+								<div class="add-cercle-user-warning" th:if="${(param.add_admin_request != null) and (param.add_admin_request[0] == 'empty')}">
+									Veuillez saisir un utilisateur à ajouter.
+								</div>
+								<div class="add-cercle-user-warning" th:if="${(param.add_admin_request != null) and (param.add_admin_request[0] == 'user_does_not_exist')}">
+									L'utilisateur saisi n'existe pas.
+								</div>
+								<div class="add-cercle-user-warning" th:if="${(param.add_admin_request != null) and (param.add_admin_request[0] == 'user_already_admin')}">
+									L'utilisateur saisi est déjà propriétaire du cercle.
+								</div>
+								<div class="add-cercle-user-warning" th:if="${(param.add_admin_request != null) and (param.add_admin_request[0] == 'user_already_member')}">
+									L'utilisateur saisi est déjà membre du cercle. 
+								</div>	
+							</td>							
+						</tr>	
+						
+						<!--                               -->	
+						<!-- Gestion des membres du cercle -->
+						<!--                               -->						
+						<tr class="select_list_manip">
+							<td class="create_cercle_main_cell"><label>Membres *</label></td>
+							<td class="create_cercle_main_cell">												
+								<table th:if="${paramcercle.utilisateurs.size()>0}" class="table-hover create_cercle_role_management">
+									<tr  th:each="m, iterStat : ${paramcercle.utilisateurs}">
+										<td th:text="${m.pseudo}" class="create_cercle_member_pseudo"></td>
+										 <td>	
+										    <input  class="btn btn-default btn-xs"  id="delete_member_submit" name="delete_member" type="submit" value="Supprimer" th:formaction="@{/cercle_param(cercle=${paramcercle.id},delete_member_pseudo=${m.pseudo})}" />
+										 </td>	
+									</tr>
+								</table>
+								
+								<table th:if="${paramcercle.utilisateurs.size()==0}" class="table-hover create_cercle_role_management">
+									<tr>
+										<td ><i class="empty_list_info">Aucun membre n'a encore été ajouté au cercle.</i></td>
+										<td></td>
+									</tr>
+								</table>
+									
+
+								<div>
+									<input type="text" th:field="*{new_admin_member.value2}" placeholder="Nouveau membre..." class="form-control add_user_cercle" />
+									<input type="submit" name="add_member" class="btn btn-sm add_user_cercle" value="Ajouter aux membres"/>
+								</div>										
+								
+								<div class="add-cercle-user-warning" th:if="${(param.add_member_request != null) and (param.add_member_request[0] == 'empty')}">
+									Veuillez saisir un utilisateur à ajouter.
+								</div>
+								<div class="add-cercle-user-warning" th:if="${(param.add_member_request != null) and (param.add_member_request[0] == 'user_does_not_exist')}">
+									L'utilisateur saisi n'existe pas.
+								</div>
+								<div class="add-cercle-user-warning" th:if="${(param.add_member_request != null) and (param.add_member_request[0] == 'user_already_admin')}">
+									L'utilisateur saisi est déjà propriétaire du cercle.
+								</div>
+								<div class="add-cercle-user-warning" th:if="${(param.add_member_request != null) and (param.add_member_request[0] == 'user_already_member')}">
+									L'utilisateur saisi est déjà membre du cercle. 
+								</div>	
+							</td>							
+						</tr>							
+					</table>	
 				</div>
 			</div>
+			
+			<br/>
+			<br/>
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="form-group" align="center">
-						<button type="submit" name="submit" class="btn btn-primary btn-lg">Enregistrer les modifications</button>
+						<input type="submit" name="submit_ok" value="Enregistrer les modifications" class="btn btn-primary btn-lg"/>
+						<a th:href="@{/cercle_param_cancel}"><button type="button" class="btn btn-primary btn-lg">Annuler</button></a>
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
-	
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+	<script	src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 	<script src="boardstyle/js/bootstrap.min.js"></script>
 	<script src="boardstyle/js/scripts.js"></script>
 

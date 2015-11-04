@@ -5,6 +5,8 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +24,10 @@ public class userpageController {
 	UserRepository userRepository;
 	
 	@RequestMapping(value = "/user_page", method = RequestMethod.GET)
-	public String requestCreatePageUserHome(Model model) {
+	public String requestCreatePageUserHome(Model model, HttpSession session) {
+		
+		session.removeAttribute("newcercle");
+		session.removeAttribute("paramcercle");
 
 		// obtention de l'id de l'utilisateur connecté
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
