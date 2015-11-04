@@ -28,6 +28,8 @@ public class userpageController {
 		
 		session.removeAttribute("newcercle");
 		session.removeAttribute("paramcercle");
+		session.removeAttribute("paramcercle_previous_admins");
+		session.removeAttribute("paramcercle_previous_members");
 
 		// obtention de l'id de l'utilisateur connecté
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
