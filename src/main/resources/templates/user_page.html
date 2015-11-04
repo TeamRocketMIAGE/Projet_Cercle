@@ -218,7 +218,7 @@
                                 <tbody>
                                 	<tr th:each="cercle : ${user_cercles_admin}">
                                 		<td><i class="glyphicon glyphicon-eye-open" rel="tooltip" title="Vous êtes propriétaire de ce cercle"></i></td>
-                                		<td><a href="#" th:text="${cercle.name}" th:href="@{'/cercle_page?cercle='+${cercle.id}}"></a></td>
+                                		<td><a th:text="${cercle.name}" th:href="@{'/cercle_page?cercle='+${cercle.id}}"></a></td>
                                 		<td th:text="${cercle.description}"></td>
                                 		<td>
                                 			<span th:if="${cercle.administrateurs.size()>0}" th:text="${cercle.administrateurs[0].pseudo}"></span>                                						 
@@ -237,6 +237,9 @@
 													<span th:if="${iterStat.count>1}" th:text="${user.pseudo}"></span>   
 					                            </li>
 					                        </ul>
+					                    </td>
+					                    <td>
+											<a th:href="@{'/cercle_param?cercle='+${cercle.id}}"><i class="glyphicon glyphicon-cog" rel="tooltip" title="Modifier le cercle"></i></a>
 					                    </td>
                                 	</tr>
                                 	<tr th:each="cercle2 : ${user_cercles_membre}">
@@ -261,6 +264,7 @@
 					                            </li>
 					                        </ul>
 					                    </td>
+					                    <td></td>
                                 	</tr>
                                 	
                                 	<!-- 
@@ -284,7 +288,7 @@
                         
                         
                         <br/>
-                        <a th:href="@{/cercle_create}"><button class="btn btn-primary btn-lg">Créer un nouveau cercle</button></a> 
+                        <a th:href="@{/cercle_create_access}"><button class="btn btn-primary btn-lg">Créer un nouveau cercle</button></a> 
                         
                     </div>
                 </div>

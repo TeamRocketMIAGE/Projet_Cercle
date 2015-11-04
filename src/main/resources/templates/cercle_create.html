@@ -31,7 +31,7 @@
                         </a>
                         <ul id="g-account-menu" class="dropdown-menu" role="menu">
                             <li>
-                                <a href="user_param">
+                                <a th:href="@{/cercle_create_go_user_param}">
                                     <i class="glyphicon glyphicon-cog"></i>
                                     Vos paramètres
                                 </a>
@@ -98,7 +98,7 @@
 							<td class="create_cercle_main_cell">												
 								<table class="table-hover create_cercle_role_management">
 									<tr th:each="a, iterStat : ${newcercle.administrateurs}">
-										<td th:text="${a.pseudo}"></td>
+										<td th:text="${a.pseudo}" class="create_cercle_admin_pseudo"></td>
 										 <td>	
 										    <input  th:if="${iterStat.count>1}" class="btn btn-default btn-xs"  id="delete_admin_submit" name="delete_admin" type="submit" value="Supprimer" th:formaction="@{'/cercle_create?delete_admin_pseudo='+${a.pseudo}}" />
 										 </td>	
@@ -133,7 +133,7 @@
 							<td class="create_cercle_main_cell">												
 								<table th:if="${newcercle.utilisateurs.size()>0}" class="table-hover create_cercle_role_management">
 									<tr  th:each="m, iterStat : ${newcercle.utilisateurs}">
-										<td th:text="${m.pseudo}"></td>
+										<td th:text="${m.pseudo}" class="create_cercle_member_pseudo"></td>
 										 <td>	
 										    <input  class="btn btn-default btn-xs"  id="delete_member_submit" name="delete_member" type="submit" value="Supprimer" th:formaction="@{'/cercle_create?delete_member_pseudo='+${m.pseudo}}" />
 										 </td>	

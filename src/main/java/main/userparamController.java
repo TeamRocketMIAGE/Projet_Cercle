@@ -32,34 +32,14 @@ public class userparamController {
 
 		// System.out.println("ceci est un test dans userparamcontroller hehe");
 		model.addAttribute("user", currentUser);
-		/*
-		 * model.addAttribute("prenom", currentUser.getPrenom());
-		 * model.addAttribute("nom", currentUser.getNom());
-		 * model.addAttribute("adresse_rue", currentUser.getAdresse_rue());
-		 * model.addAttribute("adresse_CP", currentUser.getAdresse_CP());
-		 * model.addAttribute("adresse_ville", currentUser.getAdresse_ville());
-		 * model.addAttribute("mail", currentUser.getMail());
-		 * model.addAttribute("tel", currentUser.getTel());
-		 */
 
 		return "user_param";
-
 	}
 
 	@RequestMapping(value = "/user_param", method = RequestMethod.POST, params="submit=Enregistrer les modifications")
 	public String requestModificationUserSave(Utilisateur user,
 			RedirectAttributes redirectAttributes) {
 
-		/*
-		 * if (user.getNom().equals((String)"") ||
-		 * user.getPrenom().equals((String)"") ||
-		 * user.getMail().equals((String)"")) { //error, Les champs obligatoires
-		 * ne sont pas tous remplis !!!
-		 * System.out.println("Un champ est vide !!!!");
-		 * redirectAttributes.addAttribute("modification", "champ_vide"); return
-		 * "redirect:/user_param"; } else {
-		 */
-		// ok, sauvegarde des modifications dans la base de données
 
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -79,23 +59,12 @@ public class userparamController {
 		userRepository.save(currentUser);
 
 		redirectAttributes.addAttribute("modification", "ok");
-		return "redirect:/user_page";
 		
-
+		return "redirect:/user_page";	
 	}
 	
 	
 	
-	@RequestMapping(value = "/user_param", method = RequestMethod.POST, params="submit=Annuler")
-	public String requestModificationUserCancel(Utilisateur user,
-			RedirectAttributes redirectAttributes) {
 
-
-
-		redirectAttributes.addAttribute("modification", "cancel");
-		return "redirect:/user_page";
-		
-
-	}
 
 }

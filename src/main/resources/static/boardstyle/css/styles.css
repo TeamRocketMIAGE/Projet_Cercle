@@ -24,6 +24,16 @@
 	font-size:12px;
 }
 
+.create_cercle_admin_pseudo
+{
+	color:#000099;
+}
+
+.create_cercle_member_pseudo
+{
+	color:#006600;
+}
+
 .create_cercle_select
 {
 	width:100%;

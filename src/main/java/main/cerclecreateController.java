@@ -231,6 +231,26 @@ public class cerclecreateController {
 		
 		return "redirect:/user_page";
 	}
+	
+	// accès au paramètre utilisateur à partir de la page création de cercle
+	// il faut supprimer l'attribut en session
+	@RequestMapping(value = "/cercle_create_go_user_param", method = RequestMethod.GET)
+	public String requestCercleCreateGoUserParam(HttpSession session) {
+		
+		session.removeAttribute("newcercle");
+		
+		return "redirect:/user_param";
+	}
+   
+	
+	// tentative d'accès à la page à partir du bouton "Créer un nouveau cercle"
+	@RequestMapping(value = "/cercle_create_access", method = RequestMethod.GET)
+	public String requestCercleCreateAccess(HttpSession session) {
+		
+		session.removeAttribute("newcercle");
+		
+		return "redirect:/cercle_create";
+	}
    
 	
 }
