@@ -1,5 +1,6 @@
 package main;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -206,8 +207,16 @@ public class cercleparamController {
 		
 		// ces 2 listes permettent de savoir qui étaient admins/membres avant la modification effective du cercle
 		// à partir de cela, on pourra en déduire quels sont les admins/membres qui ont éventuellement été retirés du cercle		
-		List<Utilisateur> tmp_previous_admins = (List<Utilisateur>)session.getAttribute("paramcercle_previous_admins");
-		List<Utilisateur> tmp_previous_members = (List<Utilisateur>)session.getAttribute("paramcercle_previous_members");
+		
+		List<Utilisateur> previous_admins = (List<Utilisateur>)session.getAttribute("paramcercle_previous_admins");
+		List<Utilisateur> previous_members = (List<Utilisateur>)session.getAttribute("paramcercle_previous_members");
+		
+		List<Utilisateur> tmp_previous_admins = new ArrayList<Utilisateur>();
+		for(Utilisateur ua : previous_admins)
+			tmp_previous_admins.add(ua);
+		List<Utilisateur> tmp_previous_members = new ArrayList<Utilisateur>();
+		for(Utilisateur um : previous_members)
+			tmp_previous_members.add(um);
 		
 		tmp.setName(paramCercle.getName());
 		tmp.setDescription(paramCercle.getDescription());				
@@ -222,6 +231,7 @@ public class cercleparamController {
 			List<Cercle> a_cercles_admin = a.getCercles_admin();
 			int i=0;
 			for( ; i<a_cercles_admin.size() && a_cercles_admin.get(i).getId() != tmp.getId() ; i++);
+			
 			if (i<a_cercles_admin.size())
 			{
 				// l'admin actuel était déjà administrateur du cercle avant la modification validée de ce cercle
@@ -229,9 +239,15 @@ public class cercleparamController {
 				a_cercles_admin.add(tmp);
 				a.setCercles_admin(a_cercles_admin);				
 			
-				for(i=0 ; i<tmp_previous_admins.size() && tmp_previous_admins.get(i).getPseudo() != a.getPseudo() ; i++);
-				if (i<tmp_previous_admins.size())
-					tmp_previous_admins.remove(i);
+				
+				int j=0;
+				for(; j<tmp_previous_admins.size() && tmp_previous_admins.get(j).getPseudo() != a.getPseudo() ; j++);
+				if (j<tmp_previous_admins.size())
+				{
+					tmp_previous_admins.remove(j);
+				}
+						
+				
 			}
 			else
 			{
@@ -266,6 +282,7 @@ public class cercleparamController {
 			userRepository.save(m);	
 		}		
 		
+		
 		for(Utilisateur removed_a : tmp_previous_admins)
 		{
 			List<Cercle> removed_a_cercles_admin = removed_a.getCercles_admin();
@@ -281,13 +298,13 @@ public class cercleparamController {
 		
 		for(Utilisateur removed_m : tmp_previous_members)
 		{
-			List<Cercle> removed_a_cercles_member = removed_m.getCercles_admin();
+			List<Cercle> removed_m_cercles_member = removed_m.getCercles_admin();
 			int i=0;
-			for( ; i<removed_a_cercles_member.size() && removed_a_cercles_member.get(i).getId() != tmp.getId() ; i++);
-			if (i<removed_a_cercles_member.size())
+			for( ; i<removed_m_cercles_member.size() && removed_m_cercles_member.get(i).getId() != tmp.getId() ; i++);
+			if (i<removed_m_cercles_member.size())
 			{				
-				removed_a_cercles_member.remove(i);				
-				removed_m.setCercles_membre(removed_a_cercles_member);
+				removed_m_cercles_member.remove(i);				
+				removed_m.setCercles_membre(removed_m_cercles_member);
 			}
 			userRepository.save(removed_m);
 		}		
