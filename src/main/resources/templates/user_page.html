@@ -222,18 +222,20 @@
                                 		<td><a th:text="${cercle.name}" th:href="@{'/cercle_page?cercle='+${cercle.id}}"></a></td>
                                 		<td th:text="${cercle.description}"></td>
                                 		<td>
-                                			<span th:if="${cercle.administrateurs.size()>0}" th:text="${cercle.administrateurs[0].pseudo}"></span>                                						 
-											<a data-toggle="collapse" th:if="${cercle.administrateurs.size()>1}" th:attr="data-target='.cercles_user_list_'+${cercle.name}" >...</a>
-					                        <ul th:if="${cercle.administrateurs.size()>1}" th:attr="class='nav nav-stacked collapse cercles_user_list_'+${cercle.name}">
+                                			<span th:if="${cercle.administrateurs.size()>0}" th:text="${cercle.administrateurs[0].pseudo}"></span>    
+                                			&nbsp;<span th:if="${cercle.administrateurs.size()>1}" class="cercle_user_list_toggle">...</span>&nbsp;                             						 
+											<a data-toggle="collapse" th:if="${cercle.administrateurs.size()>1}" th:attr="data-target='.cercles_user_list_'+${cercle.id}" ><i class="cercle_user_list_toggle glyphicon glyphicon-plus"></i></a>
+					                        <ul th:if="${cercle.administrateurs.size()>1}" th:attr="class='nav nav-stacked collapse cercles_user_list_'+${cercle.id}">
 					                            <li class="contact_acolor"  th:each="admin, iterStat : ${cercle.administrateurs}"> 													
 													<span th:if="${iterStat.count>1}" th:text="${admin.pseudo}"></span>   
 					                            </li>
 					                        </ul>
 					                    </td>
                                 		<td>
-                                			<span th:if="${cercle.utilisateurs.size()>0}" th:text="${cercle.utilisateurs[0].pseudo}"></span>                                						 
-											<a data-toggle="collapse" th:if="${cercle.utilisateurs.size()>1}" th:attr="data-target='.cercles_user_list_'+${cercle.name}" >...</a>
-					                        <ul class="nav nav-stacked collapse" th:if="${cercle.utilisateurs.size()>1}" th:attr="class='nav nav-stacked collapse cercles_user_list_'+${cercle.name}">
+                                			<span th:if="${cercle.utilisateurs.size()>0}" th:text="${cercle.utilisateurs[0].pseudo}"></span>   
+                                			&nbsp;<span th:if="${cercle.utilisateurs.size()>1}" class="cercle_user_list_toggle">...</span>&nbsp;                              						 
+											<a data-toggle="collapse" th:if="${cercle.utilisateurs.size()>1}" th:attr="data-target='.cercles_user_list_'+${cercle.id}" ><i class="cercle_user_list_toggle glyphicon glyphicon-plus"></i></a>
+					                        <ul class="nav nav-stacked collapse" th:if="${cercle.utilisateurs.size()>1}" th:attr="class='nav nav-stacked collapse cercles_user_list_'+${cercle.id}">
 					                            <li class="contact_acolor"  th:each="user, iterStat : ${cercle.utilisateurs}"> 													
 													<span th:if="${iterStat.count>1}" th:text="${user.pseudo}"></span>   
 					                            </li>
@@ -248,18 +250,20 @@
                                 		<td><a th:href="@{'/cercle_page?cercle='+${cercle2.id}}" th:text="${cercle2.name}"></a></td>
                                 		<td th:text="${cercle2.description}"></td>
                                 		<td>
-                                			<span th:if="${cercle2.administrateurs.size()>0}" th:text="${cercle2.administrateurs[0].pseudo}"></span>                                						 
-											<a data-toggle="collapse" th:if="${cercle2.administrateurs.size()>1}" th:attr="data-target='.cercles_user_list_'+${cercle2.name}" >...</a>
-					                        <ul th:if="${cercle2.administrateurs.size()>1}" th:attr="class='nav nav-stacked collapse cercles_user_list_'+${cercle2.name}">
+                                			<span th:if="${cercle2.administrateurs.size()>0}" th:text="${cercle2.administrateurs[0].pseudo}"></span>    
+                                			&nbsp;<span th:if="${cercle2.administrateurs.size()>1}" class="cercle_user_list_toggle">...</span>&nbsp;                            						 
+											<a data-toggle="collapse" th:if="${cercle2.administrateurs.size()>1}" th:attr="data-target='.cercles_user_list_'+${cercle2.id}" ><i class="cercle_user_list_toggle glyphicon glyphicon-plus"></i></a>
+					                        <ul th:if="${cercle2.administrateurs.size()>1}" th:attr="class='nav nav-stacked collapse cercles_user_list_'+${cercle2.id}">
 					                            <li class="contact_acolor"  th:each="admin2, iterStat : ${cercle2.administrateurs}"> 													
 													<span th:if="${iterStat.count>1}" th:text="${admin2.pseudo}"></span>   
 					                            </li>
 					                        </ul>
 					                    </td>
                                 		<td>
-                                			<span th:if="${cercle2.utilisateurs.size()>0}" th:text="${cercle2.utilisateurs[0].pseudo}"></span>                                						 
-											<a data-toggle="collapse" th:if="${cercle2.utilisateurs.size()>1}" th:attr="data-target='.cercles_user_list_'+${cercle2.name}" >...</a>
-					                        <ul th:if="${cercle2.utilisateurs.size()>1}" th:attr="class='nav nav-stacked collapse cercles_user_list_'+${cercle2.name}">
+                                			<span th:if="${cercle2.utilisateurs.size()>0}" th:text="${cercle2.utilisateurs[0].pseudo}"></span>   
+                                			&nbsp;<span th:if="${cercle2.utilisateurs.size()>1}" class="cercle_user_list_toggle">...</span>&nbsp;                               						 
+											<a data-toggle="collapse" th:if="${cercle2.utilisateurs.size()>1}" th:attr="data-target='.cercles_user_list_'+${cercle2.id}" ><i class="cercle_user_list_toggle glyphicon glyphicon-plus"></i></a>
+					                        <ul th:if="${cercle2.utilisateurs.size()>1}" th:attr="class='nav nav-stacked collapse cercles_user_list_'+${cercle2.id}">
 					                            <li class="contact_acolor"  th:each="user2, iterStat : ${cercle2.utilisateurs}"> 													
 													<span th:if="${iterStat.count>1}" th:text="${user2.pseudo}"></span>   
 					                            </li>

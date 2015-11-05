@@ -19,6 +19,12 @@
 	vertical-align:top;
 }
 
+.cercle_user_list_toggle
+{
+	font-size:10px;
+	color:black;
+}
+
 .cercle_param_table tr td:last-child
 {
 	width:100%;
