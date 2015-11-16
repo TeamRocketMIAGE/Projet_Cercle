@@ -11,7 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -29,6 +32,9 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
 	
     @Autowired
     FichierRepository fichierRepository;
+    
+    @Autowired 
+    ChatMessageRepository chatMessagesRepository;
     
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -114,11 +120,18 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         // Cercle 1
         //
         Cercle c1 = new Cercle();
+        
         c1.addAdministrateur(uFranck);
         c1.addUtilisateur(uBob);
         c1.addUtilisateur(uChris);
         c1.setName("Google");
         c1.setDescription("Big brother is watching you !");
+        
+        //ChatMessage m1= new ChatMessage("Bob", "salut a tous");
+        //c1.addChatMessage(m1);
+        //chatMessagesRepository.save(m1);
+        
+        
         cercleRepository.save(c1);
         
         uFranck.addCercles_admin(c1);

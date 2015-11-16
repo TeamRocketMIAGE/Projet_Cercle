@@ -4,12 +4,76 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <title>Cercle - Page cercle</title>
+<script type="text/javascript">
+	var url = window.location.search;
+	var websocket = new WebSocket('ws://localhost:8080/chatServerEndpoint/'
+			+ url.substring(url.lastIndexOf("=") + 1));
+	websocket.onmessage = function processMessage(message) {
+		var json = JSON.parse(message.data);
+		var msg = JSON.stringify(json.message);
+		var sConn = "\" vient de se connecter.\"";
+		var sDeco = "\" vient de se déconnecter.\"";
+		if (JSON.stringify(json.message).valueOf() === sConn.valueOf())
+			//si on est l'utilisateur qui vient de se connecter
+			if (json.name == document.getElementById('connectedusername').innerText)
+				document.getElementById('messages').value += 'Vous êtes maintenant connecté au tchat. '
+						+ '\n';
+			else {
+				document.getElementById('messages').value += json.name
+						+ json.message + '\n';
+			}
+		else if (JSON.stringify(json.message).valueOf() === sDeco.valueOf()) {
+			//si on est l'utilisateur qui vient de se déconnecter
+			if (json.name == document.getElementById('connectedusername').innerText)
+				document.getElementById('messages').value += 'Vous êtes maintenant déconnecté du tchat. '
+						+ '\n';
+			else
+				document.getElementById('messages').value += json.name
+						+ json.message + '\n';
+
+		}
+
+		else {//un simple message 
+			document.getElementById('messages').value += json.name + ': '
+					+ json.message + '\n';
+		}
+	}
+
+	function ConnectToChat() {
+		var ConnectedUserName = document.getElementById('connectedusername').innerText;
+		var s = "tryConnectAs " + ConnectedUserName;
+		websocket.send(JSON.stringify({
+			'message' : s
+		}));
+	}
+
+	function send() {
+		var message = document.getElementById('message');
+		websocket.send(JSON.stringify({
+			'message' : message.value
+		}));
+		message.value = "";
+	}
+
+	function closeSocket() {
+		websocket.onclose = function() {
+		};
+		websocket.close();
+	};
+	/*
+	 window.onbeforeunload = function() {
+	 websocket.onclose = function() {
+	 };
+	 websocket.close();
+	 };*/
+</script>
+
 
 <link href="boardstyle/css/bootstrap.min.css" rel="stylesheet" />
 <link href="boardstyle/css/styles.css" rel="stylesheet" />
 
 </head>
-<body>
+<body onload="ConnectToChat()">
 	<!-- header -->
 	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
 		<div class="container-fluid">
@@ -20,12 +84,13 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="user_page"><i
+					<li><a onclick="closeSocket()" href="user_page"><i
 							class="glyphicon glyphicon-arrow-left"></i>&nbsp;Retour à
 							l'espace utilisateur</a></li>
 					<li class="dropdown"><a class="dropdown-toggle" role="button"
 						data-toggle="dropdown" href="#"> <i
-							class="glyphicon glyphicon-user"></i> <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+							class="glyphicon glyphicon-user"></i> <span
+							id="connectedusername" th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
 							<span class="caret"></span>
 					</a>
 						<ul id="g-account-menu" class="dropdown-menu" role="menu">
@@ -203,69 +268,118 @@
 				<!--tabs-->
 				<div class="panel">
 					<ul class="nav nav-tabs" id="myTab">
-						<li class="active"><a href="#chat" data-toggle="tab">Chat</a></li>
+						<li class="active"><a href="#chat" data-toggle="tab">Tchat</a></li>
 						<li><a href="#documents" data-toggle="tab">Documents</a></li>
-
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active well" id="chat">
-							<h1>Chat</h1>
+							<h1>Tchat</h1>
+
+							<div class="container">
+								<div class="row">
+									<div class="col-xs-8">
+										<textarea id="messages" readonly="readonly"
+											style="width: 100%;" rows="15"></textarea>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-6" style="margin-top: 10px;">
+										<input type="text" id="message" class="form-control"
+											placeholder="Ecrivez votre message ici." />
+									</div>
+									<div class="col-xs-2">
+										<button value="Envoyer" class="btn btn-primary btn-sm"
+											onclick="send();" style="width: 100%;">Envoyer</button>
+									</div>
+								</div>
+							</div>
+
+							<!--
+							<textarea id="messages" readonly="readonly" rows="10" cols="45"></textarea>
+							<br></br> <input type="text" id="message" size="50"></input> <input
+								type="button" value="Envoyer" onclick="send();"></input>
+							-->
+
+
+
+
+							<!--
+							<textarea id="messages" readonly="readonly" rows="10" cols="45"></textarea>
+							<canvas id="Moncanvas" width="330" height="200"></canvas>
+							<br></br> 
+							<input type="text" id="message" size="50"></input>
+							<input type="button" value="Envoyer le message" onclick="send();"></input>
+							<input type="button" value="Effacer" onclick="toggleState(this)"></input>
+							<input id="colorChooser" type="color" onchange="chooseColor(colorChooser.value)"></input>
+							-->
 						</div>
 						<div class="tab-pane well" id="documents">
 							<h1>Documents</h1>
 
-							<div class="list-group">
-								<li th:each="unFichier : ${cercle_fichiers}"><a
-									th:href="@{/download(fichier=${unFichier.getId()},cercle=${currentCercle.getId()})}"
-									class="list-group-item">
-										<h4 class="list-group-item-heading"
-											th:text="${unFichier.name}"></h4>
-										<p class="list-group-item-text"
-											th:text="${unFichier.description}"></p>
-								</a></li>
+
+							<table class="table table-striped">
+								<tr>
+									<td id="s"><b>Nom du fichier</b></td>
+									<td id="s"><b>Description</b></td>
+								</tr>
+
+								<tr th:each="unFichier : ${cercle_fichiers}">
+									<td><a th:text="${unFichier.name}"
+										th:href="@{/download(fichier=${unFichier.getId()},cercle=${currentCercle.getId()})}"></a></td>
+									<td th:text="${unFichier.description}"></td>
+									<td><a
+										th:href="@{/download(fichier=${unFichier.getId()},cercle=${currentCercle.getId()})}">
+											<button type="button" class="btn btn-primary btn-xs active" style="margin-top:1px; margin-bottom:1px;">Télécharger</button>
+									</a></td>
+
+									<td><a
+										th:href="@{/deletefichier(fichier=${unFichier.getId()},cercle=${currentCercle.getId()})}">
+											<button type="button" class="btn btn-primary btn-xs active" style="margin-top:1px;margin-bottom:1px;">Supprimer</button>
+									</a></td>
+
+								</tr>
+							</table>
+
+							<button class="btn btn-primary" onclick="$('#formAddFichier').toggle();" style="margin-top: 30px;">Ajouter un fichier</button>
+
+							<div id="formAddFichier" style="display: none">
+								<form class="form-horizontal" method="POST"
+									enctype="multipart/form-data"
+									th:action="@{'/cercle_page/upload'+'?cercleid='+${currentCercle.id}}">
+
+
+									<div class="form-group">
+										<label for="file" class="col-sm-2 control-label">Parcourir...</label>
+										<div class="col-sm-10">
+											<input type="file" class="form-control" id="file" name="file"
+												placeholder="filePath" required="true"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="name" class="col-sm-2 control-label">Nom
+											du fichier</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="name" name="name"
+												placeholder="Nom du Fichier" required="true"></input>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="description" class="col-sm-2 control-label">Description</label>
+										<div class="col-sm-10">
+											<textarea class="form-control" id="description"
+												name="description" rows="3"></textarea>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<button type="submit" class="btn btn-primary">Upload</button>
+										</div>
+									</div>
+
+								</form>
 							</div>
-
-							<form class="form-horizontal" method="POST"
-								enctype="multipart/form-data"
-								th:action="@{'/cercle_page/upload'+'?cercleid='+${currentCercle.id}}">
-
-
-								<div class="form-group">
-									<label for="file" class="col-sm-2 control-label">Browser</label>
-									<div class="col-sm-10">
-										<input type="file" class="form-control" id="file" name="file"
-											placeholder="filePath"></input>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="name" class="col-sm-2 control-label">Nom du
-										fichier</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="name" name="name"
-											placeholder="Nom du Fichier"></input>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label for="description" class="col-sm-2 control-label">Description</label>
-									<div class="col-sm-10">
-										<textarea class="form-control" id="description" name="description" rows="3"></textarea>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" class="btn btn-default">Upload</button>
-									</div>
-								</div>
-								<!-- 
-								Browser: <input type="file" name="file"></input> <br /> 
-								
-								Nom: <input type="text" name="name"></input> <br /> Description:
-								<textarea name="description"></textarea>
-								<br /> <input type="submit" value="Upload"> </input> -->
-							</form>
-
 						</div>
 
 					</div>

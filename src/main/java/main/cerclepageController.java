@@ -36,6 +36,9 @@ public class cerclepageController {
 
 	@Autowired
 	FichierRepository fichierRepository;
+	
+    @Autowired 
+    ChatMessageRepository chatMessagesRepository;
 
 	@RequestMapping(value = "/cercle_page", method = RequestMethod.GET)
 	public String requestCreatePageCercle(@RequestParam(value = "cercle") String cercle_id, Model model,
@@ -201,7 +204,7 @@ public class cerclepageController {
 	 */
 
 	@RequestMapping(value = "/cercle_page/upload{cercleid}", method = RequestMethod.POST)
-	public /* @ResponseBody */ String handleFileUpload(@RequestParam("name") String name,
+	public String handleFileUpload(@RequestParam("name") String name,
 			@RequestParam("description") String description, @RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes, @RequestParam("cercleid") String cercle_id) {
 
@@ -237,7 +240,7 @@ public class cerclepageController {
 					redirectAttributes.addAttribute("cercle", cercle_id);
 					return "redirect:/cercle_page";
 
-					// return "You successfully uploaded " + name + "!";
+					
 				} catch (Exception e) {
 					return "Echec de l'upload du fichier" + name + " => " + e.getMessage();
 				}
@@ -251,11 +254,11 @@ public class cerclepageController {
 	}
 
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
-	public String downloadFichier(RedirectAttributes redirectAttributes,
+	public void downloadFichier(RedirectAttributes redirectAttributes,
 			@RequestParam(value = "fichier") String fichier_id, @RequestParam(value = "cercle") String cercle_id,
 			HttpServletResponse response) throws IOException {
 
-		System.out.println("tentative de téléchargement d'un fichier par un client");
+		//System.out.println("tentative de téléchargement d'un fichier par un client");
 
 		// vérification des droits
 		// obtention de l'id de l'utilisateur connecté
@@ -273,9 +276,8 @@ public class cerclepageController {
 			response.setContentType("application/octet-stream");
 			response.setContentLength((int) f.length());
 
-			// Response header
+			// Reponse header
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + f.getName() + "\"");
-			// Read from the file and write into the response
 			OutputStream os = response.getOutputStream();
 			byte[] buffer = new byte[1024];
 			int len;
@@ -287,22 +289,33 @@ public class cerclepageController {
 			is.close();
 
 		}
+		//redirectAttributes.addAttribute("cercle", cercle_id);
+		//return null;//"redirect:/cercle_page";
+	}
+	
+	@RequestMapping(value = "/deletefichier", method = RequestMethod.GET)
+	public String deleteFichier(RedirectAttributes redirectAttributes,
+			@RequestParam(value = "fichier") String fichier_id, @RequestParam(value = "cercle") String cercle_id,
+			HttpServletResponse response) throws IOException {
+
+		// vérification des droits
+		// obtention de l'id de l'utilisateur connecté
+		Cercle currentCercle = cercleRepository.findById(Long.parseLong(cercle_id));
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String currentUserPseudo = auth.getName();
+		Utilisateur currentUser = (Utilisateur) userRepository.findByPseudo(currentUserPseudo);
+
+		Fichier fichier = (Fichier) fichierRepository.findById(Long.parseLong(fichier_id));
+		File f = fichier.getFileObject();
+		if ((currentUser.estAdmin(currentCercle) || currentUser.estMembre(currentCercle))
+				& (currentCercle.possedeLeFichier(fichier))) {
+			//ON DELETE
+			currentCercle.removeFichier(fichier);
+			cercleRepository.save(currentCercle);
+		}
 		redirectAttributes.addAttribute("cercle", cercle_id);
 
-		/*
-		 * // obtention de l'id de l'utilisateur connecté Authentication auth =
-		 * SecurityContextHolder.getContext().getAuthentication(); String
-		 * currentUserPseudo = auth.getName();
-		 * 
-		 * // ajout du nouvel utilisateur dans sa liste de contact Utilisateur
-		 * currentUser =
-		 * (Utilisateur)userRepository.findByPseudo(currentUserPseudo);
-		 * Utilisateur askingUser =
-		 * (Utilisateur)userRepository.findByPseudo(user_added_confirmed);
-		 * currentUser.addContact(askingUser);
-		 */
-
-		return null;// "/cercle_page";
+		return "redirect:/cercle_page";
 	}
 
 }

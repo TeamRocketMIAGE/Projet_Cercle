@@ -44,6 +44,19 @@ public class Cercle implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER)
 	private List<Fichier> fichiers = new ArrayList<Fichier>();
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	private List<ChatMessage> Chatmessages = new ArrayList<ChatMessage>();
+
+	
+	
+	
+	public List<ChatMessage> getChatMessages() {
+		return Chatmessages;
+	}
+
+	public void addChatMessage(ChatMessage message) {
+		this.Chatmessages.add(message);
+	}
 	
 
 	public List<Fichier> getFichiers() {
@@ -58,9 +71,8 @@ public class Cercle implements Serializable {
 	public Fichier getFichier(int i){
 		return fichiers.get(i);
 	}
-	public void removeFichier(int i){
+	public void removeFichier(Fichier i){
 		this.fichiers.remove(i);
-		//attention au décalage des id des fichiers suivant
 	}
 
 
