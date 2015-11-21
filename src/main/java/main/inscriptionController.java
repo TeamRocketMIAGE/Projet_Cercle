@@ -32,7 +32,6 @@ public class inscriptionController {
 		model.addAttribute("user", new Utilisateur());
 		model.addAttribute("pw_verif", new SimpleString());
 		return "inscription";
-
 	}
 
 	
