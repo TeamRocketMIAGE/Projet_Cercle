@@ -6,10 +6,11 @@ Dans le cadre du projet de M2 d’application web, l’ensemble des fonctionnali
 Ainsi, la version application web contient :
 
 -	La gestion des utilisateurs incluant création/modification (via une page d’administration) d’un profil ainsi que la gestion d’une liste de contact.
--	La gestion des cercles incluant création/modification (via une page d’administration)/suppression d’un cercle. Ajout/Suppression d’utilisateurs au sein du cercle. Gestion des droits des utilisateurs dans le cercle.
+-	La gestion des cercles* incluant création/modification (via une page d’administration)/suppression d’un cercle. Ajout/Suppression d’utilisateurs au sein du cercle. Gestion des droits des utilisateurs dans le cercle.
 -	Gestion d’un système de messagerie propre à chaque cercle et disponible uniquement pour les membres du cercle.
 -	Gestion de l’hébergement de document propre à un cercle (Upload, Download)
 
+* Un cercle est assimilable à un groupe de travail. Chaque cercle contient une liste d'utilisateurs membre et administrateur, un tchat et un système de fichier affilié ainsi que des paramètres qui lui sont propres.
 
 ### L'équipe
 
@@ -44,6 +45,13 @@ Pour l’exécution, la marche à suivre est la suivante.
 Le projet est maintenant disponible dans le navigateur via l’adresse :
 http://localhost:8080/
 
+### Sur le site
+
+Vos identifiants de connexion sont les suivants:
+sebastien
+abc
+
+Ce compte a déjà des cercles enregistrés ainsi que des contacts, un nouveau compte peut bien sur être créé.
 
 
 
