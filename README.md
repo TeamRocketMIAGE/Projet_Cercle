@@ -1,11 +1,9 @@
-# Projet Cercle
+Projet Cercle
+=============
 
-### Présentation
-
-La définition du programme est un gestionnaire de projet multi plateforme complet comprenant différents moyens de communications (vocal, écrit), un gestionnaire de fichier sous forme de arborescence avec différents droits au niveau des cercles, le tout utilisant un système de cryptage au niveau de l'envoi des donnés ainsi que du stockage.
+L'application <b>Cercle</b> est un gestionnaire de projet multi plateforme complet comprenant différents moyens de communications (vocal, écrit), un gestionnaire de fichier sous forme de arborescence avec différents droits au niveau des cercles, le tout utilisant un système de cryptage au niveau de l'envoi des donnés ainsi que du stockage.
 Dans le cadre du projet de M2 d’application web, l’ensemble du programme ne pouvait être complètement implémenté. Nous avons donc dû choisir de nous limiter à certaines tâches. 
 Ainsi, la version application web contient :
-
 
 -	La gestion des utilisateurs incluant création/modification (via une page d’administration) d’un profil ainsi que la gestion d’une liste de contact.
 -	La gestion des cercles incluant création/modification (via une page d’administration)/suppression d’un cercle. Ajout/Suppression d’utilisateurs au sein du cercle. Gestion des droits des utilisateurs dans le cercle.
@@ -19,11 +17,15 @@ Ainsi, la version application web contient :
 - Franck Parra
 - Gauthier Scampini
 
-### L'installation
+
+Installation
+--------------
+
 Le projet ayant été développé via Github, il est disponible à l’adresse suivante :
 https://github.com/TeamRocketMIAGE/Projet_Cercle
 La branche de travail à charger est la branche « effective ».
-Voici les étapes à suivre pour son installation via Eclipse JEE
+Voici les étapes à suivre pour son installation via Eclipse JEE :
+
 0. File > Import…
 0. Git > Projects form Git > Next
 0. Clone Url > Next
