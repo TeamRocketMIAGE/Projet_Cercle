@@ -7,7 +7,7 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 @Configuration
 public class ServerEndpointConfig {
-
+/*
     @Bean
     public ChatServerEndpoint chatServerEndpoint() {
         return new ChatServerEndpoint();
@@ -16,5 +16,5 @@ public class ServerEndpointConfig {
     @Bean
     public ServerEndpointExporter endpointExporter() {
         return new ServerEndpointExporter();
-    } 
+    } */
 }
