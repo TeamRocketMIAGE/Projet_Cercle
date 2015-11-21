@@ -188,12 +188,16 @@
 
                         </ul>
                     </li>
+                    
+                    
 
                 </ul>
 
 
             </div>
             <!-- /col-3 -->
+            
+
 
 
             <div class="col-sm-9">
@@ -217,6 +221,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+		                            <tr class="contact-short-info" th:if="${((user_cercles_admin == null) or (user_cercles_admin.size() == 0)) and ((user_cercles_membre == null) or (user_cercles_membre.size() == 0))}">
+										Vous n'appartenez à aucun cercle pour le moment.
+		                            </tr>
                                 	<tr th:each="cercle : ${user_cercles_admin}">
                                 		<td><i class="glyphicon glyphicon-eye-open" rel="tooltip" title="Vous êtes propriétaire de ce cercle"></i></td>
                                 		<td><a th:text="${cercle.name}" th:href="@{'/cercle_page?cercle='+${cercle.id}}"></a></td>
@@ -291,11 +298,11 @@
 
 
 
-
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="boardstyle/js/bootstrap.min.js"></script>
     <script src="boardstyle/js/scripts.js"></script>
+    
+
 
 
 </body>

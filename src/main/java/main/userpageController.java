@@ -33,7 +33,12 @@ public class userpageController {
 
 		// obtention de l'id de l'utilisateur connecté
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String currentUserPseudo = auth.getName();  
+	    String currentUserPseudo = auth.getName(); 
+	    
+	    /*
+	    if(auth.getAuthorities()!=null)	    
+	    	System.out.println("Autority : " + auth.getAuthorities().toString());
+	    	*/
 	    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	   
 		
 	    System.out.println("Utilisateur actuellement connecté : " + currentUserPseudo);
@@ -54,6 +59,7 @@ public class userpageController {
 	    	
     	// ajout de la liste des demandes extérieures d'ajout  à la liste des contacts de l'utilisateur connecté
     	model.addAttribute("new_contact_to_confirm", currentUser.getAddRequestContacts() );
+    	
     	
     	
 	    /*
@@ -180,4 +186,9 @@ public class userpageController {
     	
     	return "redirect:/user_page";
     }
+    
+    
+    
+
+    
 }

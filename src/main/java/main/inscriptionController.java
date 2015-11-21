@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class inscriptionController {
 	
 	@Autowired
-	 UserRepository ur;
+	UserRepository ur;
 	
 	private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
 	
@@ -42,22 +42,31 @@ public class inscriptionController {
 		if(ur.findByPseudo(user.getPseudo())!=null)
 		{
 			System.out.println("Une personne a essayé de s'inscrire avec un pseudo déjà existant : " + user.getPseudo());
-			redirectAttributes.addAttribute("user_exist", "true");			
+			redirectAttributes.addAttribute("user_exist", "true");	
+			pw_verif.setValue("");
+			user.setPassword("");
 			return "redirect:/inscription";
 		}
 		
 		if (!pw_verif.value.equals(user.getPassword()))
 		{
 			
-			redirectAttributes.addAttribute("same_password", "false");			
+			redirectAttributes.addAttribute("same_password", "false");	
+			pw_verif.setValue("");
+			user.setPassword("");
 			return "redirect:/inscription";
 		}
 					
-		ur.save(user);	
-		redirectAttributes.addAttribute("signin", "ok");
+
 		inMemoryUserDetailsManager.createUser(new User(user.getPseudo(), user.getPassword(), new ArrayList<GrantedAuthority>()));
 				
-		System.out.println("L'utilisateur " + user.getPseudo() + " s'est inscrit.");		
+		System.out.println("L'utilisateur " + user.getPseudo() + " s'est inscrit.");	
+		
+		pw_verif.setValue("");
+		user.setPassword("");
+		ur.save(user);	
+		redirectAttributes.addAttribute("signin", "ok");
+		
 		return "redirect:/login";
 	}
 	
