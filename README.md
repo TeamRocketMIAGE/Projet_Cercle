@@ -1,8 +1,8 @@
 Projet Cercle
 =============
 
-L'application <b>Cercle</b> est un gestionnaire de projet multi plateforme complet comprenant différents moyens de communications (vocal, écrit), un gestionnaire de fichier sous forme de arborescence avec différents droits au niveau des cercles, le tout utilisant un système de cryptage au niveau de l'envoi des donnés ainsi que du stockage.
-Dans le cadre du projet de M2 d’application web, l’ensemble du programme ne pouvait être complètement implémenté. Nous avons donc dû choisir de nous limiter à certaines tâches. 
+L'application <b>Cercle</b> est un gestionnaire de projet multi plateforme complet comprenant différents moyens de communications (vocal, écrit), un gestionnaire de fichiers sous forme d'arborescence avec différents droits au niveau des cercles, le tout utilisant un système de cryptage au niveau de l'envoi des donnés ainsi que du stockage.
+Dans le cadre du projet de M2 d’application web, l’ensemble des fonctionnalités du programme ne pouvaient être complètement implémentées. Nous avons donc dû choisir de nous limiter à certaines tâches. 
 Ainsi, la version application web contient :
 
 -	La gestion des utilisateurs incluant création/modification (via une page d’administration) d’un profil ainsi que la gestion d’une liste de contact.
