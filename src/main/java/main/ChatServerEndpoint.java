@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
@@ -16,7 +15,6 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 
 
 @ServerEndpoint(value = "/chatServerEndpoint/{idcercle}", encoders = {ChatMessageEncoder.class}, decoders = {ChatMessageDecoder.class})
