@@ -1,6 +1,6 @@
 # Projet Cercle
 
-### Presentation
+### Présentation
 
 La définition du programme est un gestionnaire de projet multi plateforme complet comprenant différents moyens de communications (vocal, écrit), un gestionnaire de fichier sous forme de arborescence avec différents droits au niveau des cercles, le tout utilisant un système de cryptage au niveau de l'envoi des donnés ainsi que du stockage.
 Dans le cadre du projet de M2 d’application web, l’ensemble du programme ne pouvait être complètement implémenté. Nous avons donc dû choisir de nous limiter à certaines tâches. 
@@ -24,13 +24,13 @@ Le projet ayant été développé via Github, il est disponible à l’adresse s
 https://github.com/TeamRocketMIAGE/Projet_Cercle
 La branche de travail à charger est la branche « effective ».
 Voici les étapes à suivre pour son installation via Eclipse JEE
-- File > Import…
-- Git > Projects form Git > Next
-- Clone Url > Next
-- Url: https://github.com/TeamRocketMIAGE/Projet_Cercle
-- Les champs suivants sont alors automatiquement mis à jour. Votre compte ayant été rajouté au projet github, vos identifiants permettront le chargement du projet.
+0. File > Import…
+0. Git > Projects form Git > Next
+0. Clone Url > Next
+0. Url: https://github.com/TeamRocketMIAGE/Projet_Cercle
+0. Les champs suivants sont alors automatiquement mis à jour. Votre compte ayant été rajouté au projet github, vos identifiants permettront le chargement du projet.
 
-- La branche de travaille étant la branche effective, toutes les autres branches sont à décocher. 
+La branche de travail étant la branche `effective`, toutes les autres branches sont à décocher. 
 
 Il ne vous reste plus alors qu’à valider avec le bouton finish lors de la prochaine étape.
 Le projet a maintenant été correctement importé dans le compilateur.
