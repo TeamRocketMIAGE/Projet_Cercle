@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/home" , "/inscription", "/telechargement", "/login","/404","/401","/500", "/tarification", "/corlate/**", "/boardstyle/**").permitAll()
+                .antMatchers("/", "/home" , "/inscription", "/telechargement", "/login","/404","/401","/500", "/tarification", "/css/**", "/fonts/**", "/js/**", "/img/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -57,6 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         users.put("Bob","abc,USER,enabled"); 
         users.put("Chris","abc,USER,enabled"); 
         users.put("Franck","abc,USER,enabled"); 
+        users.put("Sebastien","abc,USER,enabled"); 
         
         // autres
         users.put("Marie","abc,USER,enabled"); 

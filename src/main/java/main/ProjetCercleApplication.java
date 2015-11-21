@@ -78,8 +78,13 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         Utilisateur uHugo = new Utilisateur("Hugo", "abc");
         Utilisateur uEmma = new Utilisateur("Emma", "abc");
         Utilisateur uMarie= new Utilisateur("Marie", "abc");
-        Utilisateur uPrincesse= new Utilisateur("Princesse", "abc");   
+        Utilisateur uPrincesse= new Utilisateur("Princesse", "abc");  
         
+        Utilisateur uSebastien = new Utilisateur("Sebastien", "abc");
+        uSebastien.setPrenom("Sébastien");
+        uSebastien.setNom("Etter");
+        
+        userRepository.save(uSebastien);
         userRepository.save(uUser);
         userRepository.save(uBob);
         userRepository.save(uChris);
@@ -89,6 +94,8 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         userRepository.save(uEmma);
         userRepository.save(uMarie);
         userRepository.save(uPrincesse);    
+        
+
       
 
         // Initialisation des listes de contact des utilisateurs principaux
@@ -109,6 +116,12 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         uBob.addContact(uFranck);
         userRepository.save(uBob);
         
+        uSebastien.addContact(uJohnny);
+        userRepository.save(uSebastien);
+        uJohnny.addContact(uSebastien);
+        userRepository.save(uJohnny);
+        
+        
         
         /*
          * 
@@ -124,6 +137,8 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         c1.addAdministrateur(uFranck);
         c1.addUtilisateur(uBob);
         c1.addUtilisateur(uChris);
+        c1.addUtilisateur(uSebastien);
+        c1.addUtilisateur(uJohnny);
         c1.setName("Google");
         c1.setDescription("Big brother is watching you !");
         
@@ -137,9 +152,13 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         uFranck.addCercles_admin(c1);
         uChris.addCercles_membre(c1);
         uBob.addCercles_membre(c1);
+        uSebastien.addCercles_membre(c1);
+        uJohnny.addCercles_membre(c1);
         userRepository.save(uFranck);
         userRepository.save(uChris);
         userRepository.save(uBob);
+        userRepository.save(uSebastien);
+        userRepository.save(uJohnny);
         
         
         // Cercle 2
@@ -167,33 +186,7 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         userRepository.save(uPrincesse);
         userRepository.save(uEmma);
         userRepository.save(uJohnny);
-        
-        /*
-        Cercle c3 = new Cercle();
-        c1.addAdministrateur(uChris);
-        c1.addUtilisateur(uFranck);
-        c1.addUtilisateur(uBob);
-        c1.setName("La branche qui se charge du développement Android de chez Google");
-        c1.setDescription("Ici, c'est pas d'iphone, nous on ne fait pas de la merde !");
-        
-        c1.addSousCercle(c3);
-        
-        cercleRepository.save(c1);
-        cercleRepository.save(c2);
-        cercleRepository.save(c3);
-        */
-        
-        
-
-        /*
-        // fetch all users
-        log.info("Utilisateurs found with findAll():");
-        log.info("-------------------------------");
-        for (Utilisateur utilisateur : userRepository.findAll()) {
-            log.info(utilisateur.toString());
-        }
-        System.out.println();
-        */
+  
 
     }
     
