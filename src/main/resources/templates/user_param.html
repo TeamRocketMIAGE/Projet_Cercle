@@ -54,12 +54,12 @@
 				<div class="col-sm-5 col-sm-offset-1">
 					<div class="form-group">
 						<label>Nom *</label> <input type="text" name="nom"
-							class="form-control" required="required"
+							class="form-control" required="required" maxlength="35"
 							th:value="*{nom}"/>
 					</div>
 					<div class="form-group">
-						<label>Prénom *</label> <input type="text" name="prenom"
-							class="form-control" required="required"
+						<label>Prénom *</label> <input type="text" name="prenom" 
+							class="form-control" required="required" maxlength="35"
 							th:value="*{prenom}"/>
 					</div>
 					
@@ -77,29 +77,29 @@
 			 		
 					<div class="form-group">
 						<label>E-mail *</label> <input type="email" name="mail"
-							class="form-control" required="required"
+							class="form-control" required="required" maxlength="100"
 							th:value="*{mail}"/>
 					</div>
 
 				</div>
 				<div class="col-sm-5">
 					<div class="form-group">
-						<label>Téléphone</label> <input type="text" name="tel"
+						<label>Téléphone</label> <input type="text" name="tel" maxlength="30"
 							class="form-control" 
 							th:value="*{tel}"/>
 					</div>
 					<div class="form-group">
-						<label>Rue</label> <input type="text" name="adresse_rue"
+						<label>Rue</label> <input type="text" name="adresse_rue" maxlength="180"
 							class="form-control" 
 							th:value="*{adresse_rue}"/>
 					</div>
 					<div class="form-group">
-						<label>Ville</label> <input type="text" name="adresse_ville"
+						<label>Ville</label> <input type="text" name="adresse_ville" maxlength="50"
 							class="form-control"
 							th:value="*{adresse_ville}"/>
 					</div>
 					<div class="form-group">
-						<label>Code postal :</label> <input type="text" name="adresse_CP"
+						<label>Code postal :</label> <input type="text" name="adresse_CP" maxlength="5"
 							class="form-control"
 							th:value="*{adresse_CP}"/>
 					</div>
