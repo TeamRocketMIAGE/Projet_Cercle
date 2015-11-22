@@ -75,6 +75,11 @@ public class ProjetCercleApplication extends WebMvcConfigurerAdapter implements 
         Utilisateur uSebastien = new Utilisateur("Sebastien", "abc");
         uSebastien.setPrenom("Sébastien");
         uSebastien.setNom("Etter");
+        uSebastien.setMail("sebastien.etter@gmail.com");
+        uSebastien.setTel("0123456789");
+        uSebastien.setAdresse_rue("Rue");
+        uSebastien.setAdresse_CP("12345");
+        uSebastien.setAdresse_ville("Ville");
         
         userRepository.save(uSebastien);
         userRepository.save(uUser);
