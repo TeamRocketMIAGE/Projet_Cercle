@@ -45,6 +45,7 @@ function setValueFilenameField(){
 	var fullPath = document.getElementById('file').value;
 	var filename = fullPath.replace(/^.*[\\\/]/, '');
     document.getElementById('name').value=filename;
+    
 }
 
 
