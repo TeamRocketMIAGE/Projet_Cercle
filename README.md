@@ -47,12 +47,32 @@ http://localhost:8080/
 
 ### Sur le site
 
+##### Utilisateur
+
+Pour acceder à la page de login, cliquer sur le bouton "Acceder à votre espace de travail".
+
 Vos identifiants de connexion sont les suivants:
 sebastien
 abc
 
-Ce compte a déjà des cercles enregistrés ainsi que des contacts, un nouveau compte peut bien sur être créé.
+Ce compte a déjà des cercles enregistrés ainsi que des contacts, un nouveau compte peut bien sur être créé(bouton "Inscrivez dès vous maintenant").
 
+Vous êtes maintenant sur votre espace de travail. Il comprend deux zones:
+- Social (Comprend la liste de contact et l'ajout de contact)
+- Cercles (Comprend la liste des différents cercles dont l'utilisateur est membre ainsi que des informations sur ce cercle et la possibilité de créer un nouveau cercle)
 
+En haut à droite, un bouton avec le nom d'utilisateur permet de se déconnecter ou d'acceder au paramètres d'un compte utilisateur.
+
+Dans cette fenêtre paramètre, les différentes informations de l'utilisateurs sont rechargés. Il peut ensuite les modifier selont ses souhaits.
+
+##### Cercle
+
+La page cercle est décomposé en plusieurs zones, la zone de gauche comprend:
+- Cercle "nomducercle" (Les différents membres du cercle sont affiché ici ainsi que leur droit, simple utilisateur ou administrateur)
+- Social (Propre à l'utilisateur)
+
+La zone centrale comprend deux onglets:
+- Tchat (Fenêtre permettant de discuter avec les différents membres du cercle)
+- Documents (Permet l'upload/download de fichier accessible par tout les membres du cercle)
 
 
