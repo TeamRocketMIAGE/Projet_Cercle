@@ -112,7 +112,7 @@
                                     <form id="add_contact_form" th:action="@{/user_page/adduser}"
                                           method="post">
                                         <input type="text" th:field="*{user_added.value}"
-                                               value="Saisir un pseudo" name="value" required="required" /> <input type="submit" 
+                                               value="Saisir un pseudo" name="value" required="required" maxlength="20" /> <input type="submit" 
                                                                                                value="Ok" />
                                     </form>
                                 </a>

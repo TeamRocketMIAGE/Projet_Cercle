@@ -76,14 +76,14 @@
 						<tr>
 							<td class="create_cercle_main_cell"><label>Nom du cercle *</label></td>
 							<td class="create_cercle_main_cell">
-								<input type="text" class="form-control" required="required" th:field="*{newcercle.name}"/>
+								<input type="text" class="form-control" required="required" th:field="*{newcercle.name}" maxlength="40"/>
 							</td>							
 						</tr>
 						
 						<tr>
 							<td class="create_cercle_main_cell"><label>Description *</label></td>
 							<td class="create_cercle_main_cell">
-								<textarea class="form-control" required="required" th:field="*{newcercle.description}" rows="5"></textarea>
+								<textarea class="form-control" required="required" th:field="*{newcercle.description}" rows="5" maxlength="220"></textarea>
 							</td>
 						</tr>	
 						
@@ -103,7 +103,7 @@
 								</table>	
 
 								<div>
-									<input type="text" th:field="*{new_admin_member.value1}" placeholder="Nouveau propriétaire..." class="form-control add_user_cercle" />
+									<input type="text" th:field="*{new_admin_member.value1}" placeholder="Nouveau propriétaire..." maxlength="20" class="form-control add_user_cercle" />
 									<input type="submit" name="add_admin" class="btn btn-sm add_user_cercle" value="Ajouter aux propriétaires"/>
 								</div>										
 								
@@ -146,7 +146,7 @@
 									
 
 								<div>
-									<input type="text" th:field="*{new_admin_member.value2}" placeholder="Nouveau membre..." class="form-control add_user_cercle" />
+									<input type="text" maxlength="20" th:field="*{new_admin_member.value2}" placeholder="Nouveau membre..." class="form-control add_user_cercle" />
 									<input type="submit" name="add_member" class="btn btn-sm add_user_cercle" value="Ajouter aux membres"/>
 								</div>										
 								
