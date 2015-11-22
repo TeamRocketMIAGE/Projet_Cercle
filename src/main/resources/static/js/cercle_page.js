@@ -41,6 +41,13 @@ function scrolldown(element) {
 	element.setSelectionRange(element.value.length, element.value.length);
 }
 
+function setValueFilenameField(){
+	var fullPath = document.getElementById('file').value;
+	var filename = fullPath.replace(/^.*[\\\/]/, '');
+    document.getElementById('name').value=filename;
+}
+
+
 function ConnectToChat() {
 	var ConnectedUserName = document.getElementById('connectedusername').innerText;
 	var s = "tryConnectAs " + ConnectedUserName;
