@@ -30,6 +30,15 @@ websocket.onmessage = function processMessage(message) {
 		document.getElementById('messages').value += json.name + ': '
 				+ json.message + '\n';
 	}
+	
+	//on va a la fin de notre file de message pour qu'on voit bien le dernier message envoyé.
+	scrolldown(document.getElementById('messages'));
+	document.getElementById('message').focus();	
+}
+
+function scrolldown(element) {
+	element.focus();
+	element.setSelectionRange(element.value.length, element.value.length);
 }
 
 function ConnectToChat() {
@@ -43,9 +52,9 @@ function ConnectToChat() {
 function send() {
 	var message = document.getElementById('message');
 	// message.value != "" && message.value != " "
-	
+
 	if (/^ *$/.test(message.value)) {
-		//message est vide ou ne contient que des espaces, on ne fait rien
+		// message est vide ou ne contient que des espaces, on ne fait rien
 		message.value = "";
 	} else {
 		websocket.send(JSON.stringify({
