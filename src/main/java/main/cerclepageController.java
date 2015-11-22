@@ -1,5 +1,6 @@
 package main;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,14 +8,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLConnection;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +45,7 @@ public class cerclepageController {
 	public String requestCreatePageCercle(@RequestParam(value = "cercle") String cercle_id, Model model,
 			RedirectAttributes redirectAttributes) {
 
-		System.out.println("Cercle actuel : " + cercle_id);
+		//System.out.println("Cercle actuel : " + cercle_id);
 
 		Cercle currentCercle = cercleRepository.findById(Long.parseLong(cercle_id));
 
@@ -102,12 +106,12 @@ public class cerclepageController {
 	public String addUserRequest(SimpleString user_added, RedirectAttributes redirectAttributes,
 			@RequestParam(value = "cercle") String cercle_id) {
 
-		System.out.println("Demande d'ajout de l'utilisateur suivant : " + user_added.value);
+		//System.out.println("Demande d'ajout de l'utilisateur suivant : " + user_added.value);
 
 		redirectAttributes.addAttribute("cercle", cercle_id);
 
 		if (userRepository.findByPseudo(user_added.value) == null) {
-			System.out.println("L'utilisateur " + user_added.value + " n'existe pas dans la base de données.");
+			//System.out.println("L'utilisateur " + user_added.value + " n'existe pas dans la base de données.");
 			redirectAttributes.addAttribute("add_request", "user_does_not_exist");
 		} else {
 			// obtention de l'id de l'utilisateur connecté
@@ -153,7 +157,7 @@ public class cerclepageController {
 	public String confirmAddUserRequestt(@PathVariable("pseudo") String user_added_confirmed,
 			RedirectAttributes redirectAttributes, @RequestParam(value = "cercle") String cercle_id) {
 
-		System.out.println("Confirmation de la demande d'ajout de l'utilisateur " + user_added_confirmed + ".");
+		//System.out.println("Confirmation de la demande d'ajout de l'utilisateur " + user_added_confirmed + ".");
 
 		redirectAttributes.addAttribute("cercle", cercle_id);
 
@@ -178,7 +182,7 @@ public class cerclepageController {
 	public String refuseAddUserRequestt(@PathVariable("pseudo") String user_added_confirmed,
 			RedirectAttributes redirectAttributes, @RequestParam(value = "cercle") String cercle_id) {
 
-		System.out.println("Refus de la demande d'ajout.");
+		//System.out.println("Refus de la demande d'ajout.");
 
 		redirectAttributes.addAttribute("cercle", cercle_id);
 
@@ -250,6 +254,8 @@ public class cerclepageController {
 
 	}
 
+
+
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
 	public void downloadFichier(RedirectAttributes redirectAttributes,
 			@RequestParam(value = "fichier") String fichier_id, @RequestParam(value = "cercle") String cercle_id,
@@ -264,10 +270,18 @@ public class cerclepageController {
 		String currentUserPseudo = auth.getName();
 		Utilisateur currentUser = (Utilisateur) userRepository.findByPseudo(currentUserPseudo);
 
+		
 		Fichier fichier = (Fichier) fichierRepository.findById(Long.parseLong(fichier_id));
 		File f = fichier.getFileObject();
 		if ((currentUser.estAdmin(currentCercle) || currentUser.estMembre(currentCercle))
 				& (currentCercle.possedeLeFichier(fichier))) {
+					
+			/*
+			InputStream inputStream = new FileInputStream(f); //load the file
+		    IOUtils.copy(inputStream, response.getOutputStream());
+		    response.flushBuffer();*/
+			
+
 			InputStream is = new FileInputStream(f);
 
 			response.setContentType("application/octet-stream");
@@ -283,14 +297,15 @@ public class cerclepageController {
 			}
 			os.flush();
 			os.close();
-			is.close();
-
+			is.close();	
+			response.flushBuffer();
 		}
 		//redirectAttributes.addAttribute("cercle", cercle_id);
-		//return null;//"redirect:/cercle_page";
+
+		//return "redirect:/cercle_page";
 	}
 	
-	@RequestMapping(value = "/deletefichier", method = RequestMethod.GET)
+		@RequestMapping(value = "/deletefichier", method = RequestMethod.GET)
 	public String deleteFichier(RedirectAttributes redirectAttributes,
 			@RequestParam(value = "fichier") String fichier_id, @RequestParam(value = "cercle") String cercle_id,
 			HttpServletResponse response) throws IOException {

@@ -208,7 +208,7 @@
 				<!--tabs-->
 				<div class="panel">
 					<ul class="nav nav-tabs" id="myTab">
-						<li class="active"><a href="#chat" data-toggle="tab">Chat</a></li>
+						<li class="active"  onclick="window.location.href=window.location.href;"><a href="#chat" data-toggle="tab">Chat</a></li>
 						<li><a href="#documents" data-toggle="tab">Documents</a></li>
 					</ul>
 					<div class="tab-content">
@@ -259,15 +259,15 @@
 
 							<table class="table table-striped">
 								<tr>
-									<td id="s"><b>Nom du fichier</b></td>
-									<td id="s"><b>Description</b></td>
+									<td th:if="${cercle_fichiers.size()>0}" id="s"><b>Nom du fichier</b></td>
+									<td th:if="${cercle_fichiers.size()>0}" id="s"><b>Description</b></td>
 								</tr>
 
 								<tr th:each="unFichier : ${cercle_fichiers}">
 									<td><a th:text="${unFichier.name}"
 										th:href="@{/download(fichier=${unFichier.getId()},cercle=${currentCercle.getId()})}"></a></td>
 									<td th:text="${unFichier.description}"></td>
-									<td><a
+									<td ><a
 										th:href="@{/download(fichier=${unFichier.getId()},cercle=${currentCercle.getId()})}">
 											<button type="button" class="btn btn-primary btn-xs active" style="margin-top:1px; margin-bottom:1px;">Télécharger</button>
 									</a></td>

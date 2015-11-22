@@ -43,10 +43,23 @@ public class ChatServerEndpoint {
 		//connection de l'utilisateur, il faut en informer tous les utilisateurs
 		if(arr[0].equals("tryConnectAs")){
 			
+			
 			userSession.getUserProperties().put("username", arr[1]);
 			outMSG.setName(arr[1]);
 			outMSG.setMessage(" vient de se connecter.");
 			//System.out.println(inMSG.getMessage());
+			
+			//A mettre en commentaire si on veut les infos de deconnection envoyé à tous les user
+            try {
+            	//on envoie juste à l'utilisateur pour confirmer sa connection
+            	userSession.getBasicRemote().sendObject(outMSG);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            //
+            
+            
+			/*A décommenter si on veut les infos de deconnection
 	        for(Session s : chatroomUsers){
 	        	if(s.getUserProperties().get("cercleid").equals(idcercle))
 	            try {
@@ -54,9 +67,9 @@ public class ChatServerEndpoint {
 	            } catch (IOException ex) {
 	                ex.printStackTrace();
 	            }
-	        }
+	        }*/
 		}
-		else {
+		else { //on est dans le cas d'un message normal
 			
 			//on sauvegarde le message et on l'envoye
 			ChatMessage MSGaSave = new ChatMessage();
@@ -67,6 +80,8 @@ public class ChatServerEndpoint {
 			//chatMessagesRepository.save(MSGaSave);
 			//currentCercle.addChatMessage(MSGaSave);
 
+			
+			
 			outMSG.setName(userSession.getUserProperties().get("username").toString());
 			outMSG.setMessage(inMSG.getMessage());
 			
@@ -89,6 +104,9 @@ public class ChatServerEndpoint {
 		//System.out.println(userSession.getId()+ "est déconnecté au chat du cercle");
 		
 		//on envoie le MSG
+		
+		/* A décommenter si on veut les infos de deconnection
+		 
 		ChatMessage outMSG = new ChatMessage();
 		outMSG.setName(userSession.getUserProperties().get("username").toString());
 		outMSG.setMessage(" vient de se déconnecter.");		
@@ -99,7 +117,9 @@ public class ChatServerEndpoint {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }
+        }*/ //A décommenter si on veut les infos de deconnection
+        
+        
 	}
 	
 	/**
