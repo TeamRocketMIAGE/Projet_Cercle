@@ -225,10 +225,10 @@
 								<div class="row">
 									<div class="col-xs-6" style="margin-top: 10px;">
 										<input type="text" id="message" class="form-control"
-											placeholder="Ecrivez votre message ici." />
+											placeholder="Ecrivez votre message ici." onkeydown="if (event.keyCode == 13) document.getElementById('btnSend').click()" />
 									</div>
 									<div class="col-xs-2">
-										<button value="Envoyer" class="btn btn-primary btn-sm"
+										<button value="Envoyer" id="btnSend" class="btn btn-primary btn-sm"
 											onclick="send();" style="width: 100%;">Envoyer</button>
 									</div>
 								</div>
