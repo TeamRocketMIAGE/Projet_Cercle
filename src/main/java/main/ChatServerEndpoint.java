@@ -62,7 +62,7 @@ public class ChatServerEndpoint {
 			ChatMessage MSGaSave = new ChatMessage();
 			MSGaSave.setName(userSession.getUserProperties().get("username").toString());
 			MSGaSave.setMessage(inMSG.getMessage());
-			System.out.println("idcercle=" + idcercle);
+			//System.out.println("idcercle=" + idcercle);
 			//Cercle currentCercle = cercleRepository.findById(Long.parseLong(idcercle));
 			//chatMessagesRepository.save(MSGaSave);
 			//currentCercle.addChatMessage(MSGaSave);

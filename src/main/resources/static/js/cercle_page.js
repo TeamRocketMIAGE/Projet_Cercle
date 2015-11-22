@@ -53,7 +53,9 @@ function closeSocket() {
 	};
 	websocket.close();
 };
-/*
- * window.onbeforeunload = function() { websocket.onclose = function() { };
- * websocket.close(); };
- */
+
+window.onbeforeunload = function() { 
+	websocket.onclose = function() { };
+	websocket.close(); 
+};
+ 
