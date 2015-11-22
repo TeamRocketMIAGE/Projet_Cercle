@@ -40,39 +40,45 @@ Le projet a maintenant été correctement importé dans le compilateur.
 
 Pour l’exécution, la marche à suivre est la suivante.
 - Dans le dossier Src/main/java => Main 
-- Clique droit sur le fichier ProjetCercleApplication.java => Run as => Java Application
+- Clic droit sur le fichier ProjetCercleApplication.java => Run as => Java Application
 
 Le projet est maintenant disponible dans le navigateur via l’adresse :
 http://localhost:8080/
 
 ### Sur le site
 
+La page d'accueil permet à l'utilisateur de s'inscrire, de se connecter ou d'aller sur les pages Téléchargement, Inscription et Tarification.
+
+- La page téléchargement permettra de télécharger les différents utilitaires du programme hors application web.
+- La page d'inscription se décrit d'elle-même.
+- La page tarification contient les informations propres à chaque forfait qui sera proposé aux utilisateurs, allant de la gratuité à un abonnement mensuel.
+
 ##### Utilisateur
 
-Pour acceder à la page de login, cliquer sur le bouton "Acceder à votre espace de travail".
+Pour accéder à la page de login, cliquer sur le bouton "Accéder à votre espace de travail".
 
 Vos identifiants de connexion sont les suivants:
-sebastien
+Sébastien
 abc
 
-Ce compte a déjà des cercles enregistrés ainsi que des contacts, un nouveau compte peut bien sur être créé(bouton "Inscrivez dès vous maintenant").
+Ce compte a déjà des cercles enregistrés ainsi que des contacts, un nouveau compte peut bien sûr être créé (bouton "Inscrivez dès vous maintenant").
 
 Vous êtes maintenant sur votre espace de travail. Il comprend deux zones:
-- Social (Comprend la liste de contact et l'ajout de contact)
-- Cercles (Comprend la liste des différents cercles dont l'utilisateur est membre ainsi que des informations sur ce cercle et la possibilité de créer un nouveau cercle)
+- Social (Comprend la liste de contacts et l'ajout de contact)
+- Cercles (Comprend la liste des différents cercles dont l'utilisateur est membre ainsi que des informations sur ce cercle et la possibilité de créer un nouveau cercle, ici une roue cranté permet d'accéder aux paramètres du cercle, paramètres qui permettent de modifier la liste des membres/administrateurs, le nom, la description...)
 
-En haut à droite, un bouton avec le nom d'utilisateur permet de se déconnecter ou d'acceder au paramètres d'un compte utilisateur.
+En haut à droite, un bouton avec le nom d'utilisateur permet de se déconnecter ou d'accéder aux paramètres d'un compte utilisateur.
 
-Dans cette fenêtre paramètre, les différentes informations de l'utilisateurs sont rechargés. Il peut ensuite les modifier selont ses souhaits.
+Dans cette fenêtre paramètre, les différentes informations de l’utilisateur sont rechargées. Il peut ensuite les modifier selon ses souhaits.
 
 ##### Cercle
 
 La page cercle est décomposé en plusieurs zones, la zone de gauche comprend:
-- Cercle "nomducercle" (Les différents membres du cercle sont affiché ici ainsi que leur droit, simple utilisateur ou administrateur)
+- Cercle "nomducercle" (Les différents membres du cercle sont affichés ici ainsi que leur droit, simple utilisateur ou administrateur)
 - Social (Propre à l'utilisateur)
 
 La zone centrale comprend deux onglets:
 - Tchat (Fenêtre permettant de discuter avec les différents membres du cercle)
-- Documents (Permet l'upload/download de fichier accessible par tout les membres du cercle)
+- Documents (Permet l'upload/download de fichier accessible par tous les membres du cercle)
 
 
