@@ -42,10 +42,18 @@ function ConnectToChat() {
 
 function send() {
 	var message = document.getElementById('message');
-	websocket.send(JSON.stringify({
-		'message' : message.value
-	}));
-	message.value = "";
+	// message.value != "" && message.value != " "
+	
+	if (/^ *$/.test(message.value)) {
+		//message est vide ou ne contient que des espaces, on ne fait rien
+		message.value = "";
+	} else {
+		websocket.send(JSON.stringify({
+			'message' : message.value
+		}));
+		message.value = "";
+
+	}
 }
 
 function closeSocket() {
@@ -54,8 +62,8 @@ function closeSocket() {
 	websocket.close();
 };
 
-window.onbeforeunload = function() { 
-	websocket.onclose = function() { };
-	websocket.close(); 
+window.onbeforeunload = function() {
+	websocket.onclose = function() {
+	};
+	websocket.close();
 };
- 
