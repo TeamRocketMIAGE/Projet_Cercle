@@ -56,9 +56,7 @@ public class ChatServerEndpoint {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            //
-            
-            
+            //     
 			/*A décommenter si on veut les infos de deconnection
 	        for(Session s : chatroomUsers){
 	        	if(s.getUserProperties().get("cercleid").equals(idcercle))

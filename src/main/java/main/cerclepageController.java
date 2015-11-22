@@ -280,7 +280,6 @@ public class cerclepageController {
 			InputStream inputStream = new FileInputStream(f); //load the file
 		    IOUtils.copy(inputStream, response.getOutputStream());
 		    response.flushBuffer();*/
-			
 
 			InputStream is = new FileInputStream(f);
 

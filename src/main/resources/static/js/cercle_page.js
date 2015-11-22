@@ -23,7 +23,6 @@ websocket.onmessage = function processMessage(message) {
 		else
 			document.getElementById('messages').value += json.name
 					+ json.message + '\n';
-
 	}
 
 	else {// un simple message
