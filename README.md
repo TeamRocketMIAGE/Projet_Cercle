@@ -51,6 +51,7 @@ http://localhost:8080/
 Utilisation de l'application Web
 --------------------------------
 
+#### Espace public
 
 La page d'accueil permet à l'utilisateur de s'inscrire, de se connecter ou d'aller sur les pages Téléchargement, Inscription et Tarification.
 
@@ -68,7 +69,7 @@ Vos identifiants de connexion sont les suivants:
 <i>Identifiant  :</i> Sebastien
 <i>Mot de passe :</i> abc
 
-Ce compte a déjà des cercles enregistrés ainsi que des contacts. 
+Ce compte a déjà un cercle et un contact d'enregistrés. 
 
 ```
 Un nouveau compte peut bien sûr être créé :
@@ -85,19 +86,29 @@ Vous êtes maintenant sur votre espace de travail. Il comprend deux zones:
 Les paramètres des cercles dont vous êtes propriétaire (indiqués par ![alt text](http://info.catchop.fr/assets/img/glyphicons/glyphicons_051_eye_open.png "une icône représentant un oeil")) peuvent être gérés/modifiés via un clic sur le bouton ![alt text](http://shareyouride.com/assets/premium/glyphicons_pro/glyphicons_halflings/png/glyphicons_halflings_018_cog@2x.png "Roue cranté") au niveau du cercle souhaité de la liste. C'est aussi depuis cette zone que vous pouvez créer un nouveau cercle (via le bouton rouge en-dessous de la liste).
 
 
-En haut à droite, un bouton avec le nom d'utilisateur permet de se déconnecter ou d'accéder aux paramètres du compte utilisateur courant. Ces dernières fonctionnalités sont accessibles depuis toutes les pages <b>de l'espace utilisateur</b>.
+En haut à droite, un bouton avec le nom d'utilisateur permet de se déconnecter ou d'accéder aux paramètres du compte utilisateur courant. Ces dernières fonctionnalités sont accessibles au même endroit depuis toutes les pages <b>de l'espace utilisateur</b>.
 
 
 ##### Page d'un cercle
 
-La page <b>Cercle</b> est décomposée en plusieurs zones.
+En cliquant sur le nom d'un cercle dans la liste de vos cercles (au niveau de la page principale de l'espace utilisateur), vous accédez à la page <b>Cercle</b>.
+Cette page est décomposée en plusieurs zones.
 
 La zone de gauche comprend:
 - Cercle "nomducercle" : les différents membres du cercle sont affichés ici ainsi que leurs droits respectifs (simple membre, ou administrateur)
-- Social : liste des contacts personnels de l'utilisateur.
+- Social : liste des contacts personnels de l'utilisateur (comme sur la page principale de l'espace utilisateur).
 
 La zone centrale comprend deux onglets :
 - Chat : permet de discuter avec les différents membres du cercle (note: l'historique du chat propre au cercle n'a pas encore été implémenté);
 - Documents : permet l'upload/download de fichiers accessibles à tous les membres du cercle.
+
+Pour tester ces 2 fonctionnalités (chat et partage de fichiers propres à un cercle donné), et en supposant que vous êtes sur la page du cercle <i>Google</i> (cercle dont l'utilisateur Sebastien est membre) : 
+
+0. Gardez votre fenêtre actuelle ouverte, ouvrez en plus de cela une fenêtre de navigation privée via `Google Chrome`, et allez sur le site.
+0. Toujours dans cette fenêtre de navigation privée, connectez-vous avec un compte différent du vôtre. Par exemple, avec l'identifiant Johnny (mot de passe : abc), qui est aussi membre du cercle <i>Google</i>. 
+0. Toujours dans cette fenêtre de navigation privée, accédez à la page du cercle <i>Google</i>. 
+
+Vous pouvez ainsi expérimenter le chat et le partage de fichiers, en switchant entre votre fenêtre principal du navigateur (connecté en tant que Sebastien) et votre fenêtre de navigation privée (connecté en tant que Johnny). 
+
 
 
