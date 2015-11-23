@@ -24,7 +24,7 @@ Installation
 
 Le projet ayant été développé via Github, il est disponible à l’adresse suivante :
 https://github.com/TeamRocketMIAGE/Projet_Cercle
-La branche de travail à charger est la branche « effective ».
+La branche de travail à charger est la branche `ajoutChatFtp`.
 Voici les étapes à suivre pour son installation via Eclipse JEE :
 
 0. File > Import…
@@ -35,50 +35,69 @@ Voici les étapes à suivre pour son installation via Eclipse JEE :
 
 La branche de travail étant la branche `ajoutChatFtp`, toutes les autres branches sont à décocher. 
 
-Il ne vous reste plus alors qu’à valider avec le bouton finish lors de la prochaine étape.
-Le projet a maintenant été correctement importé dans le compilateur.
+Il ne vous reste plus alors qu’à valider avec le bouton "finish" lors de la prochaine étape.
+Le projet a maintenant été correctement importé dans Eclipse.
 
 Pour l’exécution, la marche à suivre est la suivante.
-- Dans le dossier Src/main/java => Main 
+- Dans le dossier src/main/java => Main 
 - Clic droit sur le fichier ProjetCercleApplication.java => Run as => Java Application
 
-Le projet est maintenant disponible dans le navigateur via l’adresse :
+Quelques soucis sont encore rencontrés avec le navigateur `Mozilla Firefox` au niveau de la fonctionnalité 'Chat' de l'application. Il est donc préférable de tester l'application via `Google Chrome`.
+
+L'application Web est disponible dans le navigateur via l’adresse :
 http://localhost:8080/
 
-### Sur le site
+
+Utilisation de l'application Web
+--------------------------------
+
 
 La page d'accueil permet à l'utilisateur de s'inscrire, de se connecter ou d'aller sur les pages Téléchargement, Inscription et Tarification.
 
-- La page téléchargement permettra de télécharger les différents utilitaires du programme hors application web.
-- La page d'inscription se décrit d'elle-même.
-- La page tarification contient les informations propres à chaque forfait qui sera proposé aux utilisateurs, allant de la gratuité à un abonnement mensuel.
+- La page "Téléchargement" permettra de télécharger les différents utilitaires du programme hors application web.
+- La page "Inscription" se décrit d'elle-même.
+- La page "Tarification" contient les informations propres à chaque forfait qui sera proposé aux utilisateurs, allant de la gratuité à un abonnement mensuel.
 
-##### Utilisateur
+#### Espace utilisateur
 
-Pour accéder à la page de login, cliquer sur le bouton "Accéder à votre espace de travail".
+##### Connexion
+
+Pour accéder à la page de login, cliquer sur le bouton "Accéder à votre espace de travail" depuis la page d'accueil.
 
 Vos identifiants de connexion sont les suivants:
-Sébastien
-abc
+<i>Identifiant  :</i> Sebastien
+<i>Mot de passe :</i> abc
 
-Ce compte a déjà des cercles enregistrés ainsi que des contacts, un nouveau compte peut bien sûr être créé (bouton "Inscrivez dès vous maintenant").
+Ce compte a déjà des cercles enregistrés ainsi que des contacts. 
+
+```
+Un nouveau compte peut bien sûr être créé :
+- depuis toutes les pages hors espace utilisateur du site, en cliquant sur l'onglet "Inscription" ;
+- depuis la page d'accueil, en cliquant sur le bouton "Inscrivez dès vous maintenant".
+```
+
+
+##### Page principale
 
 Vous êtes maintenant sur votre espace de travail. Il comprend deux zones:
-- Social (Comprend la liste de contacts et l'ajout de contact)
-- Cercles (Comprend la liste des différents cercles dont l'utilisateur est membre ainsi que des informations sur ce cercle et la possibilité de créer un nouveau cercle, ici une roue cranté permet d'accéder aux paramètres du cercle, paramètres qui permettent de modifier la liste des membres/administrateurs, le nom, la description...)
+- <b>Social</b> : permet l'accès direct la liste de contacts, l'ajout de contact, et éventuellement à la confirmation des demandes d'ajout (visible seulement si un ou plusieurs utilisateurs vous a envoyé une demande d'ajout).
+- <b>Cercles</b> : comprend la liste des différents cercles dont l'utilisateur est membre ou administrateur, avec les informations spécifiques à chaque cercle (nom, description, administrateurs et membres).
+Les paramètres des cercles dont vous êtes propriétaire (indiqués par -![alt text](http://info.catchop.fr/assets/img/glyphicons/glyphicons_051_eye_open.png "une icône représentant un oeil")) peuvent être gérés/modifiés via un clic sur le bouton -![alt text](http://shareyouride.com/assets/premium/glyphicons_pro/glyphicons_halflings/png/glyphicons_halflings_018_cog@2x.png "Roue cranté") au niveau du cercle souhaité de la liste. C'est aussi depuis cette zone que vous pouvez créer un nouveau cercle (via le bouton rouge en-dessous de la liste).
 
-En haut à droite, un bouton avec le nom d'utilisateur permet de se déconnecter ou d'accéder aux paramètres d'un compte utilisateur.
 
-Dans cette fenêtre paramètre, les différentes informations de l’utilisateur sont rechargées. Il peut ensuite les modifier selon ses souhaits.
+En haut à droite, un bouton avec le nom d'utilisateur permet de se déconnecter ou d'accéder aux paramètres du compte utilisateur courant. Ces dernières fonctionnalités sont accessibles depuis toutes les pages <b>de l'espace utilisateur</b>.
 
-##### Cercle
 
-La page cercle est décomposé en plusieurs zones, la zone de gauche comprend:
-- Cercle "nomducercle" (Les différents membres du cercle sont affichés ici ainsi que leur droit, simple utilisateur ou administrateur)
-- Social (Propre à l'utilisateur)
+##### Page d'un cercle
 
-La zone centrale comprend deux onglets:
-- Tchat (Fenêtre permettant de discuter avec les différents membres du cercle)
-- Documents (Permet l'upload/download de fichier accessible par tous les membres du cercle)
+La page <b>Cercle</b> est décomposée en plusieurs zones.
+
+La zone de gauche comprend:
+- Cercle "nomducercle" : les différents membres du cercle sont affichés ici ainsi que leurs droits respectifs (simple membre, ou administrateur)
+- Social : liste des contacts personnels de l'utilisateur.
+
+La zone centrale comprend deux onglets :
+- Chat : permet de discuter avec les différents membres du cercle (note: l'historique du chat propre au cercle n'a pas encore été implémenté);
+- Documents : permet l'upload/download de fichiers accessibles à tous les membres du cercle.
 
 
