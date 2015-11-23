@@ -36,16 +36,9 @@ public class userparamController {
 	}
 
 	@RequestMapping(value = "/user_param", method = RequestMethod.POST, params="submit=Enregistrer les modifications" )
-	public String requestModificationUserSave(@Valid Utilisateur user, BindingResult bindingResult,
+	public String requestModificationUserSave(Utilisateur user, 
 			RedirectAttributes redirectAttributes, Model model) {
 
-
-		if(bindingResult.hasErrors())
-		{
-			
-			model.addAttribute("user", user);
-			return "user_param";	
-		}
 		
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();

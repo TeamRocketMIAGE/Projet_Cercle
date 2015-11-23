@@ -29,12 +29,9 @@ public class Utilisateur implements Serializable  {
 	private String password;
 	
 	
-	@Size(min=2, max=35)
-	private String nom;
 	
-	@Size(min=2, max=35)
-	private String prenom;
-	
+	private String nom;	
+	private String prenom;	
 	private String adresse_rue;
 	private String adresse_CP;
 	private String adresse_ville;

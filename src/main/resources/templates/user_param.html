@@ -51,10 +51,7 @@
 		<form id="main-param-form" class="param-form" method="post" th:object="${user}">
 
 			
-			<p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}">Nom invalide</p>
-			<p th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}">Prénom invalide</p>
-			
-
+	
 
 			<div class="row">
 				<div class="col-sm-5 col-sm-offset-1">

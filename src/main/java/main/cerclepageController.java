@@ -77,14 +77,18 @@ public class cerclepageController {
 				// ajout des contacts de l'utilisateur actuel dans la requête
 				model.addAttribute("contacts", currentUser.getContact());
 
+				/*
 				SimpleString user_added = new SimpleString("");
 				// ajout de la variable qui va permettre de stocker le pseudo
 				// d'un utilisateur à ajouter dans les contacts
 				model.addAttribute("user_added", user_added);
+				*/
 
+				/*
 				// ajout de la liste des demandes extérieures d'ajout à la liste
 				// des contacts de l'utilisateur connecté
 				model.addAttribute("new_contact_to_confirm", currentUser.getAddRequestContacts());
+				*/
 
 				// ajout de la liste des fichiers du cercle
 				model.addAttribute("cercle_fichiers", currentCercle.getFichiers());
@@ -102,6 +106,7 @@ public class cerclepageController {
 		return ("redirect:/user_page");
 	}
 
+	/*
 	@RequestMapping(value = "/cercle_page/adduser", method = RequestMethod.POST)
 	public String addUserRequest(SimpleString user_added, RedirectAttributes redirectAttributes,
 			@RequestParam(value = "cercle") String cercle_id) {
@@ -152,7 +157,9 @@ public class cerclepageController {
 		return "redirect:/cercle_page";
 
 	}
+*/
 
+	/*
 	@RequestMapping(value = "/cercle_page/confirm_adduser/{pseudo}", method = RequestMethod.POST, params = "confirm_add=Accepter")
 	public String confirmAddUserRequestt(@PathVariable("pseudo") String user_added_confirmed,
 			RedirectAttributes redirectAttributes, @RequestParam(value = "cercle") String cercle_id) {
@@ -177,7 +184,8 @@ public class cerclepageController {
 
 		return "redirect:/cercle_page";
 	}
-
+*/
+	/*
 	@RequestMapping(value = "/cercle_page/confirm_adduser/{pseudo}", method = RequestMethod.POST, params = "confirm_add=Refuser")
 	public String refuseAddUserRequestt(@PathVariable("pseudo") String user_added_confirmed,
 			RedirectAttributes redirectAttributes, @RequestParam(value = "cercle") String cercle_id) {
@@ -199,7 +207,7 @@ public class cerclepageController {
 
 		return "redirect:/cercle_page";
 	}
-
+*/
 	/*
 	 * La suite du code permet de gérer les fichiers du cercle
 	 */
