@@ -51,7 +51,11 @@ http://localhost:8080/
 Utilisation de l'application Web
 --------------------------------
 
+--------------
+
 #### Espace public
+
+--------------
 
 La page d'accueil permet à l'utilisateur de s'inscrire, de se connecter ou d'aller sur les pages Téléchargement, Inscription et Tarification.
 
@@ -59,7 +63,11 @@ La page d'accueil permet à l'utilisateur de s'inscrire, de se connecter ou d'al
 - La page "Inscription" se décrit d'elle-même.
 - La page "Tarification" contient les informations propres à chaque forfait qui sera proposé aux utilisateurs, allant de la gratuité à un abonnement mensuel.
 
+--------------
+
 #### Espace utilisateur
+
+--------------
 
 ##### Connexion
 
@@ -77,6 +85,7 @@ Un nouveau compte peut bien sûr être créé :
 - depuis la page d'accueil, en cliquant sur le bouton "Inscrivez dès vous maintenant".
 ```
 
+--------------
 
 ##### Page principale
 
@@ -88,8 +97,10 @@ Les paramètres des cercles dont vous êtes propriétaire (indiqués par ![alt t
 
 En haut à droite, un bouton avec le nom d'utilisateur permet de se déconnecter ou d'accéder aux paramètres du compte utilisateur courant. Ces dernières fonctionnalités sont accessibles au même endroit depuis toutes les pages <b>de l'espace utilisateur</b>.
 
+--------------
 
 ##### Page d'un cercle
+
 
 En cliquant sur le nom d'un cercle dans la liste de vos cercles (au niveau de la page principale de l'espace utilisateur), vous accédez à la page <b>Cercle</b>.
 Cette page est décomposée en plusieurs zones.
@@ -108,7 +119,7 @@ Pour tester ces 2 fonctionnalités (chat et partage de fichiers propres à un ce
 0. Toujours dans cette fenêtre de navigation privée, connectez-vous avec un compte différent du vôtre. Par exemple, avec l'identifiant Johnny (mot de passe : abc), qui est aussi membre du cercle <i>Google</i>. 
 0. Toujours dans cette fenêtre de navigation privée, accédez à la page du cercle <i>Google</i>. 
 
-Vous pouvez ainsi expérimenter le chat et le partage de fichiers, en switchant entre votre fenêtre principal du navigateur (connecté en tant que Sebastien) et votre fenêtre de navigation privée (connecté en tant que Johnny). 
+Vous pouvez ainsi expérimenter le chat et le partage de fichiers, en switchant entre votre fenêtre principale du navigateur (connecté en tant que Sebastien) et votre fenêtre de navigation privée (connecté en tant que Johnny). 
 
 
 
