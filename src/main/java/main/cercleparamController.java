@@ -316,7 +316,12 @@ public class cercleparamController {
 		{
 			System.out.println ("### Test ### - Admin supprimé : " + removed_a.getPseudo());
 			
-			List<Cercle> removed_a_cercles_admin = removed_a.getCercles_admin();
+			
+			List<Cercle> removed_a_cercles_admin = new ArrayList<Cercle>();
+			for(Cercle ccc : removed_a.getCercles_admin())
+				removed_a_cercles_admin.add(ccc);
+			
+
 			int i=0;
 			for( ; i<removed_a_cercles_admin.size() && removed_a_cercles_admin.get(i).getId() != tmp.getId() ; i++);
 			if (i<removed_a_cercles_admin.size())
@@ -325,13 +330,23 @@ public class cercleparamController {
 				removed_a.setCercles_admin(removed_a_cercles_admin);
 			}
 			userRepository.save(removed_a);
+			
+			
+	    	for(Cercle ctmp : removed_a.getCercles_admin())
+	    		System.out.println("### Test ### - après Admin supprimé : " + ctmp.getName()  + " est un cercle dont est admin " + removed_a.getPseudo());
+			
 		}
 		
 		for(Utilisateur removed_m : tmp_previous_members)
 		{
 			System.out.println ("### Test ### - Membre supprimé : " + removed_m.getPseudo());
 			
-			List<Cercle> removed_m_cercles_member = removed_m.getCercles_admin();
+			List<Cercle> removed_m_cercles_member = new ArrayList<Cercle>();
+			for(Cercle ccc : removed_m.getCercles_membre())
+				removed_m_cercles_member.add(ccc);
+
+			
+			
 			int i=0;
 			for( ; i<removed_m_cercles_member.size() && removed_m_cercles_member.get(i).getId() != tmp.getId() ; i++);
 			if (i<removed_m_cercles_member.size())
@@ -340,6 +355,9 @@ public class cercleparamController {
 				removed_m.setCercles_membre(removed_m_cercles_member);
 			}
 			userRepository.save(removed_m);
+			
+	    	for(Cercle ctmp : removed_m.getCercles_membre())
+	    		System.out.println("### Test ### - après Mmebre supprimé : " + ctmp.getName()  + " est un cercle dont est membre " + removed_m.getPseudo());
 		}		
 		
 				
