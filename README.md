@@ -33,7 +33,7 @@ Voici les étapes à suivre pour son installation via Eclipse JEE :
 0. Url: https://github.com/TeamRocketMIAGE/Projet_Cercle
 0. Les champs suivants sont alors automatiquement mis à jour. Votre compte ayant été rajouté au projet github, vos identifiants permettront le chargement du projet.
 
-La branche de travail étant la branche `effective`, toutes les autres branches sont à décocher. 
+La branche de travail étant la branche `ajoutChatFtp`, toutes les autres branches sont à décocher. 
 
 Il ne vous reste plus alors qu’à valider avec le bouton finish lors de la prochaine étape.
 Le projet a maintenant été correctement importé dans le compilateur.
