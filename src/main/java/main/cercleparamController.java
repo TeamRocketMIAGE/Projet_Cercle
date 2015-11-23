@@ -137,8 +137,7 @@ public class cercleparamController {
 				
 		tmp.deleteAdministrateur( userRepository.findByPseudo(deletedAdmin));
 		
-		System.out.println("### Test ### - " + deletedAdmin + " va être supprimé des administrateurs");
-		
+	
 		session.setAttribute("paramcercle", tmp);
 		
 		redirectAttributes.addAttribute("cercle", cercle_id);
@@ -202,7 +201,6 @@ public class cercleparamController {
 		
 		session.setAttribute("paramcercle", tmp);
 		
-		System.out.println("### Test ### - " + deletedMember + " va être supprimé des membres");
 		
 		redirectAttributes.addAttribute("cercle", cercle_id);
 		
@@ -230,16 +228,6 @@ public class cercleparamController {
 		List<Utilisateur> tmp_previous_members = new ArrayList<Utilisateur>();
 		for(Utilisateur um : previous_members)
 			tmp_previous_members.add(um);
-		
-    	for(Utilisateur uuu : tmp_previous_admins)
-    		System.out.println ("### Test Coté cercle ### - " + uuu.getPseudo() + " ETAIT un admin du cercle qui vient juste d'être modifié");
-       	for(Utilisateur uuu : tmp_previous_members)
-    		System.out.println ("### Test Coté cercle ### - " + uuu.getPseudo() + " ETAIT un membre du cercle qui vient juste d'être modifié");
-		
-    	for(Utilisateur uuu : tmp.getAdministrateurs())
-    		System.out.println ("### Test Coté cercle ### - " + uuu.getPseudo() + " est un admin du cercle qui vient juste d'être modifié");
-       	for(Utilisateur uuu : tmp.getUtilisateurs())
-    		System.out.println ("### Test Coté cercle ### - " + uuu.getPseudo() + " est un membre du cercle qui vient juste d'être modifié");
 		
 		
 		tmp.setName(paramCercle.getName());
@@ -277,7 +265,6 @@ public class cercleparamController {
 			{
 				// l'admin actuel n'était pas encore administrateur du cercle avant la modification validée de ce cercle
 				a.addCercles_admin(tmp);	
-				System.out.println ("### Test Coté user ### - Boucle 1 - Traitement deu nouvel admin " + a.getPseudo());
 			}
 			userRepository.save(a);	
 			
@@ -314,7 +301,6 @@ public class cercleparamController {
 		
 		for(Utilisateur removed_a : tmp_previous_admins)
 		{
-			System.out.println ("### Test ### - Admin supprimé : " + removed_a.getPseudo());
 			
 			
 			List<Cercle> removed_a_cercles_admin = new ArrayList<Cercle>();
@@ -332,15 +318,12 @@ public class cercleparamController {
 			userRepository.save(removed_a);
 			
 			
-	    	for(Cercle ctmp : removed_a.getCercles_admin())
-	    		System.out.println("### Test ### - après Admin supprimé : " + ctmp.getName()  + " est un cercle dont est admin " + removed_a.getPseudo());
-			
+
 		}
 		
 		for(Utilisateur removed_m : tmp_previous_members)
 		{
-			System.out.println ("### Test ### - Membre supprimé : " + removed_m.getPseudo());
-			
+						
 			List<Cercle> removed_m_cercles_member = new ArrayList<Cercle>();
 			for(Cercle ccc : removed_m.getCercles_membre())
 				removed_m_cercles_member.add(ccc);
@@ -356,8 +339,6 @@ public class cercleparamController {
 			}
 			userRepository.save(removed_m);
 			
-	    	for(Cercle ctmp : removed_m.getCercles_membre())
-	    		System.out.println("### Test ### - après Mmebre supprimé : " + ctmp.getName()  + " est un cercle dont est membre " + removed_m.getPseudo());
 		}		
 		
 				

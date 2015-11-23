@@ -38,7 +38,6 @@ public class userpageController {
 	    	*/
 	    Utilisateur currentUser = (Utilisateur)userRepository.findByPseudo(currentUserPseudo);	   
 		
-	    System.out.println("Utilisateur actuellement connecté : " + currentUserPseudo);
 		
 	    /*
 	     * Informations relatives aux contacts à transmettre à la page
@@ -64,10 +63,7 @@ public class userpageController {
 	     */
     	
     	
-    	for(Cercle ctmp : currentUser.getCercles_admin())
-    		System.out.println(ctmp.getName() + " est un cercle administré par " + currentUserPseudo);
-    	for(Cercle ctmp : currentUser.getCercles_membre())
-    		System.out.println(ctmp.getName()  + " est un cercle dont est membre " + currentUserPseudo);
+
 
     	
     	model.addAttribute("user_cercles_admin", currentUser.getCercles_admin());  
