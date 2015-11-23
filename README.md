@@ -5,7 +5,7 @@ L'application <b>Cercle</b> est un gestionnaire de projet multi plateforme compl
 Dans le cadre du projet de M2 d’application web, l’ensemble des fonctionnalités du programme ne pouvaient être complètement implémentées. Nous avons donc dû choisir de nous limiter à certaines tâches. 
 Ainsi, la version application web contient :
 
--	La gestion des utilisateurs incluant création/modification (via une page d’administration) d’un profil ainsi que la gestion d’une liste de contact.
+-	La gestion des utilisateurs incluant création/modification (via une page d’administration) d’un profil ainsi que la gestion d’une liste de contacts.
 -	La gestion des cercles incluant création/modification (via une page d’administration)/suppression d’un cercle. Ajout/Suppression d’utilisateurs au sein du cercle. Gestion des droits des utilisateurs dans le cercle.
 -	Gestion d’un système de messagerie propre à chaque cercle et disponible uniquement pour les membres du cercle.
 -	Gestion de l’hébergement de document propre à un cercle (Upload, Download)
@@ -14,9 +14,9 @@ Un cercle est assimilable à un groupe de travail. Chaque cercle contient une li
 
 ### L'équipe
 
-- Christopher Girod
-- Franck Parra
-- Gauthier Scampini
+- Christopher GIROD
+- Franck PARRA
+- Gauthier SCAMPINI
 
 
 Installation
@@ -82,7 +82,7 @@ Un nouveau compte peut bien sûr être créé :
 Vous êtes maintenant sur votre espace de travail. Il comprend deux zones:
 - <b>Social</b> : permet l'accès direct la liste de contacts, l'ajout de contact, et éventuellement à la confirmation des demandes d'ajout (visible seulement si un ou plusieurs utilisateurs vous a envoyé une demande d'ajout).
 - <b>Cercles</b> : comprend la liste des différents cercles dont l'utilisateur est membre ou administrateur, avec les informations spécifiques à chaque cercle (nom, description, administrateurs et membres).
-Les paramètres des cercles dont vous êtes propriétaire (indiqués par -![alt text](http://info.catchop.fr/assets/img/glyphicons/glyphicons_051_eye_open.png "une icône représentant un oeil")) peuvent être gérés/modifiés via un clic sur le bouton -![alt text](http://shareyouride.com/assets/premium/glyphicons_pro/glyphicons_halflings/png/glyphicons_halflings_018_cog@2x.png "Roue cranté") au niveau du cercle souhaité de la liste. C'est aussi depuis cette zone que vous pouvez créer un nouveau cercle (via le bouton rouge en-dessous de la liste).
+Les paramètres des cercles dont vous êtes propriétaire (indiqués par ![alt text](http://info.catchop.fr/assets/img/glyphicons/glyphicons_051_eye_open.png "une icône représentant un oeil")) peuvent être gérés/modifiés via un clic sur le bouton ![alt text](http://shareyouride.com/assets/premium/glyphicons_pro/glyphicons_halflings/png/glyphicons_halflings_018_cog@2x.png "Roue cranté") au niveau du cercle souhaité de la liste. C'est aussi depuis cette zone que vous pouvez créer un nouveau cercle (via le bouton rouge en-dessous de la liste).
 
 
 En haut à droite, un bouton avec le nom d'utilisateur permet de se déconnecter ou d'accéder aux paramètres du compte utilisateur courant. Ces dernières fonctionnalités sont accessibles depuis toutes les pages <b>de l'espace utilisateur</b>.
