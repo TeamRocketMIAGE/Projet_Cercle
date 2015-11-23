@@ -45,8 +45,16 @@ public class cercleparamController {
 					session.setAttribute("paramcercle", currentCercle);
 					model.addAttribute("paramcercle", currentCercle);	
 					
-					session.setAttribute("paramcercle_previous_admins", currentCercle.getAdministrateurs());
-					session.setAttribute("paramcercle_previous_members", currentCercle.getUtilisateurs());
+					
+					List<Utilisateur> tmp_previous_admins = new ArrayList<Utilisateur>();
+					for(Utilisateur ua : currentCercle.getAdministrateurs())
+						tmp_previous_admins.add(ua);
+					List<Utilisateur> tmp_previous_members = new ArrayList<Utilisateur>();
+					for(Utilisateur um : currentCercle.getUtilisateurs())
+						tmp_previous_members.add(um);
+					
+					session.setAttribute("paramcercle_previous_admins", tmp_previous_admins);
+					session.setAttribute("paramcercle_previous_members", tmp_previous_members);
 				}
 				else
 				{					
@@ -129,6 +137,8 @@ public class cercleparamController {
 				
 		tmp.deleteAdministrateur( userRepository.findByPseudo(deletedAdmin));
 		
+		System.out.println("### Test ### - " + deletedAdmin + " va être supprimé des administrateurs");
+		
 		session.setAttribute("paramcercle", tmp);
 		
 		redirectAttributes.addAttribute("cercle", cercle_id);
@@ -192,6 +202,8 @@ public class cercleparamController {
 		
 		session.setAttribute("paramcercle", tmp);
 		
+		System.out.println("### Test ### - " + deletedMember + " va être supprimé des membres");
+		
 		redirectAttributes.addAttribute("cercle", cercle_id);
 		
 		return "redirect:/cercle_param";
@@ -219,10 +231,15 @@ public class cercleparamController {
 		for(Utilisateur um : previous_members)
 			tmp_previous_members.add(um);
 		
+    	for(Utilisateur uuu : tmp_previous_admins)
+    		System.out.println ("### Test Coté cercle ### - " + uuu.getPseudo() + " ETAIT un admin du cercle qui vient juste d'être modifié");
+       	for(Utilisateur uuu : tmp_previous_members)
+    		System.out.println ("### Test Coté cercle ### - " + uuu.getPseudo() + " ETAIT un membre du cercle qui vient juste d'être modifié");
+		
     	for(Utilisateur uuu : tmp.getAdministrateurs())
-    		System.out.println ("### Test ### - " + uuu.getPseudo() + " est un admin du cercle qui vient juste d'être modifié");
+    		System.out.println ("### Test Coté cercle ### - " + uuu.getPseudo() + " est un admin du cercle qui vient juste d'être modifié");
        	for(Utilisateur uuu : tmp.getUtilisateurs())
-    		System.out.println ("### Test ### - " + uuu.getPseudo() + " est un membre du cercle qui vient juste d'être modifié");
+    		System.out.println ("### Test Coté cercle ### - " + uuu.getPseudo() + " est un membre du cercle qui vient juste d'être modifié");
 		
 		
 		tmp.setName(paramCercle.getName());
@@ -248,7 +265,7 @@ public class cercleparamController {
 			
 				
 				int j=0;
-				for(; j<tmp_previous_admins.size() && tmp_previous_admins.get(j).getPseudo() != a.getPseudo() ; j++);
+				for(; j<tmp_previous_admins.size() && !tmp_previous_admins.get(j).getPseudo().equals(a.getPseudo()) ; j++);
 				if (j<tmp_previous_admins.size())
 				{
 					tmp_previous_admins.remove(j);
@@ -259,9 +276,12 @@ public class cercleparamController {
 			else
 			{
 				// l'admin actuel n'était pas encore administrateur du cercle avant la modification validée de ce cercle
-				a.addCercles_admin(tmp);				
+				a.addCercles_admin(tmp);	
+				System.out.println ("### Test Coté user ### - Boucle 1 - Traitement deu nouvel admin " + a.getPseudo());
 			}
-			userRepository.save(a);		
+			userRepository.save(a);	
+			
+			
 
 		}
 		
@@ -277,7 +297,7 @@ public class cercleparamController {
 				m_cercles_member.add(tmp);
 				m.setCercles_membre(m_cercles_member);
 				
-				for(i=0 ; i<tmp_previous_members.size() && tmp_previous_members.get(i).getPseudo() != m.getPseudo() ; i++);
+				for(i=0 ; i<tmp_previous_members.size() && !tmp_previous_members.get(i).getPseudo().equals(m.getPseudo()) ; i++);
 				if (i<tmp_previous_members.size())
 					tmp_previous_members.remove(i);
 			}
@@ -290,8 +310,12 @@ public class cercleparamController {
 		}		
 		
 		
+
+		
 		for(Utilisateur removed_a : tmp_previous_admins)
 		{
+			System.out.println ("### Test ### - Admin supprimé : " + removed_a.getPseudo());
+			
 			List<Cercle> removed_a_cercles_admin = removed_a.getCercles_admin();
 			int i=0;
 			for( ; i<removed_a_cercles_admin.size() && removed_a_cercles_admin.get(i).getId() != tmp.getId() ; i++);
@@ -305,6 +329,8 @@ public class cercleparamController {
 		
 		for(Utilisateur removed_m : tmp_previous_members)
 		{
+			System.out.println ("### Test ### - Membre supprimé : " + removed_m.getPseudo());
+			
 			List<Cercle> removed_m_cercles_member = removed_m.getCercles_admin();
 			int i=0;
 			for( ; i<removed_m_cercles_member.size() && removed_m_cercles_member.get(i).getId() != tmp.getId() ; i++);
