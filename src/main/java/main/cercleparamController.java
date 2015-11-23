@@ -60,6 +60,8 @@ public class cercleparamController {
 				DoubleString new_admin_member = new DoubleString("","");
 				model.addAttribute("new_admin_member", new_admin_member);
 				
+				model.addAttribute("currentuser_pseudo", currentUserPseudo);
+				
 				return "cercle_param";				
 				
 			} else {
@@ -216,6 +218,12 @@ public class cercleparamController {
 		List<Utilisateur> tmp_previous_members = new ArrayList<Utilisateur>();
 		for(Utilisateur um : previous_members)
 			tmp_previous_members.add(um);
+		
+    	for(Utilisateur uuu : tmp.getAdministrateurs())
+    		System.out.println ("### Test ### - " + uuu.getPseudo() + " est un admin du cercle qui vient juste d'être modifié");
+       	for(Utilisateur uuu : tmp.getUtilisateurs())
+    		System.out.println ("### Test ### - " + uuu.getPseudo() + " est un membre du cercle qui vient juste d'être modifié");
+		
 		
 		tmp.setName(paramCercle.getName());
 		tmp.setDescription(paramCercle.getDescription());				

@@ -95,7 +95,10 @@
 									<tr th:each="a, iterStat : ${paramcercle.administrateurs}">
 										<td th:text="${a.pseudo}" class="create_cercle_admin_pseudo"></td>
 										 <td>	
-										    <input th:if="${iterStat.count>1}" class="btn btn-default btn-xs"  id="delete_admin_submit" name="delete_admin" type="submit" value="Supprimer" th:formaction="@{/cercle_param(cercle=${paramcercle.id},delete_admin_pseudo=${a.pseudo})}" />
+										    <!--  <input th:if="${iterStat.count>1}" class="btn btn-default btn-xs"  id="delete_admin_submit" name="delete_admin" type="submit" value="Supprimer" th:formaction="@{/cercle_param(cercle=${paramcercle.id},delete_admin_pseudo=${a.pseudo})}" /> --> 
+											<input th:if="${a.pseudo != currentuser_pseudo}" class="btn btn-default btn-xs"  id="delete_admin_submit" name="delete_admin" type="submit" value="Supprimer" th:formaction="@{/cercle_param(cercle=${paramcercle.id},delete_admin_pseudo=${a.pseudo})}" />
+										 	
+										 
 										 </td>	
 									</tr>
 								</table>	

@@ -63,6 +63,13 @@ public class userpageController {
 	     * Informations relatives aux cercles à transmettre à la page
 	     */
     	
+    	
+    	for(Cercle ctmp : currentUser.getCercles_admin())
+    		System.out.println(ctmp.getName() + " est un cercle administré par " + currentUserPseudo);
+    	for(Cercle ctmp : currentUser.getCercles_membre())
+    		System.out.println(ctmp.getName()  + " est un cercle dont est membre " + currentUserPseudo);
+
+    	
     	model.addAttribute("user_cercles_admin", currentUser.getCercles_admin());  
     	model.addAttribute("user_cercles_membre", currentUser.getCercles_membre()); 
     	
